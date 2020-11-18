@@ -10,7 +10,6 @@
 		16DF7F732565DFB4005A4110 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DF7F722565DFB4005A4110 /* AppDelegate.swift */; };
 		16DF7F752565DFB4005A4110 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DF7F742565DFB4005A4110 /* SceneDelegate.swift */; };
 		16DF7F772565DFB4005A4110 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DF7F762565DFB4005A4110 /* ViewController.swift */; };
-		16DF7F7A2565DFB4005A4110 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16DF7F782565DFB4005A4110 /* Main.storyboard */; };
 		16DF7F7C2565DFB4005A4110 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16DF7F7B2565DFB4005A4110 /* Assets.xcassets */; };
 		16DF7F7F2565DFB4005A4110 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16DF7F7D2565DFB4005A4110 /* LaunchScreen.storyboard */; };
 		16DF7F8A2565DFB4005A4110 /* WakaHubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DF7F892565DFB4005A4110 /* WakaHubTests.swift */; };
@@ -39,7 +38,6 @@
 		16DF7F722565DFB4005A4110 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		16DF7F742565DFB4005A4110 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		16DF7F762565DFB4005A4110 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		16DF7F792565DFB4005A4110 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		16DF7F7B2565DFB4005A4110 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		16DF7F7E2565DFB4005A4110 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		16DF7F802565DFB4005A4110 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,13 +97,10 @@
 		16DF7F712565DFB4005A4110 /* WakaHub */ = {
 			isa = PBXGroup;
 			children = (
-				16DF7F722565DFB4005A4110 /* AppDelegate.swift */,
-				16DF7F742565DFB4005A4110 /* SceneDelegate.swift */,
+				16DF7FA82565DFDA005A4110 /* AppDelegate */,
+				16DF7FAD2565E019005A4110 /* Resources */,
+				16DF7FA92565DFFE005A4110 /* View */,
 				16DF7F762565DFB4005A4110 /* ViewController.swift */,
-				16DF7F782565DFB4005A4110 /* Main.storyboard */,
-				16DF7F7B2565DFB4005A4110 /* Assets.xcassets */,
-				16DF7F7D2565DFB4005A4110 /* LaunchScreen.storyboard */,
-				16DF7F802565DFB4005A4110 /* Info.plist */,
 			);
 			path = WakaHub;
 			sourceTree = "<group>";
@@ -128,6 +123,32 @@
 			path = WakaHubUITests;
 			sourceTree = "<group>";
 		};
+		16DF7FA82565DFDA005A4110 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				16DF7F722565DFB4005A4110 /* AppDelegate.swift */,
+				16DF7F742565DFB4005A4110 /* SceneDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		16DF7FA92565DFFE005A4110 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				16DF7F7D2565DFB4005A4110 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		16DF7FAD2565E019005A4110 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				16DF7F7B2565DFB4005A4110 /* Assets.xcassets */,
+				16DF7F802565DFB4005A4110 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,6 +159,7 @@
 				16DF7F6B2565DFB4005A4110 /* Sources */,
 				16DF7F6C2565DFB4005A4110 /* Frameworks */,
 				16DF7F6D2565DFB4005A4110 /* Resources */,
+				16DF7FB42565E0CE005A4110 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -233,7 +255,6 @@
 			files = (
 				16DF7F7F2565DFB4005A4110 /* LaunchScreen.storyboard in Resources */,
 				16DF7F7C2565DFB4005A4110 /* Assets.xcassets in Resources */,
-				16DF7F7A2565DFB4005A4110 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +273,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		16DF7FB42565E0CE005A4110 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		16DF7F6B2565DFB4005A4110 /* Sources */ = {
@@ -296,14 +338,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		16DF7F782565DFB4005A4110 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				16DF7F792565DFB4005A4110 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		16DF7F7D2565DFB4005A4110 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -438,7 +472,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9AB3Z82UPH;
-				INFOPLIST_FILE = WakaHub/Info.plist;
+				INFOPLIST_FILE = WakaHub/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -446,7 +480,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = qyzdo.WakaHub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -457,7 +491,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9AB3Z82UPH;
-				INFOPLIST_FILE = WakaHub/Info.plist;
+				INFOPLIST_FILE = WakaHub/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -465,7 +499,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = qyzdo.WakaHub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
