@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		164A59D0256C6732009442A8 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164A59CF256C6732009442A8 /* WelcomeView.swift */; };
+		164A59DB256C6C0F009442A8 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164A59DA256C6C0F009442A8 /* KeychainWrapper.swift */; };
 		167CC298256C26BD004D919A /* OAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167CC297256C26BD004D919A /* OAuth.swift */; };
 		16DF7F732565DFB4005A4110 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DF7F722565DFB4005A4110 /* AppDelegate.swift */; };
 		16DF7F752565DFB4005A4110 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DF7F742565DFB4005A4110 /* SceneDelegate.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		164A59CF256C6732009442A8 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		164A59DA256C6C0F009442A8 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		167CC297256C26BD004D919A /* OAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth.swift; sourceTree = "<group>"; };
 		16DF7F6F2565DFB4005A4110 /* WakaHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WakaHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16DF7F722565DFB4005A4110 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +103,14 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		164A59DF256C6D9E009442A8 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				164A59DA256C6C0F009442A8 /* KeychainWrapper.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		167CC295256C26A3004D919A /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,10 +144,11 @@
 		16DF7F712565DFB4005A4110 /* WakaHub */ = {
 			isa = PBXGroup;
 			children = (
+				16DF7FA82565DFDA005A4110 /* AppDelegate */,
 				164A59CB256C66E0009442A8 /* Controller */,
 				167CC295256C26A3004D919A /* Networking */,
-				16DF7FA82565DFDA005A4110 /* AppDelegate */,
 				16DF7FAD2565E019005A4110 /* Resources */,
+				164A59DF256C6D9E009442A8 /* Tools */,
 				16DF7FA92565DFFE005A4110 /* View */,
 			);
 			path = WakaHub;
@@ -470,6 +481,7 @@
 				16DF7F772565DFB4005A4110 /* WelcomeVC.swift in Sources */,
 				16DF7F732565DFB4005A4110 /* AppDelegate.swift in Sources */,
 				16DF7F752565DFB4005A4110 /* SceneDelegate.swift in Sources */,
+				164A59DB256C6C0F009442A8 /* KeychainWrapper.swift in Sources */,
 				167CC298256C26BD004D919A /* OAuth.swift in Sources */,
 				164A59D0256C6732009442A8 /* WelcomeView.swift in Sources */,
 			);
