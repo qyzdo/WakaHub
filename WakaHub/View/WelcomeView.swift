@@ -18,17 +18,21 @@ final class WelcomeView: UIView {
         logoView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 5).isActive = true
         logoView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         logoView.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        logoView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        logoView.heightAnchor.constraint(lessThanOrEqualToConstant: 150).isActive = true
 
         addSubview(loginButton)
-        loginButton.topAnchor.constraint(equalTo: logoView.bottomAnchor, constant: 25).isActive = true
+        loginButton.topAnchor.constraint(greaterThanOrEqualTo: logoView.bottomAnchor, constant: 15).isActive = true
+        loginButton.centerYAnchor.constraint(lessThanOrEqualTo: self.centerYAnchor, constant: 0).isActive = true
         loginButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         loginButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        loginButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
 
         addSubview(createAccountButton)
         createAccountButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 25).isActive = true
+        createAccountButton.bottomAnchor.constraint(lessThanOrEqualTo: safeArea.bottomAnchor).isActive = true
         createAccountButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         createAccountButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        createAccountButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -39,7 +43,11 @@ final class WelcomeView: UIView {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .center
-        imageView.image = UIImage(systemName: "arrow.2.squarepath")
+        let image = UIImage(named: "Logo")
+        let tintedImage = image?.withRenderingMode(.alwaysTemplate)
+        imageView.image = tintedImage
+        imageView.tintColor = UIColor(named: "LogoColor")
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
 
