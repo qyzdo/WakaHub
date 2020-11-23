@@ -16,6 +16,11 @@ final class WelcomeVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavbar()
+    }
+
+    private func setupNavbar() {
+        title = "Welcome"
     }
 
 }
