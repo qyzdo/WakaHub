@@ -7,12 +7,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class WelcomeVC: UIViewController {
+
+    override func loadView() {
+        let view = WelcomeView()
+         self.view = view
+     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-
     }
 
 }
