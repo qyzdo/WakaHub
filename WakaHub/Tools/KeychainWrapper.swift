@@ -7,7 +7,7 @@
 
 import Foundation
 
-class KeychainWrapper {
+final class KeychainWrapper {
 
     var loggingEnabled = false
 
