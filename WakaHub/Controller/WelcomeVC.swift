@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import OAuthSwift
 
 final class WelcomeVC: UIViewController {
 
@@ -26,7 +25,6 @@ final class WelcomeVC: UIViewController {
         super.viewDidLoad()
         setupUI()
 
-        
     }
 
     private func setupUI() {
