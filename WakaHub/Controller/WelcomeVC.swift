@@ -30,6 +30,8 @@ final class WelcomeVC: UIViewController {
     private func setupUI() {
         setupNavbar()
         welcomeView.loginButton.addTarget(self, action: #selector(loginButtonClicked), for: .touchUpInside)
+        welcomeView.createAccountButton.addTarget(self, action: #selector(createAccountButtonClicked), for: .touchUpInside)
+
     }
 
     private func setupNavbar() {
@@ -46,6 +48,12 @@ final class WelcomeVC: UIViewController {
             case .failure(let error):
                 print(error.localizedDescription)
             }
+        }
+    }
+
+    @objc private func createAccountButtonClicked() {
+        if let url = URL(string: "https://wakatime.com/signup") {
+            UIApplication.shared.open(url)
         }
     }
 
