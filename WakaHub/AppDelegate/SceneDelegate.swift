@@ -37,6 +37,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
     }
 
+    func changeRootViewController(_ viewController: UIViewController, animated: Bool = true) {
+        guard let window = self.window else {
+            return
+        }
+
+        window.rootViewController = viewController
+
+        UIView.transition(with: window,
+                          duration: 0.5,
+                          options: [.transitionCrossDissolve],
+                          animations: nil,
+                          completion: nil)
+    }
+
     private func isLoggedIn() -> Bool {
         let logged = KeychainWrapper.shared["Token"] != nil &&
             KeychainWrapper.shared["RefreshToken"] != nil ? true : false

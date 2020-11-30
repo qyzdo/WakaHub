@@ -44,11 +44,17 @@ final class WelcomeVC: UIViewController {
             case .success(let credentials):
                 KeychainWrapper.shared["Token"] = credentials.oauthToken
                 KeychainWrapper.shared["RefreshToken"] = credentials.oauthRefreshToken
+                self.presentLoggedInView()
             case .failure(let error):
                 print(error.localizedDescription)
                 self.presentErrorAlert()
             }
         }
+    }
+
+    private func presentLoggedInView() {
+        let tabBarController = TabBarVC()
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
     }
 
     private func presentErrorAlert() {
