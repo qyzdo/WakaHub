@@ -28,10 +28,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let window = UIWindow(windowScene: windowScene)
 
-        let viewController = isLoggedIn() ? TabBarVC() : WelcomeVC()
+        if isLoggedIn() {
+            let viewController = TabBarVC()
+            window.rootViewController = viewController
 
-        let navigationController = UINavigationController(rootViewController: viewController)
-        window.rootViewController = navigationController
+        } else {
+            let viewController = WelcomeVC()
+            let navigationController = UINavigationController(rootViewController: viewController)
+            window.rootViewController = navigationController
+        }
+
         self.window = window
         window.makeKeyAndVisible()
     }
@@ -41,9 +47,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
 
-        let navigationController = UINavigationController(rootViewController: viewController)
-        window.rootViewController = navigationController
-
+        window.rootViewController = viewController
         UIView.transition(with: window,
                           duration: 0.5,
                           options: [.transitionCrossDissolve],
