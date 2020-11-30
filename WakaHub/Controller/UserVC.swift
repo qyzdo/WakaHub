@@ -9,9 +9,18 @@ import UIKit
 
 final class UserVC: UIViewController {
 
+    override func loadView() {
+        let view = UserView()
+         self.view = view
+     }
+
+    private var userView: UserView {
+        // swiftlint:disable:next force_cast
+        return view as! UserView
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
         let service = ServiceProvider<WakaTimeService>()
         service.load(service: .user) { result in
             switch result {

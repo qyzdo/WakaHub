@@ -13,6 +13,7 @@
 		1627A80C257581D500F42B09 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1627A80B257581D500F42B09 /* ServiceProvider.swift */; };
 		1627A811257581ED00F42B09 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1627A810257581ED00F42B09 /* Service.swift */; };
 		1627A8162575822D00F42B09 /* WakaTimeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1627A8152575822D00F42B09 /* WakaTimeService.swift */; };
+		1627A8232575865E00F42B09 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1627A8222575865E00F42B09 /* UserView.swift */; };
 		164A59D0256C6732009442A8 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164A59CF256C6732009442A8 /* WelcomeView.swift */; };
 		164A59DB256C6C0F009442A8 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164A59DA256C6C0F009442A8 /* KeychainWrapper.swift */; };
 		167CC298256C26BD004D919A /* OAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167CC297256C26BD004D919A /* OAuth.swift */; };
@@ -52,6 +53,7 @@
 		1627A80B257581D500F42B09 /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
 		1627A810257581ED00F42B09 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		1627A8152575822D00F42B09 /* WakaTimeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakaTimeService.swift; sourceTree = "<group>"; };
+		1627A8222575865E00F42B09 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		164A59CF256C6732009442A8 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		164A59DA256C6C0F009442A8 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		167CC297256C26BD004D919A /* OAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 		16DF7FA92565DFFE005A4110 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1627A8222575865E00F42B09 /* UserView.swift */,
 				164A59CF256C6732009442A8 /* WelcomeView.swift */,
 				16DF7F7D2565DFB4005A4110 /* LaunchScreen.storyboard */,
 			);
@@ -506,6 +509,7 @@
 				1627A80C257581D500F42B09 /* ServiceProvider.swift in Sources */,
 				164A59DB256C6C0F009442A8 /* KeychainWrapper.swift in Sources */,
 				1627A811257581ED00F42B09 /* Service.swift in Sources */,
+				1627A8232575865E00F42B09 /* UserView.swift in Sources */,
 				167CC298256C26BD004D919A /* OAuth.swift in Sources */,
 				164A59D0256C6732009442A8 /* WelcomeView.swift in Sources */,
 			);
