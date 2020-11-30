@@ -10,6 +10,9 @@
 		1627A7FD257559CD00F42B09 /* UserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1627A7FC257559CD00F42B09 /* UserVC.swift */; };
 		1627A802257559DD00F42B09 /* StatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1627A801257559DD00F42B09 /* StatsVC.swift */; };
 		1627A807257559F700F42B09 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1627A806257559F700F42B09 /* TabBarVC.swift */; };
+		1627A80C257581D500F42B09 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1627A80B257581D500F42B09 /* ServiceProvider.swift */; };
+		1627A811257581ED00F42B09 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1627A810257581ED00F42B09 /* Service.swift */; };
+		1627A8162575822D00F42B09 /* WakaTimeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1627A8152575822D00F42B09 /* WakaTimeService.swift */; };
 		164A59D0256C6732009442A8 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164A59CF256C6732009442A8 /* WelcomeView.swift */; };
 		164A59DB256C6C0F009442A8 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164A59DA256C6C0F009442A8 /* KeychainWrapper.swift */; };
 		167CC298256C26BD004D919A /* OAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167CC297256C26BD004D919A /* OAuth.swift */; };
@@ -46,6 +49,9 @@
 		1627A7FC257559CD00F42B09 /* UserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVC.swift; sourceTree = "<group>"; };
 		1627A801257559DD00F42B09 /* StatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsVC.swift; sourceTree = "<group>"; };
 		1627A806257559F700F42B09 /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
+		1627A80B257581D500F42B09 /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
+		1627A810257581ED00F42B09 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		1627A8152575822D00F42B09 /* WakaTimeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakaTimeService.swift; sourceTree = "<group>"; };
 		164A59CF256C6732009442A8 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		164A59DA256C6C0F009442A8 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		167CC297256C26BD004D919A /* OAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth.swift; sourceTree = "<group>"; };
@@ -124,6 +130,9 @@
 			isa = PBXGroup;
 			children = (
 				167CC297256C26BD004D919A /* OAuth.swift */,
+				1627A80B257581D500F42B09 /* ServiceProvider.swift */,
+				1627A810257581ED00F42B09 /* Service.swift */,
+				1627A8152575822D00F42B09 /* WakaTimeService.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -487,13 +496,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1627A8162575822D00F42B09 /* WakaTimeService.swift in Sources */,
 				1627A802257559DD00F42B09 /* StatsVC.swift in Sources */,
 				1627A7FD257559CD00F42B09 /* UserVC.swift in Sources */,
 				16DF7F772565DFB4005A4110 /* WelcomeVC.swift in Sources */,
 				16DF7F732565DFB4005A4110 /* AppDelegate.swift in Sources */,
 				1627A807257559F700F42B09 /* TabBarVC.swift in Sources */,
 				16DF7F752565DFB4005A4110 /* SceneDelegate.swift in Sources */,
+				1627A80C257581D500F42B09 /* ServiceProvider.swift in Sources */,
 				164A59DB256C6C0F009442A8 /* KeychainWrapper.swift in Sources */,
+				1627A811257581ED00F42B09 /* Service.swift in Sources */,
 				167CC298256C26BD004D919A /* OAuth.swift in Sources */,
 				164A59D0256C6732009442A8 /* WelcomeView.swift in Sources */,
 			);
