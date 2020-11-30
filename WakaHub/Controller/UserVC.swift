@@ -22,7 +22,30 @@ final class UserVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavbar()
+        setupUI()
+        loadData()
+
+    }
+
+    private func setupNavbar() {
+        navigationItem.title = "Your profile"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(settingsButtonClicked))
+    }
+
+    @objc private func settingsButtonClicked() {
+        KeychainWrapper.shared["Token"] = nil
+        KeychainWrapper.shared["RefreshToken"] = nil
+
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(WelcomeVC())
+
+    }
+
+    private func setupUI() {
         self.userView.avatarView.kf.indicatorType = .activity
+    }
+
+    private func loadData() {
         let service = ServiceProvider<WakaTimeService>()
 
         service.load(service: .user, decodeType: User.self) { result in
@@ -42,22 +65,4 @@ final class UserVC: UIViewController {
             }
         }
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        setupNavbar()
-    }
-
-    private func setupNavbar() {
-        navigationItem.title = "Your profile"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(settingsButtonClicked))
-    }
-
-    @objc private func settingsButtonClicked() {
-        KeychainWrapper.shared["Token"] = nil
-        KeychainWrapper.shared["RefreshToken"] = nil
-
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(WelcomeVC())
-
-    }
-
 }
