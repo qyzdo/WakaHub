@@ -39,7 +39,7 @@ final class WelcomeView: UIView {
         super.init(coder: aDecoder)
     }
 
-    public var logoView: UIImageView = {
+    public let logoView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .center
@@ -51,7 +51,7 @@ final class WelcomeView: UIView {
         return imageView
     }()
 
-    public var loginButton: UIButton = {
+    public let loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .systemBlue
@@ -62,7 +62,7 @@ final class WelcomeView: UIView {
         return button
     }()
 
-    public var createAccountButton: UIButton = {
+    public let createAccountButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .systemBlue
