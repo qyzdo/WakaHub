@@ -19,7 +19,12 @@ final class UserVC: UIViewController {
     }
 
     private func setupNavbar() {
-        self.tabBarController?.navigationItem.title = "Your profile"
+        title = "Your profile"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(settingsButtonClicked))
+    }
+
+    @objc private func settingsButtonClicked() {
+        print("Opened settings")
     }
 
 }

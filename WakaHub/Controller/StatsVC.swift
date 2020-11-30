@@ -19,7 +19,6 @@ final class StatsVC: UIViewController {
     }
 
     private func setupNavbar() {
-        self.tabBarController?.navigationItem.title = "Stats"
+        navigationItem.title = "Stats"
     }
-
 }

@@ -21,10 +21,12 @@ final class TabBarVC: UITabBarController {
     }
 
     private func setupViewControllers() {
-        let firstViewController = StatsVC()
+        let firstViewController = UINavigationController(rootViewController: StatsVC())
+        firstViewController.navigationBar.prefersLargeTitles = true
         firstViewController.tabBarItem = UITabBarItem(title: "Stats", image: UIImage(systemName: "chart.bar.xaxis"), tag: 0)
 
-        let secondViewController = UserVC()
+        let secondViewController = UINavigationController(rootViewController: UserVC())
+        secondViewController.navigationBar.prefersLargeTitles = true
         secondViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 1)
 
         let tabBarList = [firstViewController, secondViewController]
