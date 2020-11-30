@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class UserVC: UIViewController {
 
@@ -21,13 +22,20 @@ final class UserVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.userView.avatarView.kf.indicatorType = .activity
         let service = ServiceProvider<WakaTimeService>()
-        service.load(service: .user) { result in
+
+        service.load(service: .user, decodeType: User.self) { result in
             switch result {
             case .success(let resp):
-                print(String(decoding: resp, as: UTF8.self))
+                self.userView.avatarView.kf.setImage(with: URL(string: resp.data.photo),
+                                                      options: [
+                                                              .scaleFactor(UIScreen.main.scale),
+                                                              .transition(.fade(1)),
+                                                              .cacheOriginalImage
+                                                          ])
             case .failure(let error):
-                print(error.localizedDescription)
+                print(error)
             case .empty:
                 print("No data")
 

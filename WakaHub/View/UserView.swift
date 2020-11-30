@@ -28,11 +28,6 @@ final class UserView: UIView {
     public let avatarView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .center
-        let image = UIImage(named: "Logo")
-        let tintedImage = image?.withRenderingMode(.alwaysTemplate)
-        imageView.image = tintedImage
-        imageView.tintColor = UIColor(named: "LogoColor")
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
