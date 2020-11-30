@@ -24,7 +24,6 @@ final class WelcomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-
     }
 
     private func setupUI() {
@@ -47,8 +46,16 @@ final class WelcomeVC: UIViewController {
                 KeychainWrapper.shared["RefreshToken"] = credentials.oauthRefreshToken
             case .failure(let error):
                 print(error.localizedDescription)
+                self.presentErrorAlert()
             }
         }
+    }
+
+    private func presentErrorAlert() {
+        let alert = UIAlertController(title: "Login Error", message: "There is an error in logging you into this application, please try again.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+
+        self.present(alert, animated: true)
     }
 
     @objc private func createAccountButtonClicked() {
