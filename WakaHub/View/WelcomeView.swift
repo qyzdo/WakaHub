@@ -42,7 +42,6 @@ final class WelcomeView: UIView {
     public let logoView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .center
         let image = UIImage(named: "Logo")
         let tintedImage = image?.withRenderingMode(.alwaysTemplate)
         imageView.image = tintedImage
