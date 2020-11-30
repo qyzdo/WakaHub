@@ -56,10 +56,4 @@ final class WelcomeVC: UIViewController {
             UIApplication.shared.open(url)
         }
     }
-
-    private func checkIfLoggedin() -> Bool {
-        let logged = KeychainWrapper.shared["Token"] != nil &&
-            KeychainWrapper.shared["RefreshToken"] != nil ? true : false
-        return logged
-    }
 }
