@@ -28,8 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let window = UIWindow(windowScene: windowScene)
 
-        //Change "true" one to other view controller when created
-        let viewController = isLoggedIn() ? WelcomeVC() : WelcomeVC()
+        let viewController = isLoggedIn() ? TabBarVC() : WelcomeVC()
 
         let navigationController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navigationController
@@ -42,7 +41,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
 
-        window.rootViewController = viewController
+        let navigationController = UINavigationController(rootViewController: viewController)
+        window.rootViewController = navigationController
 
         UIView.transition(with: window,
                           duration: 0.5,
