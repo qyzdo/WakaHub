@@ -11,8 +11,15 @@ final class StatsVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
+    }
 
-        view.backgroundColor = .blue
+    override func viewDidAppear(_ animated: Bool) {
+        setupNavbar()
+    }
+
+    private func setupNavbar() {
+        self.tabBarController?.navigationItem.title = "Stats"
     }
 
 }
