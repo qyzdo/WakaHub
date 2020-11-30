@@ -1,16 +1,22 @@
 PODS:
+  - Kingfisher (5.15.8):
+    - Kingfisher/Core (= 5.15.8)
+  - Kingfisher/Core (5.15.8)
   - OAuthSwift (2.1.0)
 
 DEPENDENCIES:
+  - Kingfisher
   - OAuthSwift
 
 SPEC REPOS:
   trunk:
+    - Kingfisher
     - OAuthSwift
 
 SPEC CHECKSUMS:
+  Kingfisher: a3c03d702433fa6cfedabb2bddbe076fb8f2e902
   OAuthSwift: ab1675598273e04355e0282459c328e65c9ddacd
 
-PODFILE CHECKSUM: 814189405eb69f4d87090cd95b6957ac83547c31
+PODFILE CHECKSUM: b16fd8d7b2ade306b7fe04fbcd69c9058dde917b
 
 COCOAPODS: 1.10.0

@@ -7,6 +7,7 @@ target 'WakaHub' do
 
   # Pods for WakaHub
 pod 'OAuthSwift'
+pod 'Kingfisher'
 
   target 'WakaHubTests' do
     inherit! :search_paths
