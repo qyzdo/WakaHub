@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import OAuthSwift
 
 final class WelcomeVC: UIViewController {
 
@@ -16,7 +17,7 @@ final class WelcomeVC: UIViewController {
          self.view = view
      }
 
-    var welcomeView: WelcomeView {
+    private var welcomeView: WelcomeView {
         // swiftlint:disable:next force_cast
         return view as! WelcomeView
     }
@@ -35,21 +36,29 @@ final class WelcomeVC: UIViewController {
 
     private func setupNavbar() {
         title = "Welcome"
+        let refreshBarButton: UIBarButtonItem = UIBarButtonItem(customView: welcomeView.activityIndicator)
+        self.navigationItem.rightBarButtonItem = refreshBarButton
     }
 
     @objc private func loginButtonClicked() {
         auth = OAuth()
+        welcomeView.activityIndicator.startAnimating()
         auth?.authorize { result in
             switch result {
             case .success(let credentials):
-                KeychainWrapper.shared["Token"] = credentials.oauthToken
-                KeychainWrapper.shared["RefreshToken"] = credentials.oauthRefreshToken
+                self.saveCredentialsInKeychain(credentials: credentials)
+                self.welcomeView.activityIndicator.stopAnimating()
                 self.presentLoggedInView()
             case .failure(let error):
                 print(error.localizedDescription)
                 self.presentErrorAlert()
             }
         }
+    }
+
+    private func saveCredentialsInKeychain(credentials: OAuthSwiftCredential) {
+        KeychainWrapper.shared["Token"] = credentials.oauthToken
+        KeychainWrapper.shared["RefreshToken"] = credentials.oauthRefreshToken
     }
 
     private func presentLoggedInView() {

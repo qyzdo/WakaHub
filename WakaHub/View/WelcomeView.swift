@@ -72,4 +72,11 @@ final class WelcomeView: UIView {
         button.layer.cornerRadius = 10
         return button
     }()
+
+    public let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
 }
