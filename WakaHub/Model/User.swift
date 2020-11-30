@@ -25,7 +25,7 @@ struct DataClass: Codable {
     let loggedTimePublic: Bool
     let modifiedAt: String?
     let needsPaymentMethod: Bool
-    let photo: String
+    let avatarUrl: String
     let photoPublic: Bool
     let plan: String
     let publicEmail: String?
@@ -59,7 +59,7 @@ struct DataClass: Codable {
         case loggedTimePublic = "logged_time_public"
         case modifiedAt = "modified_at"
         case needsPaymentMethod = "needs_payment_method"
-        case photo
+        case avatarUrl = "photo"
         case photoPublic = "photo_public"
         case plan
         case publicEmail = "public_email"

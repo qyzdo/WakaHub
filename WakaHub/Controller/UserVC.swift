@@ -28,7 +28,7 @@ final class UserVC: UIViewController {
         service.load(service: .user, decodeType: User.self) { result in
             switch result {
             case .success(let resp):
-                self.userView.avatarView.kf.setImage(with: URL(string: resp.data.photo),
+                self.userView.avatarView.kf.setImage(with: URL(string: resp.data.avatarUrl),
                                                       options: [
                                                               .scaleFactor(UIScreen.main.scale),
                                                               .transition(.fade(1)),
