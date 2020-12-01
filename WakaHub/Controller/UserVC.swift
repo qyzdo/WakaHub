@@ -51,12 +51,7 @@ final class UserVC: UIViewController {
         service.load(service: .user, decodeType: User.self) { result in
             switch result {
             case .success(let resp):
-                self.userView.avatarView.kf.setImage(with: URL(string: resp.data.avatarUrl),
-                                                      options: [
-                                                              .scaleFactor(UIScreen.main.scale),
-                                                              .transition(.fade(1)),
-                                                              .cacheOriginalImage
-                                                          ])
+                self.setupView(data: resp.data)
             case .failure(let error):
                 print(error)
             case .empty:
@@ -64,5 +59,21 @@ final class UserVC: UIViewController {
 
             }
         }
+    }
+
+    private func setupView(data: DataClass) {
+        userView.avatarView.kf.setImage(with: URL(string: data.avatarUrl),
+                                              options: [
+                                                      .scaleFactor(UIScreen.main.scale),
+                                                      .transition(.fade(1)),
+                                                      .cacheOriginalImage
+                                                  ])
+        userView.nameLabel.text = data.displayName
+        userView.userNameLabel.text = "@\(data.username)"
+
+        userView.locationLabel.text = data.location
+        userView.emailLabel.text = data.publicEmail
+        userView.joinedDateLabel.text = data.createdAt.formatDateWithMonthName()
+        userView.hireableLabel.isHidden = !data.isHireable
     }
 }
