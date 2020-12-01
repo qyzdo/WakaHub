@@ -17,6 +17,7 @@
 		1627A82C2575878C00F42B09 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1627A82B2575878C00F42B09 /* User.swift */; };
 		164A59D0256C6732009442A8 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164A59CF256C6732009442A8 /* WelcomeView.swift */; };
 		164A59DB256C6C0F009442A8 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164A59DA256C6C0F009442A8 /* KeychainWrapper.swift */; };
+		1650DBCC2576457B00F1F148 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1650DBCB2576457B00F1F148 /* DateFormatter.swift */; };
 		167CC298256C26BD004D919A /* OAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167CC297256C26BD004D919A /* OAuth.swift */; };
 		16DF7F732565DFB4005A4110 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DF7F722565DFB4005A4110 /* AppDelegate.swift */; };
 		16DF7F752565DFB4005A4110 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DF7F742565DFB4005A4110 /* SceneDelegate.swift */; };
@@ -58,6 +59,7 @@
 		1627A82B2575878C00F42B09 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		164A59CF256C6732009442A8 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		164A59DA256C6C0F009442A8 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
+		1650DBCB2576457B00F1F148 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		167CC297256C26BD004D919A /* OAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth.swift; sourceTree = "<group>"; };
 		16DF7F6F2565DFB4005A4110 /* WakaHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WakaHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16DF7F722565DFB4005A4110 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				164A59DA256C6C0F009442A8 /* KeychainWrapper.swift */,
+				1650DBCB2576457B00F1F148 /* DateFormatter.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -519,6 +522,7 @@
 				1627A82C2575878C00F42B09 /* User.swift in Sources */,
 				16DF7F752565DFB4005A4110 /* SceneDelegate.swift in Sources */,
 				1627A80C257581D500F42B09 /* ServiceProvider.swift in Sources */,
+				1650DBCC2576457B00F1F148 /* DateFormatter.swift in Sources */,
 				164A59DB256C6C0F009442A8 /* KeychainWrapper.swift in Sources */,
 				1627A811257581ED00F42B09 /* Service.swift in Sources */,
 				1627A8232575865E00F42B09 /* UserView.swift in Sources */,
