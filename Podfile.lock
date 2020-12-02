@@ -1,22 +1,28 @@
 PODS:
+  - Charts (3.6.0):
+    - Charts/Core (= 3.6.0)
+  - Charts/Core (3.6.0)
   - Kingfisher (5.15.8):
     - Kingfisher/Core (= 5.15.8)
   - Kingfisher/Core (5.15.8)
   - OAuthSwift (2.1.0)
 
 DEPENDENCIES:
+  - Charts
   - Kingfisher
   - OAuthSwift
 
 SPEC REPOS:
   trunk:
+    - Charts
     - Kingfisher
     - OAuthSwift
 
 SPEC CHECKSUMS:
+  Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
   Kingfisher: a3c03d702433fa6cfedabb2bddbe076fb8f2e902
   OAuthSwift: ab1675598273e04355e0282459c328e65c9ddacd
 
-PODFILE CHECKSUM: b16fd8d7b2ade306b7fe04fbcd69c9058dde917b
+PODFILE CHECKSUM: 4e744d76416a3d670bc923d19d9f650516b7b5b7
 
 COCOAPODS: 1.10.0
