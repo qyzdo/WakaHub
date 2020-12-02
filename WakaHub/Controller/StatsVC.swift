@@ -12,9 +12,6 @@ final class StatsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
         setupNavbar()
     }
 
