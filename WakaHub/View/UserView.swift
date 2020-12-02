@@ -17,15 +17,15 @@ final class UserView: UIView {
         addSubview(avatarView)
         avatarView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 5).isActive = true
         avatarView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        avatarView.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        avatarView.heightAnchor.constraint(lessThanOrEqualToConstant: 150).isActive = true
+        avatarView.widthAnchor.constraint(equalToConstant: 250).isActive = true
+        avatarView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/4).isActive = true
 
         addSubview(nameLabel)
-        nameLabel.topAnchor.constraint(equalTo: avatarView.bottomAnchor, constant: 5).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: avatarView.bottomAnchor, constant: 15).isActive = true
         nameLabel.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
 
         addSubview(userNameLabel)
-        userNameLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5).isActive = true
+        userNameLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor).isActive = true
         userNameLabel.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
 
         addSubview(stackView)
@@ -54,6 +54,7 @@ final class UserView: UIView {
     public var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
         return label
     }()
 
