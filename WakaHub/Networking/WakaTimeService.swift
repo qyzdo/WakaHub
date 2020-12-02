@@ -9,6 +9,7 @@ import Foundation
 
 enum WakaTimeService {
     case user
+    case stats
 }
 
 extension WakaTimeService: Service {
@@ -21,6 +22,8 @@ extension WakaTimeService: Service {
         switch self {
         case .user:
             return "/api/v1/users/current"
+        case .stats:
+            return "/api/v1/users/current/stats/last_7_days"
         }
     }
 
