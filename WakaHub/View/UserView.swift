@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Charts
 
 final class UserView: UIView {
 
@@ -38,6 +39,11 @@ final class UserView: UIView {
         stackView.addArrangedSubview(joinedDateLabel)
         stackView.addArrangedSubview(hireableLabel)
 
+        addSubview(chart)
+        chart.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 5).isActive = true
+        chart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
+        chart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
+        chart.heightAnchor.constraint(equalToConstant: 150).isActive = true
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -96,5 +102,14 @@ final class UserView: UIView {
         label.text = "Hireable"
         label.isHidden = true
         return label
+    }()
+
+    public var chart: HorizontalBarChartView = {
+        let chart = HorizontalBarChartView()
+        chart.translatesAutoresizingMaskIntoConstraints = false
+        chart.setScaleEnabled(false)
+        chart.legend.enabled = false
+
+        return chart
     }()
 }
