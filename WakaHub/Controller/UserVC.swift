@@ -126,7 +126,7 @@ final class UserVC: UIViewController {
 
         userView.locationLabel.text = data.location
         userView.emailLabel.text = data.publicEmail
-        userView.joinedDateLabel.text = data.createdAt.formatDateWithMonthName()
+        userView.joinedDateLabel.text = "Joined " + data.createdAt.formatDateWithMonthName()
         userView.hireableLabel.isHidden = !data.isHireable
     }
 
