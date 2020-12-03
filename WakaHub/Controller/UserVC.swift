@@ -153,6 +153,7 @@ final class UserVC: UIViewController {
             barChartDataSet.colors = ChartColorTemplates.material()
         }
         barChartDataSet.highlightEnabled = false
+        barChartDataSet.valueFormatter = ChartsFormatterPercent()
 
         let barChartData = BarChartData(dataSet: barChartDataSet)
         chart.data = barChartData

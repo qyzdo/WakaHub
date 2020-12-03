@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		160C03B22579664B005C92D0 /* PercentFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160C03B12579664B005C92D0 /* PercentFormatter.swift */; };
 		1627A7FD257559CD00F42B09 /* UserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1627A7FC257559CD00F42B09 /* UserVC.swift */; };
 		1627A802257559DD00F42B09 /* StatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1627A801257559DD00F42B09 /* StatsVC.swift */; };
 		1627A807257559F700F42B09 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1627A806257559F700F42B09 /* TabBarVC.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		160C03B12579664B005C92D0 /* PercentFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentFormatter.swift; sourceTree = "<group>"; };
 		1627A7FC257559CD00F42B09 /* UserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVC.swift; sourceTree = "<group>"; };
 		1627A801257559DD00F42B09 /* StatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsVC.swift; sourceTree = "<group>"; };
 		1627A806257559F700F42B09 /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
@@ -115,6 +117,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		160C03A825796615005C92D0 /* Chart+Extension */ = {
+			isa = PBXGroup;
+			children = (
+				160C03B12579664B005C92D0 /* PercentFormatter.swift */,
+			);
+			path = "Chart+Extension";
+			sourceTree = "<group>";
+		};
 		1627A82A2575878500F42B09 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +148,7 @@
 		164A59DF256C6D9E009442A8 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				160C03A825796615005C92D0 /* Chart+Extension */,
 				164A59DA256C6C0F009442A8 /* KeychainWrapper.swift */,
 				1650DBCB2576457B00F1F148 /* DateFormatter.swift */,
 			);
@@ -522,6 +533,7 @@
 				16DF7F772565DFB4005A4110 /* WelcomeVC.swift in Sources */,
 				16DF7F732565DFB4005A4110 /* AppDelegate.swift in Sources */,
 				16613F1B2577C96D0074C8B8 /* Stats.swift in Sources */,
+				160C03B22579664B005C92D0 /* PercentFormatter.swift in Sources */,
 				1627A807257559F700F42B09 /* TabBarVC.swift in Sources */,
 				1627A82C2575878C00F42B09 /* User.swift in Sources */,
 				16DF7F752565DFB4005A4110 /* SceneDelegate.swift in Sources */,
