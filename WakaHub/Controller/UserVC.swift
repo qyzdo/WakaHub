@@ -94,7 +94,7 @@ final class UserVC: UIViewController {
 
         let editorXcode = UsageTimes(digital: "", hours: 0, minutes: 0, name: "Xcode", percent: 25.0, text: "", totalSeconds: 0, machine: nil)
         let editorPycharm = UsageTimes(digital: "", hours: 0, minutes: 0, name: "PyCharm", percent: 25.0, text: "", totalSeconds: 0, machine: nil)
-        let editorVisualStudio = UsageTimes(digital: "", hours: 0, minutes: 0, name: "Visual Studio Code", percent: 50.0, text: "", totalSeconds: 0, machine: nil)
+        let editorVisualStudio = UsageTimes(digital: "", hours: 0, minutes: 0, name: "VS Code", percent: 50.0, text: "", totalSeconds: 0, machine: nil)
 
         let editors = [editorXcode, editorPycharm, editorVisualStudio]
 
