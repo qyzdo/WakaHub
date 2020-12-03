@@ -63,8 +63,8 @@ final class UserVC: UIViewController {
         service.load(service: .stats, decodeType: Stats.self) { result in
             switch result {
             case .success(let resp):
-                self.setupChart(categories: resp.data.languages, chart: self.userView.languagesChart)
-                self.setupChart(categories: resp.data.editors, chart: self.userView.editorsChart)
+                self.setupChart(usageTimeData: resp.data.languages, chart: self.userView.languagesChart)
+                self.setupChart(usageTimeData: resp.data.editors, chart: self.userView.editorsChart)
 
             case .failure(let error):
                 print(error)
@@ -90,13 +90,13 @@ final class UserVC: UIViewController {
         userView.hireableLabel.isHidden = !data.isHireable
     }
 
-    private func setupChart(categories: [Category], chart: HorizontalBarChartView) {
+    private func setupChart(usageTimeData: [usageTimes], chart: HorizontalBarChartView) {
         var percentValues = [Double]()
         var names = [String]()
 
-        for category in categories {
-            percentValues.append(category.percent)
-            names.append(category.name)
+        for usageTime in usageTimeData {
+            percentValues.append(usageTime.percent)
+            names.append(usageTime.name)
         }
 
         let dataEntries = createDataEntries(values: percentValues)

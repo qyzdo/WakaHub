@@ -14,22 +14,22 @@ struct Stats: Codable {
 // MARK: - DataClass
 struct StatsDataClass: Codable {
     let bestDay: BestDay
-    let categories: [Category]
+    let categories: [usageTimes]
     let createdAt: String
     let dailyAverage, dailyAverageIncludingOtherLanguage, daysIncludingHolidays, daysMinusHolidays: Int
-    let dependencies: [Category]
-    let editors: [Category]
+    let dependencies: [usageTimes]
+    let editors: [usageTimes]
     let end: String
     let holidays: Int
     let humanReadableDailyAverage, readableDailyAvgIncludingOtherLanguage, humanReadableTotal, humanReadableTotalIncludingOtherLanguage: String
     let identifier: String
     let isAlreadyUpdating, isCodingActivityVisible, isIncludingToday, isOtherUsageVisible: Bool
     let isStuck, isUpToDate: Bool
-    let languages, machines: [Category]
+    let languages, machines: [usageTimes]
     let modifiedAt: String?
-    let operatingSystems: [Category]
+    let operatingSystems: [usageTimes]
     let percentCalculated: Int
-    let projects: [Category]
+    let projects: [usageTimes]
     let range: String
     let start: String
     let status: String
@@ -91,7 +91,7 @@ struct BestDay: Codable {
 }
 
 // MARK: - Category
-struct Category: Codable {
+struct usageTimes: Codable {
     let digital: String
     let hours, minutes: Int
     let name: String
