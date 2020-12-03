@@ -26,7 +26,7 @@ struct StatsDataClass: Codable {
     let isAlreadyUpdating, isCodingActivityVisible, isIncludingToday, isOtherUsageVisible: Bool
     let isStuck, isUpToDate: Bool
     let languages, machines: [Category]
-    let modifiedAt: String
+    let modifiedAt: String?
     let operatingSystems: [Category]
     let percentCalculated: Int
     let projects: [Category]
@@ -76,7 +76,7 @@ struct StatsDataClass: Codable {
 struct BestDay: Codable {
     let createdAt: String
     let date, identifier: String
-    let modifiedAt: String
+    let modifiedAt: String?
     let text: String
     let totalSeconds: Double
 
