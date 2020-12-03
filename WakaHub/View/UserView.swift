@@ -117,6 +117,9 @@ final class UserView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.alignment = .center
         stackView.axis = .vertical
+        stackView.distribution = .equalSpacing
+        stackView.spacing = 5
+
         return stackView
     }()
 
@@ -141,8 +144,13 @@ final class UserView: UIView {
     public var hireableLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Hireable"
+        label.text = " hireable "
         label.isHidden = true
+        label.backgroundColor = UIColor(red: 89/255, green: 183/255, blue: 215/255, alpha: 1.0)
+        label.font = UIFont.boldSystemFont(ofSize: 13)
+        label.textColor = .white
+        label.layer.masksToBounds = true
+        label.layer.cornerRadius = 3
         return label
     }()
 
