@@ -50,6 +50,12 @@ final class UserView: UIView {
         editorsChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         editorsChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
         editorsChart.heightAnchor.constraint(equalToConstant: 90).isActive = true
+
+        addSubview(operatingSystemsChart)
+        operatingSystemsChart.topAnchor.constraint(equalTo: editorsChart.bottomAnchor, constant: 5).isActive = true
+        operatingSystemsChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
+        operatingSystemsChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
+        operatingSystemsChart.heightAnchor.constraint(equalToConstant: 90).isActive = true
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -120,6 +126,15 @@ final class UserView: UIView {
     }()
 
     public var editorsChart: HorizontalBarChartView = {
+        let chart = HorizontalBarChartView()
+        chart.translatesAutoresizingMaskIntoConstraints = false
+        chart.setScaleEnabled(false)
+        chart.legend.enabled = false
+
+        return chart
+    }()
+
+    public var operatingSystemsChart: HorizontalBarChartView = {
         let chart = HorizontalBarChartView()
         chart.translatesAutoresizingMaskIntoConstraints = false
         chart.setScaleEnabled(false)

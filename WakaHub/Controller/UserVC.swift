@@ -65,6 +65,7 @@ final class UserVC: UIViewController {
             case .success(let resp):
                 self.setupChart(usageTimeData: resp.data.languages, chart: self.userView.languagesChart)
                 self.setupChart(usageTimeData: resp.data.editors, chart: self.userView.editorsChart)
+                self.setupChart(usageTimeData: resp.data.operatingSystems, chart: self.userView.operatingSystemsChart)
 
             case .failure(let error):
                 print(error)
