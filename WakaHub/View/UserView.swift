@@ -43,7 +43,7 @@ final class UserView: UIView {
         chart.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 5).isActive = true
         chart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         chart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
-        chart.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        chart.heightAnchor.constraint(equalToConstant: 90).isActive = true
     }
 
     required init?(coder aDecoder: NSCoder) {

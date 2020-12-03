@@ -119,11 +119,9 @@ final class UserVC: UIViewController {
         chart.xAxis.drawGridLinesEnabled = false
         chart.xAxis.drawAxisLineEnabled = false
 
-        chart.animate(xAxisDuration: 3.0, yAxisDuration: 3.0, easingOption: .easeInOutBounce)
-
         chart.rightAxis.enabled = false
         chart.leftAxis.enabled = false
 
-        chart.setVisibleXRange(minXRange: 8.0, maxXRange: 8.0)
+        //chart.setVisibleXRange(minXRange: 8.0, maxXRange: 8.0)
     }
 }
