@@ -15,21 +15,27 @@ final class UserView: UIView {
         self.backgroundColor = .systemBackground
         let safeArea = self.layoutMarginsGuide
 
-        addSubview(avatarView)
-        avatarView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 5).isActive = true
-        avatarView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        addSubview(scrollView)
+        scrollView.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
+        scrollView.topAnchor.constraint(equalTo: safeArea.topAnchor).isActive = true
+        scrollView.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor).isActive = true
+
+        scrollView.addSubview(avatarView)
+        avatarView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 5).isActive = true
+        avatarView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         avatarView.widthAnchor.constraint(equalToConstant: 250).isActive = true
         avatarView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/4).isActive = true
 
-        addSubview(nameLabel)
+        scrollView.addSubview(nameLabel)
         nameLabel.topAnchor.constraint(equalTo: avatarView.bottomAnchor, constant: 15).isActive = true
         nameLabel.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
 
-        addSubview(userNameLabel)
+        scrollView.addSubview(userNameLabel)
         userNameLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor).isActive = true
         userNameLabel.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
 
-        addSubview(stackView)
+        scrollView.addSubview(stackView)
         stackView.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 5).isActive = true
         stackView.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         stackView.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
@@ -39,28 +45,35 @@ final class UserView: UIView {
         stackView.addArrangedSubview(joinedDateLabel)
         stackView.addArrangedSubview(hireableLabel)
 
-        addSubview(languagesChart)
+        scrollView.addSubview(languagesChart)
         languagesChart.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 5).isActive = true
         languagesChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         languagesChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
         languagesChart.heightAnchor.constraint(equalToConstant: 90).isActive = true
 
-        addSubview(editorsChart)
+        scrollView.addSubview(editorsChart)
         editorsChart.topAnchor.constraint(equalTo: languagesChart.bottomAnchor, constant: 5).isActive = true
         editorsChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         editorsChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
         editorsChart.heightAnchor.constraint(equalToConstant: 90).isActive = true
 
-        addSubview(operatingSystemsChart)
+        scrollView.addSubview(operatingSystemsChart)
         operatingSystemsChart.topAnchor.constraint(equalTo: editorsChart.bottomAnchor, constant: 5).isActive = true
         operatingSystemsChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         operatingSystemsChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
         operatingSystemsChart.heightAnchor.constraint(equalToConstant: 90).isActive = true
+        operatingSystemsChart.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+
+    let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
 
     public let avatarView: UIImageView = {
         let imageView = UIImageView()
