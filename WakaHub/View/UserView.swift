@@ -39,11 +39,11 @@ final class UserView: UIView {
         stackView.addArrangedSubview(joinedDateLabel)
         stackView.addArrangedSubview(hireableLabel)
 
-        addSubview(chart)
-        chart.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 5).isActive = true
-        chart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
-        chart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
-        chart.heightAnchor.constraint(equalToConstant: 90).isActive = true
+        addSubview(languagesChart)
+        languagesChart.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 5).isActive = true
+        languagesChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
+        languagesChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
+        languagesChart.heightAnchor.constraint(equalToConstant: 90).isActive = true
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -104,7 +104,7 @@ final class UserView: UIView {
         return label
     }()
 
-    public var chart: HorizontalBarChartView = {
+    public var languagesChart: HorizontalBarChartView = {
         let chart = HorizontalBarChartView()
         chart.translatesAutoresizingMaskIntoConstraints = false
         chart.setScaleEnabled(false)

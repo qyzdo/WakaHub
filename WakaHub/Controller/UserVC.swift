@@ -63,7 +63,7 @@ final class UserVC: UIViewController {
         service.load(service: .stats, decodeType: Stats.self) { result in
             switch result {
             case .success(let resp):
-                self.setupChart(data: resp.data)
+                self.setupLanguagesChart(languages: resp.data.languages)
             case .failure(let error):
                 print(error)
             case .empty:
@@ -88,21 +88,23 @@ final class UserVC: UIViewController {
         userView.hireableLabel.isHidden = !data.isHireable
     }
 
-    private func setupChart(data: StatsDataClass) {
-        let chart = userView.chart
-
+    private func setupLanguagesChart(languages: [Category]) {
         var percentValues = [Double]()
         var languageNames = [String]()
 
-        for language in data.languages {
+        for language in languages {
             percentValues.append(language.percent)
             languageNames.append(language.name)
         }
 
+        setupChart(values: percentValues, labels: languageNames, chart: userView.languagesChart)
+    }
+
+    private func setupChart(values: [Double], labels: [String], chart: HorizontalBarChartView) {
         var dataEntries = [ChartDataEntry]()
 
-        for iterator in 0..<percentValues.count {
-            let entry = BarChartDataEntry(x: Double(iterator), y: Double(percentValues[iterator]))
+        for iterator in 0..<values.count {
+            let entry = BarChartDataEntry(x: Double(iterator), y: Double(values[iterator]))
 
             dataEntries.append(entry)
         }
@@ -113,7 +115,7 @@ final class UserVC: UIViewController {
         let barChartData = BarChartData(dataSet: barChartDataSet)
         chart.data = barChartData
 
-        chart.xAxis.valueFormatter = IndexAxisValueFormatter(values: languageNames)
+        chart.xAxis.valueFormatter = IndexAxisValueFormatter(values: labels)
         chart.xAxis.granularityEnabled = false
         chart.xAxis.granularity = 1
         chart.xAxis.drawGridLinesEnabled = false
