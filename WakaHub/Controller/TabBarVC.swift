@@ -13,6 +13,7 @@ final class TabBarVC: UITabBarController {
         super.viewDidLoad()
         setupAppearance()
         setupViewControllers()
+        self.selectedIndex = 1
     }
 
     private func setupAppearance() {

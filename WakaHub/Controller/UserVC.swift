@@ -60,20 +60,59 @@ final class UserVC: UIViewController {
             }
         }
 
-        service.load(service: .stats, decodeType: Stats.self) { result in
-            switch result {
-            case .success(let resp):
-                self.setupChart(usageTimeData: resp.data.languages, chart: self.userView.languagesChart)
-                self.setupChart(usageTimeData: resp.data.editors, chart: self.userView.editorsChart)
-                self.setupChart(usageTimeData: resp.data.operatingSystems, chart: self.userView.operatingSystemsChart)
+        // MARK: - Fake data for testing purposes
+        loadExampleData()
 
-            case .failure(let error):
-                print(error)
-            case .empty:
-                print("No data")
+//        service.load(service: .stats, decodeType: Stats.self) { result in
+//            switch result {
+//            case .success(let resp):
+//                self.setupChart(usageTimeData: resp.data.languages, chart: self.userView.languagesChart)
+//                self.setupChart(usageTimeData: resp.data.editors, chart: self.userView.editorsChart)
+//                self.setupChart(usageTimeData: resp.data.operatingSystems, chart: self.userView.operatingSystemsChart)
+//
+//            case .failure(let error):
+//                print(error)
+//            case .empty:
+//                print("No data")
+//
+//            }
+//        }
+    }
 
-            }
-        }    }
+    private func loadExampleData() {
+        let exampleStats = self.createExampleStats()
+        self.setupChart(usageTimeData: exampleStats.data.languages, chart: self.userView.languagesChart)
+        self.setupChart(usageTimeData: exampleStats.data.editors, chart: self.userView.editorsChart)
+        self.setupChart(usageTimeData: exampleStats.data.operatingSystems, chart: self.userView.operatingSystemsChart)
+    }
+
+    private func createExampleStats() -> Stats {
+        let categories = [UsageTimes]()
+        let dependencies = [UsageTimes]()
+        let machines = [UsageTimes]()
+        let projects = [UsageTimes]()
+
+        let editorXcode = UsageTimes(digital: "", hours: 0, minutes: 0, name: "Xcode", percent: 25.0, text: "", totalSeconds: 0, machine: nil)
+        let editorPycharm = UsageTimes(digital: "", hours: 0, minutes: 0, name: "PyCharm", percent: 25.0, text: "", totalSeconds: 0, machine: nil)
+        let editorVisualStudio = UsageTimes(digital: "", hours: 0, minutes: 0, name: "Visual Studio Code", percent: 50.0, text: "", totalSeconds: 0, machine: nil)
+
+        let editors = [editorXcode, editorPycharm, editorVisualStudio]
+
+        let swiftLanguage = UsageTimes(digital: "", hours: 0, minutes: 0, name: "Swift", percent: 25.0, text: "", totalSeconds: 0, machine: nil)
+        let cSharpLanguage = UsageTimes(digital: "", hours: 0, minutes: 0, name: "C#", percent: 50.0, text: "", totalSeconds: 0, machine: nil)
+        let pythonLanguage = UsageTimes(digital: "", hours: 0, minutes: 0, name: "Python", percent: 25.0, text: "", totalSeconds: 0, machine: nil)
+
+        let languages = [swiftLanguage, cSharpLanguage, pythonLanguage]
+
+        let windows = UsageTimes(digital: "", hours: 0, minutes: 0, name: "Windows", percent: 98.0, text: "", totalSeconds: 0, machine: nil)
+        let mac = UsageTimes(digital: "", hours: 0, minutes: 0, name: "Mac", percent: 32.0, text: "", totalSeconds: 0, machine: nil)
+
+        let operatingSystems = [windows, mac]
+
+        let bestDay = BestDay(createdAt: "", date: "", identifier: "", modifiedAt: nil, text: "", totalSeconds: 0)
+        let templateDataClass = StatsDataClass(bestDay: bestDay, categories: categories, createdAt: "", dailyAverage: 0, dailyAverageIncludingOtherLanguage: 0, daysIncludingHolidays: 0, daysMinusHolidays: 0, dependencies: dependencies, editors: editors, end: "", holidays: 0, humanReadableDailyAverage: "", readableDailyAvgIncludingOtherLanguage: "", humanReadableTotal: "", humanReadableTotalIncludingOtherLanguage: "", identifier: "", isAlreadyUpdating: false, isCodingActivityVisible: true, isIncludingToday: true, isOtherUsageVisible: true, isStuck: false, isUpToDate: true, languages: languages, machines: machines, modifiedAt: nil, operatingSystems: operatingSystems, percentCalculated: 0, projects: projects, range: "", start: "", status: "", timeout: 0, timezone: "", totalSeconds: 0, totalSecondsIncludingOtherLanguage: 0, userID: "", username: "", writesOnly: false)
+        return Stats(data: templateDataClass)
+    }
 
     private func setupView(data: DataClass) {
         userView.avatarView.kf.setImage(with: URL(string: data.avatarUrl),
