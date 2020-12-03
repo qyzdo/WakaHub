@@ -176,7 +176,11 @@ final class UserVC: UIViewController {
             names.append(usageTime.name)
         }
 
-        let dataEntries = createDataEntries(values: percentValues)
+        let combinedSort = zip(percentValues, names).sorted {$0.0 < $1.0}
+        let sortedPercentValues = combinedSort.map {$0.0}
+        let sortedNames = combinedSort.map {$0.1}
+
+        let dataEntries = createDataEntries(values: sortedPercentValues)
 
         let barChartDataSet = BarChartDataSet(entries: dataEntries, label: "")
         switch chart {
@@ -195,7 +199,7 @@ final class UserVC: UIViewController {
         let barChartData = BarChartData(dataSet: barChartDataSet)
         chart.data = barChartData
 
-        chart.xAxis.valueFormatter = IndexAxisValueFormatter(values: names)
+        chart.xAxis.valueFormatter = IndexAxisValueFormatter(values: sortedNames)
         chart.xAxis.granularityEnabled = false
         chart.xAxis.granularity = 1
         chart.xAxis.drawGridLinesEnabled = false
