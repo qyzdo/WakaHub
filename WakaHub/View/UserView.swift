@@ -7,6 +7,7 @@
 
 import UIKit
 import Charts
+import Kingfisher
 
 final class UserView: UIView {
     var safeArea: UILayoutGuide!
@@ -80,6 +81,10 @@ final class UserView: UIView {
         operatingSystemsChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
         operatingSystemsChart.heightAnchor.constraint(equalToConstant: 90).isActive = true
         operatingSystemsChart.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+
+        addSubview(activityIndicator)
+        activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -159,6 +164,7 @@ final class UserView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "LANGUAGES"
         label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
+        label.isHidden = true
         return label
     }()
 
@@ -167,6 +173,7 @@ final class UserView: UIView {
         chart.translatesAutoresizingMaskIntoConstraints = false
         chart.setScaleEnabled(false)
         chart.legend.enabled = false
+        chart.isHidden = true
 
         return chart
     }()
@@ -176,6 +183,7 @@ final class UserView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "EDITORS"
         label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
+        label.isHidden = true
         return label
     }()
 
@@ -184,6 +192,7 @@ final class UserView: UIView {
         chart.translatesAutoresizingMaskIntoConstraints = false
         chart.setScaleEnabled(false)
         chart.legend.enabled = false
+        chart.isHidden = true
 
         return chart
     }()
@@ -193,6 +202,7 @@ final class UserView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "OPERATING SYSTEMS"
         label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
+        label.isHidden = true
         return label
     }()
 
@@ -201,7 +211,17 @@ final class UserView: UIView {
         chart.translatesAutoresizingMaskIntoConstraints = false
         chart.setScaleEnabled(false)
         chart.legend.enabled = false
+        chart.isHidden = true
 
         return chart
+    }()
+
+    public let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.hidesWhenStopped = true
+        indicator.startAnimating()
+
+        return indicator
     }()
 }

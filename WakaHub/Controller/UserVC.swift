@@ -24,7 +24,6 @@ final class UserVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavbar()
-        setupUI()
         loadData()
     }
 
@@ -38,11 +37,6 @@ final class UserVC: UIViewController {
         KeychainWrapper.shared["RefreshToken"] = nil
 
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(WelcomeVC())
-
-    }
-
-    private func setupUI() {
-        self.userView.avatarView.kf.indicatorType = .activity
     }
 
     private func loadData() {
@@ -51,6 +45,7 @@ final class UserVC: UIViewController {
         service.load(service: .user, decodeType: User.self) { result in
             switch result {
             case .success(let resp):
+                self.showUI()
                 self.setupView(data: resp.data)
             case .failure(let error):
                 print(error)
@@ -61,22 +56,34 @@ final class UserVC: UIViewController {
         }
 
         // MARK: - Fake data for testing purposes
-        loadExampleData()
+//        loadExampleData()
 
-//        service.load(service: .stats, decodeType: Stats.self) { result in
-//            switch result {
-//            case .success(let resp):
-//                self.setupChart(usageTimeData: resp.data.languages, chart: self.userView.languagesChart)
-//                self.setupChart(usageTimeData: resp.data.editors, chart: self.userView.editorsChart)
-//                self.setupChart(usageTimeData: resp.data.operatingSystems, chart: self.userView.operatingSystemsChart)
-//
-//            case .failure(let error):
-//                print(error)
-//            case .empty:
-//                print("No data")
-//
-//            }
-//        }
+        service.load(service: .stats, decodeType: Stats.self) { result in
+            switch result {
+            case .success(let resp):
+                self.setupChart(usageTimeData: resp.data.languages, chart: self.userView.languagesChart)
+                self.setupChart(usageTimeData: resp.data.editors, chart: self.userView.editorsChart)
+                self.setupChart(usageTimeData: resp.data.operatingSystems, chart: self.userView.operatingSystemsChart)
+
+            case .failure(let error):
+                print(error)
+            case .empty:
+                print("No data")
+
+            }
+        }
+    }
+
+    private func showUI() {
+        self.userView.activityIndicator.stopAnimating()
+        userView.languagesLabel.isHidden = false
+        userView.languagesChart.isHidden = false
+
+        userView.editorsLabel.isHidden = false
+        userView.editorsChart.isHidden = false
+
+        userView.operatingSystemsLabel.isHidden = false
+        userView.operatingSystemsChart.isHidden = false
     }
 
     private func loadExampleData() {
@@ -152,6 +159,7 @@ final class UserVC: UIViewController {
     }
 
     private func setupView(data: DataClass) {
+        userView.avatarView.kf.indicatorType = .activity
         userView.avatarView.kf.setImage(with: URL(string: data.avatarUrl),
                                         options: [
                                             .scaleFactor(UIScreen.main.scale),
