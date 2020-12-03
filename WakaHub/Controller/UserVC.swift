@@ -203,6 +203,8 @@ final class UserVC: UIViewController {
         }
         barChartDataSet.highlightEnabled = false
         barChartDataSet.valueFormatter = ChartsFormatterPercent()
+        barChartDataSet.valueFont = UIFont.systemFont(ofSize: 13)
+        barChartDataSet.valueTextColor = .black
 
         let barChartData = BarChartData(dataSet: barChartDataSet)
         chart.data = barChartData
@@ -220,6 +222,7 @@ final class UserVC: UIViewController {
         chart.leftAxis.enabled = false
         chart.drawValueAboveBarEnabled = false
 
+        chart.heightAnchor.constraint(equalToConstant: CGFloat(45*percentValues.count)).isActive = true
 //        chart.setVisibleXRange(minXRange: 8.0, maxXRange: 8.0)
     }
 

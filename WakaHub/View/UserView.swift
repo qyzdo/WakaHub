@@ -59,7 +59,6 @@ final class UserView: UIView {
         languagesChart.topAnchor.constraint(equalTo: languagesLabel.bottomAnchor).isActive = true
         languagesChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         languagesChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
-        languagesChart.heightAnchor.constraint(equalToConstant: 90).isActive = true
 
         scrollView.addSubview(editorsLabel)
         editorsLabel.topAnchor.constraint(equalTo: languagesChart.bottomAnchor, constant: 10).isActive = true
@@ -69,7 +68,6 @@ final class UserView: UIView {
         editorsChart.topAnchor.constraint(equalTo: editorsLabel.bottomAnchor).isActive = true
         editorsChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         editorsChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
-        editorsChart.heightAnchor.constraint(equalToConstant: 90).isActive = true
 
         scrollView.addSubview(operatingSystemsLabel)
         operatingSystemsLabel.topAnchor.constraint(equalTo: editorsChart.bottomAnchor, constant: 10).isActive = true
@@ -79,7 +77,6 @@ final class UserView: UIView {
         operatingSystemsChart.topAnchor.constraint(equalTo: operatingSystemsLabel.bottomAnchor).isActive = true
         operatingSystemsChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         operatingSystemsChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
-        operatingSystemsChart.heightAnchor.constraint(equalToConstant: 90).isActive = true
         operatingSystemsChart.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
 
         addSubview(activityIndicator)
