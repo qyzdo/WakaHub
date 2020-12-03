@@ -90,7 +90,7 @@ final class UserVC: UIViewController {
         userView.hireableLabel.isHidden = !data.isHireable
     }
 
-    private func setupChart(usageTimeData: [usageTimes], chart: HorizontalBarChartView) {
+    private func setupChart(usageTimeData: [UsageTimes], chart: HorizontalBarChartView) {
         var percentValues = [Double]()
         var names = [String]()
 
