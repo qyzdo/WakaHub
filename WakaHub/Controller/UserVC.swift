@@ -164,11 +164,13 @@ final class UserVC: UIViewController {
         chart.xAxis.drawAxisLineEnabled = false
 
         chart.leftAxis.axisMaximum = 100.0
+        chart.leftAxis.axisMinimum = 0
 
         chart.rightAxis.enabled = false
         chart.leftAxis.enabled = false
+        chart.drawValueAboveBarEnabled = false
 
-        //chart.setVisibleXRange(minXRange: 8.0, maxXRange: 8.0)
+//        chart.setVisibleXRange(minXRange: 8.0, maxXRange: 8.0)
     }
 
     private func createDataEntries(values: [Double]) -> [ChartDataEntry] {
