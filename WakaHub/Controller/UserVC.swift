@@ -113,6 +113,7 @@ final class UserVC: UIViewController {
         default:
             barChartDataSet.colors = ChartColorTemplates.material()
         }
+        barChartDataSet.highlightEnabled = false
 
         let barChartData = BarChartData(dataSet: barChartDataSet)
         chart.data = barChartData
