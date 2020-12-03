@@ -110,7 +110,44 @@ final class UserVC: UIViewController {
         let operatingSystems = [windows, mac]
 
         let bestDay = BestDay(createdAt: "", date: "", identifier: "", modifiedAt: nil, text: "", totalSeconds: 0)
-        let templateDataClass = StatsDataClass(bestDay: bestDay, categories: categories, createdAt: "", dailyAverage: 0, dailyAverageIncludingOtherLanguage: 0, daysIncludingHolidays: 0, daysMinusHolidays: 0, dependencies: dependencies, editors: editors, end: "", holidays: 0, humanReadableDailyAverage: "", readableDailyAvgIncludingOtherLanguage: "", humanReadableTotal: "", humanReadableTotalIncludingOtherLanguage: "", identifier: "", isAlreadyUpdating: false, isCodingActivityVisible: true, isIncludingToday: true, isOtherUsageVisible: true, isStuck: false, isUpToDate: true, languages: languages, machines: machines, modifiedAt: nil, operatingSystems: operatingSystems, percentCalculated: 0, projects: projects, range: "", start: "", status: "", timeout: 0, timezone: "", totalSeconds: 0, totalSecondsIncludingOtherLanguage: 0, userID: "", username: "", writesOnly: false)
+        let templateDataClass = StatsDataClass(bestDay: bestDay,
+                                               categories: categories,
+                                               createdAt: "",
+                                               dailyAverage: 0,
+                                               dailyAverageIncludingOtherLanguage: 0,
+                                               daysIncludingHolidays: 0,
+                                               daysMinusHolidays: 0,
+                                               dependencies: dependencies,
+                                               editors: editors,
+                                               end: "",
+                                               holidays: 0,
+                                               humanReadableDailyAverage: "",
+                                               readableDailyAvgIncludingOtherLanguage: "",
+                                               humanReadableTotal: "",
+                                               humanReadableTotalIncludingOtherLanguage: "",
+                                               identifier: "",
+                                               isAlreadyUpdating: false,
+                                               isCodingActivityVisible: true,
+                                               isIncludingToday: true,
+                                               isOtherUsageVisible: true,
+                                               isStuck: false,
+                                               isUpToDate: true,
+                                               languages: languages,
+                                               machines: machines,
+                                               modifiedAt: nil,
+                                               operatingSystems: operatingSystems,
+                                               percentCalculated: 0,
+                                               projects: projects,
+                                               range: "",
+                                               start: "",
+                                               status: "",
+                                               timeout: 0,
+                                               timezone: "",
+                                               totalSeconds: 0,
+                                               totalSecondsIncludingOtherLanguage: 0,
+                                               userID: "",
+                                               username: "",
+                                               writesOnly: false)
         return Stats(data: templateDataClass)
     }
 
