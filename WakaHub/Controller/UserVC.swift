@@ -103,7 +103,16 @@ final class UserVC: UIViewController {
         let dataEntries = createDataEntries(values: percentValues)
 
         let barChartDataSet = BarChartDataSet(entries: dataEntries, label: "")
-        barChartDataSet.colors = ChartColorTemplates.material()
+        switch chart {
+        case userView.languagesChart:
+            barChartDataSet.colors = ChartColorTemplates.material()
+        case userView.editorsChart:
+            barChartDataSet.colors = ChartColorTemplates.liberty()
+        case userView.operatingSystemsChart:
+            barChartDataSet.colors = ChartColorTemplates.vordiplom()
+        default:
+            barChartDataSet.colors = ChartColorTemplates.material()
+        }
 
         let barChartData = BarChartData(dataSet: barChartDataSet)
         chart.data = barChartData
