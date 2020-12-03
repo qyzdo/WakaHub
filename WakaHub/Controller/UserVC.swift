@@ -114,6 +114,8 @@ final class UserVC: UIViewController {
         chart.xAxis.drawGridLinesEnabled = false
         chart.xAxis.drawAxisLineEnabled = false
 
+        chart.leftAxis.axisMaximum = 100.0
+
         chart.rightAxis.enabled = false
         chart.leftAxis.enabled = false
 
