@@ -63,7 +63,9 @@ final class UserVC: UIViewController {
         service.load(service: .stats, decodeType: Stats.self) { result in
             switch result {
             case .success(let resp):
-                self.setupLanguagesChart(languages: resp.data.languages)
+                self.setupChart(categories: resp.data.languages, chart: self.userView.languagesChart)
+                self.setupChart(categories: resp.data.editors, chart: self.userView.editorsChart)
+
             case .failure(let error):
                 print(error)
             case .empty:
@@ -88,26 +90,16 @@ final class UserVC: UIViewController {
         userView.hireableLabel.isHidden = !data.isHireable
     }
 
-    private func setupLanguagesChart(languages: [Category]) {
+    private func setupChart(categories: [Category], chart: HorizontalBarChartView) {
         var percentValues = [Double]()
-        var languageNames = [String]()
+        var names = [String]()
 
-        for language in languages {
-            percentValues.append(language.percent)
-            languageNames.append(language.name)
+        for category in categories {
+            percentValues.append(category.percent)
+            names.append(category.name)
         }
 
-        setupChart(values: percentValues, labels: languageNames, chart: userView.languagesChart)
-    }
-
-    private func setupChart(values: [Double], labels: [String], chart: HorizontalBarChartView) {
-        var dataEntries = [ChartDataEntry]()
-
-        for iterator in 0..<values.count {
-            let entry = BarChartDataEntry(x: Double(iterator), y: Double(values[iterator]))
-
-            dataEntries.append(entry)
-        }
+        let dataEntries = createDataEntries(values: percentValues)
 
         let barChartDataSet = BarChartDataSet(entries: dataEntries, label: "")
         barChartDataSet.colors = ChartColorTemplates.material()
@@ -115,7 +107,7 @@ final class UserVC: UIViewController {
         let barChartData = BarChartData(dataSet: barChartDataSet)
         chart.data = barChartData
 
-        chart.xAxis.valueFormatter = IndexAxisValueFormatter(values: labels)
+        chart.xAxis.valueFormatter = IndexAxisValueFormatter(values: names)
         chart.xAxis.granularityEnabled = false
         chart.xAxis.granularity = 1
         chart.xAxis.drawGridLinesEnabled = false
@@ -125,5 +117,17 @@ final class UserVC: UIViewController {
         chart.leftAxis.enabled = false
 
         //chart.setVisibleXRange(minXRange: 8.0, maxXRange: 8.0)
+    }
+
+    private func createDataEntries(values: [Double]) -> [ChartDataEntry] {
+        var dataEntries = [ChartDataEntry]()
+
+        for iterator in 0..<values.count {
+            let entry = BarChartDataEntry(x: Double(iterator), y: Double(values[iterator]))
+
+            dataEntries.append(entry)
+        }
+
+        return dataEntries
     }
 }
