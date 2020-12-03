@@ -9,11 +9,12 @@ import UIKit
 import Charts
 
 final class UserView: UIView {
+    var safeArea: UILayoutGuide!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .systemBackground
-        let safeArea = self.layoutMarginsGuide
+        safeArea = self.layoutMarginsGuide
 
         addSubview(scrollView)
         scrollView.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
@@ -45,20 +46,36 @@ final class UserView: UIView {
         stackView.addArrangedSubview(joinedDateLabel)
         stackView.addArrangedSubview(hireableLabel)
 
+        createChartsWithLabels()
+    }
+
+    private func createChartsWithLabels() {
+        scrollView.addSubview(languagesLabel)
+        languagesLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 20).isActive = true
+        languagesLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
+
         scrollView.addSubview(languagesChart)
-        languagesChart.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 5).isActive = true
+        languagesChart.topAnchor.constraint(equalTo: languagesLabel.bottomAnchor).isActive = true
         languagesChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         languagesChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
         languagesChart.heightAnchor.constraint(equalToConstant: 90).isActive = true
 
+        scrollView.addSubview(editorsLabel)
+        editorsLabel.topAnchor.constraint(equalTo: languagesChart.bottomAnchor, constant: 10).isActive = true
+        editorsLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
+
         scrollView.addSubview(editorsChart)
-        editorsChart.topAnchor.constraint(equalTo: languagesChart.bottomAnchor, constant: 5).isActive = true
+        editorsChart.topAnchor.constraint(equalTo: editorsLabel.bottomAnchor).isActive = true
         editorsChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         editorsChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
         editorsChart.heightAnchor.constraint(equalToConstant: 90).isActive = true
 
+        scrollView.addSubview(operatingSystemsLabel)
+        operatingSystemsLabel.topAnchor.constraint(equalTo: editorsChart.bottomAnchor, constant: 10).isActive = true
+        operatingSystemsLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
+
         scrollView.addSubview(operatingSystemsChart)
-        operatingSystemsChart.topAnchor.constraint(equalTo: editorsChart.bottomAnchor, constant: 5).isActive = true
+        operatingSystemsChart.topAnchor.constraint(equalTo: operatingSystemsLabel.bottomAnchor).isActive = true
         operatingSystemsChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         operatingSystemsChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
         operatingSystemsChart.heightAnchor.constraint(equalToConstant: 90).isActive = true
@@ -129,6 +146,14 @@ final class UserView: UIView {
         return label
     }()
 
+    public var languagesLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "LANGUAGES"
+        label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
+        return label
+    }()
+
     public var languagesChart: HorizontalBarChartView = {
         let chart = HorizontalBarChartView()
         chart.translatesAutoresizingMaskIntoConstraints = false
@@ -138,6 +163,14 @@ final class UserView: UIView {
         return chart
     }()
 
+    public var editorsLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "EDITORS"
+        label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
+        return label
+    }()
+
     public var editorsChart: HorizontalBarChartView = {
         let chart = HorizontalBarChartView()
         chart.translatesAutoresizingMaskIntoConstraints = false
@@ -145,6 +178,14 @@ final class UserView: UIView {
         chart.legend.enabled = false
 
         return chart
+    }()
+
+    public var operatingSystemsLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "OPERATING SYSTEMS"
+        label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
+        return label
     }()
 
     public var operatingSystemsChart: HorizontalBarChartView = {
