@@ -86,78 +86,6 @@ final class UserVC: UIViewController {
         userView.operatingSystemsChart.isHidden = false
     }
 
-    private func loadExampleData() {
-        let exampleStats = self.createExampleStats()
-        self.setupChart(usageTimeData: exampleStats.data.languages, chart: self.userView.languagesChart)
-        self.setupChart(usageTimeData: exampleStats.data.editors, chart: self.userView.editorsChart)
-        self.setupChart(usageTimeData: exampleStats.data.operatingSystems, chart: self.userView.operatingSystemsChart)
-    }
-
-    private func createExampleStats() -> Stats {
-        let categories = [UsageTimes]()
-        let dependencies = [UsageTimes]()
-        let machines = [UsageTimes]()
-        let projects = [UsageTimes]()
-
-        let editorXcode = UsageTimes(digital: "", hours: 0, minutes: 0, name: "Xcode", percent: 25.0, text: "", totalSeconds: 0, machine: nil)
-        let editorPycharm = UsageTimes(digital: "", hours: 0, minutes: 0, name: "PyCharm", percent: 25.0, text: "", totalSeconds: 0, machine: nil)
-        let editorVisualStudio = UsageTimes(digital: "", hours: 0, minutes: 0, name: "VS Code", percent: 50.0, text: "", totalSeconds: 0, machine: nil)
-
-        let editors = [editorXcode, editorPycharm, editorVisualStudio]
-
-        let swiftLanguage = UsageTimes(digital: "", hours: 0, minutes: 0, name: "Swift", percent: 25.0, text: "", totalSeconds: 0, machine: nil)
-        let cSharpLanguage = UsageTimes(digital: "", hours: 0, minutes: 0, name: "C#", percent: 50.0, text: "", totalSeconds: 0, machine: nil)
-        let pythonLanguage = UsageTimes(digital: "", hours: 0, minutes: 0, name: "Python", percent: 25.0, text: "", totalSeconds: 0, machine: nil)
-
-        let languages = [swiftLanguage, cSharpLanguage, pythonLanguage]
-
-        let windows = UsageTimes(digital: "", hours: 0, minutes: 0, name: "Windows", percent: 98.0, text: "", totalSeconds: 0, machine: nil)
-        let mac = UsageTimes(digital: "", hours: 0, minutes: 0, name: "Mac", percent: 32.0, text: "", totalSeconds: 0, machine: nil)
-
-        let operatingSystems = [windows, mac]
-
-        let bestDay = BestDay(createdAt: "", date: "", identifier: "", modifiedAt: nil, text: "", totalSeconds: 0)
-        let templateDataClass = StatsDataClass(bestDay: bestDay,
-                                               categories: categories,
-                                               createdAt: "",
-                                               dailyAverage: 0,
-                                               dailyAverageIncludingOtherLanguage: 0,
-                                               daysIncludingHolidays: 0,
-                                               daysMinusHolidays: 0,
-                                               dependencies: dependencies,
-                                               editors: editors,
-                                               end: "",
-                                               holidays: 0,
-                                               humanReadableDailyAverage: "",
-                                               readableDailyAvgIncludingOtherLanguage: "",
-                                               humanReadableTotal: "",
-                                               humanReadableTotalIncludingOtherLanguage: "",
-                                               identifier: "",
-                                               isAlreadyUpdating: false,
-                                               isCodingActivityVisible: true,
-                                               isIncludingToday: true,
-                                               isOtherUsageVisible: true,
-                                               isStuck: false,
-                                               isUpToDate: true,
-                                               languages: languages,
-                                               machines: machines,
-                                               modifiedAt: nil,
-                                               operatingSystems: operatingSystems,
-                                               percentCalculated: 0,
-                                               projects: projects,
-                                               range: "",
-                                               start: "",
-                                               status: "",
-                                               timeout: 0,
-                                               timezone: "",
-                                               totalSeconds: 0,
-                                               totalSecondsIncludingOtherLanguage: 0,
-                                               userID: "",
-                                               username: "",
-                                               writesOnly: false)
-        return Stats(data: templateDataClass)
-    }
-
     private func setupView(data: DataClass) {
         userView.avatarView.kf.indicatorType = .activity
         userView.avatarView.kf.setImage(with: URL(string: data.avatarUrl),
@@ -235,5 +163,79 @@ final class UserVC: UIViewController {
         }
 
         return dataEntries
+    }
+}
+
+extension UserVC {
+    private func loadExampleData() {
+        let exampleStats = self.createExampleStats()
+        self.setupChart(usageTimeData: exampleStats.data.languages, chart: self.userView.languagesChart)
+        self.setupChart(usageTimeData: exampleStats.data.editors, chart: self.userView.editorsChart)
+        self.setupChart(usageTimeData: exampleStats.data.operatingSystems, chart: self.userView.operatingSystemsChart)
+    }
+
+    private func createExampleStats() -> Stats {
+        let categories = [UsageTimes]()
+        let dependencies = [UsageTimes]()
+        let machines = [UsageTimes]()
+        let projects = [UsageTimes]()
+
+        let editorXcode = UsageTimes(digital: "", hours: 0, minutes: 0, name: "Xcode", percent: 25.0, text: "", totalSeconds: 0, machine: nil)
+        let editorPycharm = UsageTimes(digital: "", hours: 0, minutes: 0, name: "PyCharm", percent: 25.0, text: "", totalSeconds: 0, machine: nil)
+        let editorVisualStudio = UsageTimes(digital: "", hours: 0, minutes: 0, name: "VS Code", percent: 50.0, text: "", totalSeconds: 0, machine: nil)
+
+        let editors = [editorXcode, editorPycharm, editorVisualStudio]
+
+        let swiftLanguage = UsageTimes(digital: "", hours: 0, minutes: 0, name: "Swift", percent: 25.0, text: "", totalSeconds: 0, machine: nil)
+        let cSharpLanguage = UsageTimes(digital: "", hours: 0, minutes: 0, name: "C#", percent: 50.0, text: "", totalSeconds: 0, machine: nil)
+        let pythonLanguage = UsageTimes(digital: "", hours: 0, minutes: 0, name: "Python", percent: 25.0, text: "", totalSeconds: 0, machine: nil)
+
+        let languages = [swiftLanguage, cSharpLanguage, pythonLanguage]
+
+        let windows = UsageTimes(digital: "", hours: 0, minutes: 0, name: "Windows", percent: 98.0, text: "", totalSeconds: 0, machine: nil)
+        let mac = UsageTimes(digital: "", hours: 0, minutes: 0, name: "Mac", percent: 32.0, text: "", totalSeconds: 0, machine: nil)
+
+        let operatingSystems = [windows, mac]
+
+        let bestDay = BestDay(createdAt: "", date: "", identifier: "", modifiedAt: nil, text: "", totalSeconds: 0)
+        let templateDataClass = StatsDataClass(bestDay: bestDay,
+                                               categories: categories,
+                                               createdAt: "",
+                                               dailyAverage: 0,
+                                               dailyAverageIncludingOtherLanguage: 0,
+                                               daysIncludingHolidays: 0,
+                                               daysMinusHolidays: 0,
+                                               dependencies: dependencies,
+                                               editors: editors,
+                                               end: "",
+                                               holidays: 0,
+                                               humanReadableDailyAverage: "",
+                                               readableDailyAvgIncludingOtherLanguage: "",
+                                               humanReadableTotal: "",
+                                               humanReadableTotalIncludingOtherLanguage: "",
+                                               identifier: "",
+                                               isAlreadyUpdating: false,
+                                               isCodingActivityVisible: true,
+                                               isIncludingToday: true,
+                                               isOtherUsageVisible: true,
+                                               isStuck: false,
+                                               isUpToDate: true,
+                                               languages: languages,
+                                               machines: machines,
+                                               modifiedAt: nil,
+                                               operatingSystems: operatingSystems,
+                                               percentCalculated: 0,
+                                               projects: projects,
+                                               range: "",
+                                               start: "",
+                                               status: "",
+                                               timeout: 0,
+                                               timezone: "",
+                                               totalSeconds: 0,
+                                               totalSecondsIncludingOtherLanguage: 0,
+                                               userID: "",
+                                               username: "",
+                                               writesOnly: false)
+        return Stats(data: templateDataClass)
     }
 }
