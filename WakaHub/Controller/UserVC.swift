@@ -168,7 +168,6 @@ final class UserVC: UIViewController {
                                         ])
         userView.nameLabel.text = data.displayName
         userView.userNameLabel.text = "@\(data.username)"
-
         userView.locationLabel.text = data.location
         userView.emailLabel.text = data.publicEmail
         userView.joinedDateLabel.text = "Joined " + data.createdAt.formatDateWithMonthName()
