@@ -15,6 +15,7 @@ protocol Service {
     var baseURL: String { get }
     var path: String { get }
     var method: ServiceMethod { get }
+    var parameters: [URLQueryItem]? { get }
 }
 
 extension Service {
@@ -35,6 +36,10 @@ extension Service {
     private var url: URL? {
         var urlComponents = URLComponents(string: baseURL)
         urlComponents?.path = path
+
+        if let parameters = parameters {
+            urlComponents?.queryItems = parameters
+        }
 
         return urlComponents?.url
     }
