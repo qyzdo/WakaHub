@@ -105,6 +105,13 @@ final class UserVC: UIViewController {
         userView.hireableLabel.isHidden = !data.isHireable
     }
 
+    private func setupStatsView(data: StatsDataClass) {
+        self.setupChart(usageTimeData: data.languages, chart: self.userView.languagesChart)
+        self.setupChart(usageTimeData: data.editors, chart: self.userView.editorsChart)
+        self.setupChart(usageTimeData: data.operatingSystems, chart: self.userView.operatingSystemsChart)
+        self.userView.codingActivityLabel.text = "CODING ACTIVITY " + String(data.humanReadableTotalIncludingOtherLanguage)
+    }
+
     private func setupChart(usageTimeData: [UsageTimes], chart: HorizontalBarChartView) {
         var percentValues = [Double]()
         var names = [String]()
@@ -172,9 +179,7 @@ final class UserVC: UIViewController {
 extension UserVC {
     private func loadExampleData() {
         let exampleStats = self.createExampleStats()
-        self.setupChart(usageTimeData: exampleStats.data.languages, chart: self.userView.languagesChart)
-        self.setupChart(usageTimeData: exampleStats.data.editors, chart: self.userView.editorsChart)
-        self.setupChart(usageTimeData: exampleStats.data.operatingSystems, chart: self.userView.operatingSystemsChart)
+        setupStatsView(data: exampleStats.data)
     }
 
     private func createExampleStats() -> Stats {
@@ -215,7 +220,7 @@ extension UserVC {
                                                humanReadableDailyAverage: "",
                                                readableDailyAvgIncludingOtherLanguage: "",
                                                humanReadableTotal: "",
-                                               humanReadableTotalIncludingOtherLanguage: "",
+                                               humanReadableTotalIncludingOtherLanguage: "8 hrs 47 mins",
                                                identifier: "",
                                                isAlreadyUpdating: false,
                                                isCodingActivityVisible: true,
