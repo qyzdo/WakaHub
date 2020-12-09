@@ -171,6 +171,8 @@ final class UserVC: UIViewController {
         chart.leftAxis.enabled = false
         chart.drawValueAboveBarEnabled = false
 
+        chart.animate(yAxisDuration: 1)
+
         chart.heightAnchor.constraint(equalToConstant: CGFloat(45*percentValues.count)).isActive = true
 //        chart.setVisibleXRange(minXRange: 8.0, maxXRange: 8.0)
     }
