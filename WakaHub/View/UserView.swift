@@ -42,6 +42,9 @@ final class UserView: UIView {
         stackView.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         stackView.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
 
+        hireableLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        hireableLabel.widthAnchor.constraint(equalToConstant: 70).isActive = true
+
         stackView.addArrangedSubview(locationLabel)
         stackView.addArrangedSubview(emailLabel)
         stackView.addArrangedSubview(joinedDateLabel)
@@ -156,8 +159,9 @@ final class UserView: UIView {
     public var hireableLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = " hireable "
+        label.text = "hireable"
         label.isHidden = true
+        label.textAlignment = .center
         label.backgroundColor = UIColor(red: 89/255, green: 183/255, blue: 215/255, alpha: 1.0)
         label.font = UIFont.boldSystemFont(ofSize: 13)
         label.textColor = .white
