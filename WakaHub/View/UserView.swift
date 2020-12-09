@@ -47,12 +47,17 @@ final class UserView: UIView {
         stackView.addArrangedSubview(joinedDateLabel)
         stackView.addArrangedSubview(hireableLabel)
 
+        scrollView.addSubview(codingActivityLabel)
+        codingActivityLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 15).isActive = true
+        codingActivityLabel.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
+        codingActivityLabel.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
+
         createChartsWithLabels()
     }
 
     private func createChartsWithLabels() {
         scrollView.addSubview(languagesLabel)
-        languagesLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 20).isActive = true
+        languagesLabel.topAnchor.constraint(equalTo: codingActivityLabel.bottomAnchor, constant: 20).isActive = true
         languagesLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
 
         scrollView.addSubview(languagesChart)
@@ -153,6 +158,14 @@ final class UserView: UIView {
         label.textColor = .white
         label.layer.masksToBounds = true
         label.layer.cornerRadius = 3
+        return label
+    }()
+
+    public var codingActivityLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.isHidden = true
         return label
     }()
 

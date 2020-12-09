@@ -64,7 +64,7 @@ final class UserVC: UIViewController {
                 self.setupChart(usageTimeData: resp.data.languages, chart: self.userView.languagesChart)
                 self.setupChart(usageTimeData: resp.data.editors, chart: self.userView.editorsChart)
                 self.setupChart(usageTimeData: resp.data.operatingSystems, chart: self.userView.operatingSystemsChart)
-
+                self.userView.codingActivityLabel.text = "CODING ACTIVITY " + String(resp.data.humanReadableTotalIncludingOtherLanguage)
             case .failure(let error):
                 print(error)
             case .empty:
@@ -76,6 +76,9 @@ final class UserVC: UIViewController {
 
     private func showUI() {
         self.userView.activityIndicator.stopAnimating()
+
+        userView.codingActivityLabel.isHidden = false
+
         userView.languagesLabel.isHidden = false
         userView.languagesChart.isHidden = false
 
