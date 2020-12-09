@@ -104,8 +104,24 @@ final class UserVC: UIViewController {
         self.setupChart(usageTimeData: data.languages, chart: self.userView.languagesChart)
         self.setupChart(usageTimeData: data.editors, chart: self.userView.editorsChart)
         self.setupChart(usageTimeData: data.operatingSystems, chart: self.userView.operatingSystemsChart)
-        self.userView.codingActivityLabel.text = "CODING ACTIVITY " + String(data.humanReadableTotalIncludingOtherLanguage)
-        self.userView.dailyAverageLabel.text = "DAILY AVERAGE " + String(data.humanReadableDailyAverage)
+        self.userView.codingActivityLabel.attributedText = createStatsAttributedString(activityName: "Coding Activity ", timeString: data.humanReadableTotalIncludingOtherLanguage)
+        self.userView.dailyAverageLabel.attributedText = createStatsAttributedString(activityName: "Daily Average ", timeString: data.humanReadableDailyAverage)
+    }
+
+    private func createStatsAttributedString(activityName: String, timeString: String) -> NSMutableAttributedString {
+        let activityNameFont = UIFont.systemFont(ofSize: 15)
+        let activityNameAttributes = [NSAttributedString.Key.font: activityNameFont]
+        let activityNameAttributed = NSAttributedString(string: activityName, attributes: activityNameAttributes)
+
+        let timeFont = UIFont.boldSystemFont(ofSize: 16)
+        let timeAttributes = [NSAttributedString.Key.font: timeFont]
+        let timeAttributed = NSAttributedString(string: timeString, attributes: timeAttributes)
+
+        let combinedStrings = NSMutableAttributedString()
+        combinedStrings.append(activityNameAttributed)
+        combinedStrings.append(timeAttributed)
+
+        return combinedStrings
     }
 
     private func setupChart(usageTimeData: [UsageTimes], chart: HorizontalBarChartView) {
