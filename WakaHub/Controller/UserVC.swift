@@ -174,8 +174,9 @@ final class UserVC: UIViewController {
 
 extension UserVC {
     private func loadExampleData() {
-        let exampleStats = self.createExampleStats()
+        let exampleStats = createExampleStats()
         setupStatsView(data: exampleStats.data)
+        showCharts()
     }
 
     private func createExampleStats() -> Stats {
