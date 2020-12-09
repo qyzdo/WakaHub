@@ -8,11 +8,11 @@
 import Foundation
 
 struct User: Codable {
-    let data: DataClass
+    let data: UserDataClass
 }
 
 // MARK: - DataClass
-struct DataClass: Codable {
+struct UserDataClass: Codable {
     let bio, colorScheme: String
     let createdAt: String
     let dateFormat, defaultDashboardRange, displayName, email: String

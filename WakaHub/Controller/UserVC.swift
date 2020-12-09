@@ -44,9 +44,9 @@ final class UserVC: UIViewController {
 
         service.load(service: .user, decodeType: User.self) { result in
             switch result {
-            case .success(let resp):
+            case .success(let response):
                 self.showUI()
-                self.setupView(data: resp.data)
+                self.setupView(data: response.data)
             case .failure(let error):
                 print(error)
             case .empty:
@@ -60,11 +60,11 @@ final class UserVC: UIViewController {
 
         service.load(service: .stats, decodeType: Stats.self) { result in
             switch result {
-            case .success(let resp):
-                self.setupChart(usageTimeData: resp.data.languages, chart: self.userView.languagesChart)
-                self.setupChart(usageTimeData: resp.data.editors, chart: self.userView.editorsChart)
-                self.setupChart(usageTimeData: resp.data.operatingSystems, chart: self.userView.operatingSystemsChart)
-                self.userView.codingActivityLabel.text = "CODING ACTIVITY " + String(resp.data.humanReadableTotalIncludingOtherLanguage)
+            case .success(let response):
+                self.setupChart(usageTimeData: response.data.languages, chart: self.userView.languagesChart)
+                self.setupChart(usageTimeData: response.data.editors, chart: self.userView.editorsChart)
+                self.setupChart(usageTimeData: response.data.operatingSystems, chart: self.userView.operatingSystemsChart)
+                self.userView.codingActivityLabel.text = "CODING ACTIVITY " + String(response.data.humanReadableTotalIncludingOtherLanguage)
             case .failure(let error):
                 print(error)
             case .empty:
@@ -89,7 +89,7 @@ final class UserVC: UIViewController {
         userView.operatingSystemsChart.isHidden = false
     }
 
-    private func setupView(data: DataClass) {
+    private func setupView(data: UserDataClass) {
         userView.avatarView.kf.indicatorType = .activity
         userView.avatarView.kf.setImage(with: URL(string: data.avatarUrl),
                                         options: [
