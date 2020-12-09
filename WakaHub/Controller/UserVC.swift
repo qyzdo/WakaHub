@@ -45,7 +45,6 @@ final class UserVC: UIViewController {
         service.load(service: .user, decodeType: User.self) { result in
             switch result {
             case .success(let response):
-                self.showUI()
                 self.setupView(data: response.data)
             case .failure(let error):
                 print(error)
@@ -62,6 +61,7 @@ final class UserVC: UIViewController {
             switch result {
             case .success(let response):
                 self.setupStatsView(data: response.data)
+                self.showCharts()
             case .failure(let error):
                 print(error)
             case .empty:
@@ -69,21 +69,6 @@ final class UserVC: UIViewController {
 
             }
         }
-    }
-
-    private func showUI() {
-        self.userView.activityIndicator.stopAnimating()
-
-        userView.codingActivityLabel.isHidden = false
-
-        userView.languagesLabel.isHidden = false
-        userView.languagesChart.isHidden = false
-
-        userView.editorsLabel.isHidden = false
-        userView.editorsChart.isHidden = false
-
-        userView.operatingSystemsLabel.isHidden = false
-        userView.operatingSystemsChart.isHidden = false
     }
 
     private func setupView(data: UserDataClass) {
@@ -102,11 +87,25 @@ final class UserVC: UIViewController {
         userView.hireableLabel.isHidden = !data.isHireable
     }
 
+    private func showCharts() {
+        self.userView.activityIndicator.stopAnimating()
+
+        userView.languagesLabel.isHidden = false
+        userView.languagesChart.isHidden = false
+
+        userView.editorsLabel.isHidden = false
+        userView.editorsChart.isHidden = false
+
+        userView.operatingSystemsLabel.isHidden = false
+        userView.operatingSystemsChart.isHidden = false
+    }
+
     private func setupStatsView(data: StatsDataClass) {
         self.setupChart(usageTimeData: data.languages, chart: self.userView.languagesChart)
         self.setupChart(usageTimeData: data.editors, chart: self.userView.editorsChart)
         self.setupChart(usageTimeData: data.operatingSystems, chart: self.userView.operatingSystemsChart)
         self.userView.codingActivityLabel.text = "CODING ACTIVITY " + String(data.humanReadableTotalIncludingOtherLanguage)
+        self.userView.dailyAverageLabel.text = "DAILY AVERAGE " + String(data.humanReadableTotalIncludingOtherLanguage)
     }
 
     private func setupChart(usageTimeData: [UsageTimes], chart: HorizontalBarChartView) {

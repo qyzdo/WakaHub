@@ -52,12 +52,17 @@ final class UserView: UIView {
         codingActivityLabel.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         codingActivityLabel.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
 
+        scrollView.addSubview(dailyAverageLabel)
+        dailyAverageLabel.topAnchor.constraint(equalTo: codingActivityLabel.bottomAnchor, constant: 15).isActive = true
+        dailyAverageLabel.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
+        dailyAverageLabel.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
+
         createChartsWithLabels()
     }
 
     private func createChartsWithLabels() {
         scrollView.addSubview(languagesLabel)
-        languagesLabel.topAnchor.constraint(equalTo: codingActivityLabel.bottomAnchor, constant: 20).isActive = true
+        languagesLabel.topAnchor.constraint(equalTo: dailyAverageLabel.bottomAnchor, constant: 20).isActive = true
         languagesLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
 
         scrollView.addSubview(languagesChart)
@@ -165,7 +170,13 @@ final class UserView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.isHidden = true
+        return label
+    }()
+
+    public var dailyAverageLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
         return label
     }()
 
