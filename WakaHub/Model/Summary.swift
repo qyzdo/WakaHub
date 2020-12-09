@@ -8,12 +8,12 @@
 import Foundation
 
 struct Summary: Codable {
-    let data: [Datum]
+    let data: [SummaryDataClass]
     let end, start: String
 }
 
 // MARK: - Datum
-struct Datum: Codable {
+struct SummaryDataClass: Codable {
     let categories: [UsageTimes]
     let dependencies: [UsageTimes]
     let editors: [UsageTimes]
