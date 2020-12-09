@@ -55,20 +55,20 @@ final class UserVC: UIViewController {
         }
 
         // MARK: - Fake data for testing purposes
-        loadExampleData()
+//        loadExampleData()
 
-//        service.load(service: .stats, decodeType: Stats.self) { result in
-//            switch result {
-//            case .success(let response):
-//                self.setupStatsView(data: response.data)
-//                self.showCharts()
-//            case .failure(let error):
-//                print(error)
-//            case .empty:
-//                print("No data")
-//
-//            }
-//        }
+        service.load(service: .stats, decodeType: Stats.self) { result in
+            switch result {
+            case .success(let response):
+                self.setupStatsView(data: response.data)
+                self.showCharts()
+            case .failure(let error):
+                print(error)
+            case .empty:
+                print("No data")
+
+            }
+        }
     }
 
     private func setupView(data: UserDataClass) {
