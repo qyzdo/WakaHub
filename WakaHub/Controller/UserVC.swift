@@ -105,7 +105,7 @@ final class UserVC: UIViewController {
         self.setupChart(usageTimeData: data.editors, chart: self.userView.editorsChart)
         self.setupChart(usageTimeData: data.operatingSystems, chart: self.userView.operatingSystemsChart)
         self.userView.codingActivityLabel.text = "CODING ACTIVITY " + String(data.humanReadableTotalIncludingOtherLanguage)
-        self.userView.dailyAverageLabel.text = "DAILY AVERAGE " + String(data.humanReadableTotalIncludingOtherLanguage)
+        self.userView.dailyAverageLabel.text = "DAILY AVERAGE " + String(data.humanReadableDailyAverage)
     }
 
     private func setupChart(usageTimeData: [UsageTimes], chart: HorizontalBarChartView) {
