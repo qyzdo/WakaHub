@@ -61,10 +61,7 @@ final class UserVC: UIViewController {
         service.load(service: .stats, decodeType: Stats.self) { result in
             switch result {
             case .success(let response):
-                self.setupChart(usageTimeData: response.data.languages, chart: self.userView.languagesChart)
-                self.setupChart(usageTimeData: response.data.editors, chart: self.userView.editorsChart)
-                self.setupChart(usageTimeData: response.data.operatingSystems, chart: self.userView.operatingSystemsChart)
-                self.userView.codingActivityLabel.text = "CODING ACTIVITY " + String(response.data.humanReadableTotalIncludingOtherLanguage)
+                self.setupStatsView(data: response.data)
             case .failure(let error):
                 print(error)
             case .empty:
