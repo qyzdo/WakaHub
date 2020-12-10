@@ -177,8 +177,8 @@ final class StatsVC: UIViewController {
         let debuggingDataSet = BarChartDataSet(entries: debuggingDataEntries, label: "Debugging")
 
         let dataSets = [codingDataSet, buildingDataSet, debuggingDataSet]
-        codingDataSet.colors = [UIColor.red]
-        buildingDataSet.colors = [UIColor.blue]
+        codingDataSet.colors = [UIColor.systemBlue]
+        buildingDataSet.colors = [UIColor.systemYellow]
         debuggingDataSet.colors = [ UIColor.green]
 
         return dataSets
