@@ -100,7 +100,7 @@ final class StatsVC: UIViewController {
         chartData.groupBars(fromX: startValue, groupSpace: groupSpace, barSpace: barSpace)
 
         barChartView.data = chartData
-        barChartView.animate(xAxisDuration: 1.5, yAxisDuration: 1.5, easingOption: .linear)
+        barChartView.animate(yAxisDuration: 1)
     }
 
     private func createArrayWithCustomCategoryData(data: [SummaryDataClass]) -> [CustomCategoryData] {
