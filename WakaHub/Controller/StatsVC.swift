@@ -65,7 +65,7 @@ final class StatsVC: UIViewController {
 
         let xaxis = barChartView.xAxis
         xaxis.drawGridLinesEnabled = true
-        xaxis.labelPosition = .bothSided
+        xaxis.labelPosition = .bottom
         xaxis.centerAxisLabelsEnabled = true
         xaxis.valueFormatter = IndexAxisValueFormatter(values: dataPoints)
         xaxis.granularity = 1
@@ -77,6 +77,7 @@ final class StatsVC: UIViewController {
         yaxis.spaceTop = 0.35
         yaxis.axisMinimum = 0
         yaxis.drawGridLinesEnabled = false
+        yaxis.enabled = false
 
         barChartView.rightAxis.enabled = false
 
@@ -173,8 +174,13 @@ final class StatsVC: UIViewController {
         }
 
         let codingDataSet = BarChartDataSet(entries: codingDataEntries, label: "Coding")
+        codingDataSet.valueFormatter = SecondsToTimeFormatter()
+
         let buildingDataSet = BarChartDataSet(entries: buildingDataEntries, label: "Building")
+        buildingDataSet.valueFormatter = SecondsToTimeFormatter()
+
         let debuggingDataSet = BarChartDataSet(entries: debuggingDataEntries, label: "Debugging")
+        debuggingDataSet.valueFormatter = SecondsToTimeFormatter()
 
         let dataSets = [codingDataSet, buildingDataSet, debuggingDataSet]
         codingDataSet.colors = [UIColor.systemBlue]
