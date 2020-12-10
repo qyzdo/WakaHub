@@ -9,6 +9,7 @@ import UIKit
 import Charts
 
 final class StatsVC: UIViewController {
+    var barChartView: BarChartView!
 
     override func loadView() {
         let view = StatsView()
@@ -23,6 +24,8 @@ final class StatsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        barChartView = statsView.categoryChart
+
         setupNavbar()
         loadData()
     }
@@ -61,6 +64,7 @@ final class StatsVC: UIViewController {
         for array in response.data {
             let date = array.range.date
             for array in response.data {
+
                 for object in array.categories {
                     let testObject = Data(name: object.name, time: object.totalSeconds, date: date)
                     arrayOfData.append(testObject)
@@ -74,22 +78,9 @@ final class StatsVC: UIViewController {
 
     private func setupChart(data: [Data]) {
         print(data)
-        let barChartView = statsView.categoryChart
         let dataPoints = data.map { $0.date }
 
-        let coding = data.filter { $0.name == "Coding"}.map { $0.time}
-        let building = data.filter { $0.name == "Building"}.map { $0.time}
-        let debugging = data.filter { $0.name == "Debugging"}.map { $0.time}
-
-        let legend = barChartView.legend
-        legend.enabled = true
-        legend.horizontalAlignment = .right
-        legend.verticalAlignment = .top
-        legend.orientation = .vertical
-        legend.drawInside = true
-        legend.yOffset = 10.0
-        legend.xOffset = 10.0
-        legend.yEntrySpace = 0.0
+        setupLegend()
 
         let xaxis = barChartView.xAxis
         xaxis.drawGridLinesEnabled = true
@@ -107,47 +98,8 @@ final class StatsVC: UIViewController {
         yaxis.drawGridLinesEnabled = false
 
         barChartView.rightAxis.enabled = false
-        //axisFormatDelegate = self
 
-        barChartView.noDataText = "You need to provide data for the chart."
-        var dataEntries: [BarChartDataEntry] = []
-        var dataEntries1: [BarChartDataEntry] = []
-        var dataEntries2: [BarChartDataEntry] = []
-
-        for iterator in 0..<dataPoints.count {
-
-            var y1 = 0.0
-            if coding.indices.contains(iterator) {
-                y1 = coding[iterator]
-            }
-
-            let dataEntry = BarChartDataEntry(x: Double(iterator), y: y1)
-            dataEntries.append(dataEntry)
-
-            var y2 = 0.0
-            if building.indices.contains(iterator) {
-                y2 = building[iterator]
-            }
-            let dataEntry1 = BarChartDataEntry(x: Double(iterator), y: y2)
-            dataEntries1.append(dataEntry1)
-
-            var y3 = 0.0
-            if debugging.indices.contains(iterator) {
-                y3 = debugging[iterator]
-            }
-            let dataEntry2 = BarChartDataEntry(x: Double(iterator), y: y3)
-            dataEntries2.append(dataEntry2)
-        }
-
-        let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Coding")
-        let chartDataSet1 = BarChartDataSet(entries: dataEntries1, label: "Building")
-        let chartDataSet2 = BarChartDataSet(entries: dataEntries2, label: "Debugging")
-
-        let dataSets = [chartDataSet, chartDataSet1, chartDataSet2]
-        chartDataSet.colors = [UIColor.red]
-        chartDataSet1.colors = [UIColor.blue]
-        chartDataSet2.colors = [ UIColor.green]
-
+        let dataSets = setupDataSets(data: data, dataPoints: dataPoints)
         let chartData = BarChartData(dataSets: dataSets)
 
         let groupSpace = 0.3
@@ -156,27 +108,79 @@ final class StatsVC: UIViewController {
         // (0.3 + 0.05) * 2 + 0.3 = 1.00 -> interval per "group"
 
         let groupCount = dataPoints.count
-        let startYear = 0
+        let startValue = 0.0
 
         chartData.barWidth = barWidth
-        barChartView.xAxis.axisMinimum = Double(startYear)
-        let gg = chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
-        print("Groupspace: \(gg)")
-        barChartView.xAxis.axisMaximum = Double(startYear) + gg * Double(groupCount)
+        barChartView.xAxis.axisMinimum = startValue
+        let groupWidth = chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
+        print("Groupspace: \(groupWidth)")
+        barChartView.xAxis.axisMaximum = startValue + groupWidth * Double(groupCount)
 
-        chartData.groupBars(fromX: Double(startYear), groupSpace: groupSpace, barSpace: barSpace)
-        //chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
-        barChartView.notifyDataSetChanged()
+        chartData.groupBars(fromX: startValue, groupSpace: groupSpace, barSpace: barSpace)
+        //barChartView.notifyDataSetChanged()
 
         barChartView.data = chartData
-
-        //background color
         barChartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
-
-        //chart animation
         barChartView.animate(xAxisDuration: 1.5, yAxisDuration: 1.5, easingOption: .linear)
     }
 
+    private func setupLegend() {
+        let legend = barChartView.legend
+        legend.enabled = true
+        legend.horizontalAlignment = .right
+        legend.verticalAlignment = .top
+        legend.orientation = .vertical
+        legend.drawInside = true
+        legend.yOffset = 10.0
+        legend.xOffset = 10.0
+        legend.yEntrySpace = 0.0
+    }
+
+    private func setupDataSets(data: [Data], dataPoints: [String]) -> [BarChartDataSet] {
+        let coding = data.filter { $0.name == "Coding"}.map { $0.time}
+        let building = data.filter { $0.name == "Building"}.map { $0.time}
+        let debugging = data.filter { $0.name == "Debugging"}.map { $0.time}
+
+        var codingDataEntries: [BarChartDataEntry] = []
+        var buildingDataEntries: [BarChartDataEntry] = []
+        var debuggingDataEntries: [BarChartDataEntry] = []
+
+        for iterator in 0..<dataPoints.count {
+
+            var codingY = 0.0
+            if coding.indices.contains(iterator) {
+                codingY = coding[iterator]
+            }
+
+            let codingDataEntry = BarChartDataEntry(x: Double(iterator), y: codingY)
+            codingDataEntries.append(codingDataEntry)
+
+            var buildingY = 0.0
+            if building.indices.contains(iterator) {
+                buildingY = building[iterator]
+            }
+            let buildingDataEntry = BarChartDataEntry(x: Double(iterator), y: buildingY)
+            buildingDataEntries.append(buildingDataEntry)
+
+            var debuggingY = 0.0
+            if debugging.indices.contains(iterator) {
+                debuggingY = debugging[iterator]
+            }
+            let debuggingDataEntry = BarChartDataEntry(x: Double(iterator), y: debuggingY)
+            debuggingDataEntries.append(debuggingDataEntry)
+        }
+
+        let codingDataSet = BarChartDataSet(entries: codingDataEntries, label: "Coding")
+        let buildingDataSet = BarChartDataSet(entries: buildingDataEntries, label: "Building")
+        let debuggingDataSet = BarChartDataSet(entries: debuggingDataEntries, label: "Debugging")
+
+        let dataSets = [codingDataSet, buildingDataSet, debuggingDataSet]
+        codingDataSet.colors = [UIColor.red]
+        buildingDataSet.colors = [UIColor.blue]
+        debuggingDataSet.colors = [ UIColor.green]
+
+        return dataSets
+    }
 
     private func setupEditors(response: Summary) {
         var megaArray = 0.00
