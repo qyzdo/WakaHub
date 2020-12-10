@@ -63,22 +63,33 @@ final class StatsVC: UIViewController {
 
         for array in response.data {
             let date = array.range.date
-            for array in response.data {
-
+            if array.categories.count > 0 {
                 for object in array.categories {
+//                    print(object)
                     let testObject = Data(name: object.name, time: object.totalSeconds, date: date)
                     arrayOfData.append(testObject)
                 }
+            } else {
+                let testObject = Data(name: "Building", time: 0, date: date)
+                let testObject2 = Data(name: "Coding", time: 0, date: date)
+                let testObject3 = Data(name: "Debugging", time: 0, date: date)
+
+                arrayOfData.append(testObject)
+                arrayOfData.append(testObject2)
+                arrayOfData.append(testObject3)
             }
         }
 
-        setupChart(data: arrayOfData)
+        setupChart(data: arrayOfData, response: response)
         print(arrayOfData)
     }
 
-    private func setupChart(data: [Data]) {
-        print(data)
-        let dataPoints = data.map { $0.date }
+    private func setupChart(data: [Data], response: Summary) {
+        var dataPoints = [String]()
+        for points in response.data {
+            let date = points.range.date
+            dataPoints.append(date)
+        }
 
         setupLegend()
 
