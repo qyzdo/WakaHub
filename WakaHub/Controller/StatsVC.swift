@@ -41,7 +41,7 @@ final class StatsVC: UIViewController {
             switch result {
             case .success(let response):
                 //print(response)
-//                self.setupEditors(response: response)
+                //                self.setupEditors(response: response)
                 self.setupCategory(response: response)
             case .failure(let error):
                 print(error)
@@ -65,23 +65,21 @@ final class StatsVC: UIViewController {
             let date = array.range.date
             if array.categories.count > 0 {
                 for object in array.categories {
-//                    print(object)
                     let testObject = Data(name: object.name, time: object.totalSeconds, date: date)
                     arrayOfData.append(testObject)
                 }
             } else {
-                let testObject = Data(name: "Building", time: 0, date: date)
-                let testObject2 = Data(name: "Coding", time: 0, date: date)
-                let testObject3 = Data(name: "Debugging", time: 0, date: date)
+                let buildingEmptyData = Data(name: "Building", time: 0, date: date)
+                let codingEmptyData = Data(name: "Coding", time: 0, date: date)
+                let debuggingEmptyData = Data(name: "Debugging", time: 0, date: date)
 
-                arrayOfData.append(testObject)
-                arrayOfData.append(testObject2)
-                arrayOfData.append(testObject3)
+                arrayOfData.append(buildingEmptyData)
+                arrayOfData.append(codingEmptyData)
+                arrayOfData.append(debuggingEmptyData)
             }
         }
 
         setupChart(data: arrayOfData, response: response)
-        print(arrayOfData)
     }
 
     private func setupChart(data: [Data], response: Summary) {
@@ -95,7 +93,7 @@ final class StatsVC: UIViewController {
 
         let xaxis = barChartView.xAxis
         xaxis.drawGridLinesEnabled = true
-        xaxis.labelPosition = .bottom
+        xaxis.labelPosition = .bothSided
         xaxis.centerAxisLabelsEnabled = true
         xaxis.valueFormatter = IndexAxisValueFormatter(values: dataPoints)
         xaxis.granularity = 1
@@ -113,10 +111,9 @@ final class StatsVC: UIViewController {
         let dataSets = setupDataSets(data: data, dataPoints: dataPoints)
         let chartData = BarChartData(dataSets: dataSets)
 
-        let groupSpace = 0.3
+        let groupSpace = 0.1
         let barSpace = 0.05
-        let barWidth = 0.3
-        // (0.3 + 0.05) * 2 + 0.3 = 1.00 -> interval per "group"
+        let barWidth = 0.25
 
         let groupCount = dataPoints.count
         let startValue = 0.0
@@ -207,23 +204,23 @@ final class StatsVC: UIViewController {
         print(megaArray)
     }
 
-//    private func setupPieChart(dataPoints: [String], values: [Double]) {
-//        // 1. Set ChartDataEntry
-//         var dataEntries: [ChartDataEntry] = []
-//         for i in 0..<dataPoints.count {
-//           let dataEntry = PieChartDataEntry(value: values[i], label: dataPoints[i], data: dataPoints[i] as AnyObject)
-//           dataEntries.append(dataEntry)
-//         }
-//         // 2. Set ChartDataSet
-//         let pieChartDataSet = PieChartDataSet(values: dataEntries, label: nil)
-//         pieChartDataSet.colors = colorsOfCharts(numbersOfColor: dataPoints.count)
-//         // 3. Set ChartData
-//         let pieChartData = PieChartData(dataSet: pieChartDataSet)
-//         let format = NumberFormatter()
-//         format.numberStyle = .none
-//         let formatter = DefaultValueFormatter(formatter: format)
-//         pieChartData.setValueFormatter(formatter)
-//         // 4. Assign it to the chart’s data
-//         pieChartView.data = pieChartData
-//    }
+    //    private func setupPieChart(dataPoints: [String], values: [Double]) {
+    //        // 1. Set ChartDataEntry
+    //         var dataEntries: [ChartDataEntry] = []
+    //         for i in 0..<dataPoints.count {
+    //           let dataEntry = PieChartDataEntry(value: values[i], label: dataPoints[i], data: dataPoints[i] as AnyObject)
+    //           dataEntries.append(dataEntry)
+    //         }
+    //         // 2. Set ChartDataSet
+    //         let pieChartDataSet = PieChartDataSet(values: dataEntries, label: nil)
+    //         pieChartDataSet.colors = colorsOfCharts(numbersOfColor: dataPoints.count)
+    //         // 3. Set ChartData
+    //         let pieChartData = PieChartData(dataSet: pieChartDataSet)
+    //         let format = NumberFormatter()
+    //         format.numberStyle = .none
+    //         let formatter = DefaultValueFormatter(formatter: format)
+    //         pieChartData.setValueFormatter(formatter)
+    //         // 4. Assign it to the chart’s data
+    //         pieChartView.data = pieChartData
+    //    }
 }
