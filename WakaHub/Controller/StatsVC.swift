@@ -42,52 +42,24 @@ final class StatsVC: UIViewController {
             case .success(let response):
                 //print(response)
                 //                self.setupEditors(response: response)
-                self.setupCategory(response: response)
+                self.setupCategoryChart(data: response.data)
+                self.statsView.activityIndicator.stopAnimating()
             case .failure(let error):
                 print(error)
             case .empty:
                 print("No data")
-
             }
         }
     }
 
-    struct Data {
-        var name: String
-        var time: Double
-        var date: String
-    }
-
-    private func setupCategory(response: Summary) {
-        var arrayOfData = [Data]()
-
-        for array in response.data {
-            let date = array.range.date
-            if array.categories.count > 0 {
-                for object in array.categories {
-                    let testObject = Data(name: object.name, time: object.totalSeconds, date: date)
-                    arrayOfData.append(testObject)
-                }
-            } else {
-                let buildingEmptyData = Data(name: "Building", time: 0, date: date)
-                let codingEmptyData = Data(name: "Coding", time: 0, date: date)
-                let debuggingEmptyData = Data(name: "Debugging", time: 0, date: date)
-
-                arrayOfData.append(buildingEmptyData)
-                arrayOfData.append(codingEmptyData)
-                arrayOfData.append(debuggingEmptyData)
-            }
-        }
-
-        setupChart(data: arrayOfData, response: response)
-    }
-
-    private func setupChart(data: [Data], response: Summary) {
+    private func setupCategoryChart(data: [SummaryDataClass]) {
         var dataPoints = [String]()
-        for points in response.data {
+        for points in data {
             let date = points.range.date
             dataPoints.append(date)
         }
+
+        let chartsData = createArrayWithCustomCategoryData(data: data)
 
         setupLegend()
 
@@ -108,7 +80,7 @@ final class StatsVC: UIViewController {
 
         barChartView.rightAxis.enabled = false
 
-        let dataSets = setupDataSets(data: data, dataPoints: dataPoints)
+        let dataSets = setupDataSets(data: chartsData, dataPoints: dataPoints)
         let chartData = BarChartData(dataSets: dataSets)
 
         let groupSpace = 0.1
@@ -125,11 +97,33 @@ final class StatsVC: UIViewController {
         barChartView.xAxis.axisMaximum = startValue + groupWidth * Double(groupCount)
 
         chartData.groupBars(fromX: startValue, groupSpace: groupSpace, barSpace: barSpace)
-        //barChartView.notifyDataSetChanged()
 
         barChartView.data = chartData
-        barChartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
         barChartView.animate(xAxisDuration: 1.5, yAxisDuration: 1.5, easingOption: .linear)
+    }
+
+    private func createArrayWithCustomCategoryData(data: [SummaryDataClass]) -> [CustomCategoryData] {
+        var arrayOfData = [CustomCategoryData]()
+
+        for array in data {
+            let date = array.range.date
+            if array.categories.count > 0 {
+                for object in array.categories {
+                    let testObject = CustomCategoryData(name: object.name, time: object.totalSeconds, date: date)
+                    arrayOfData.append(testObject)
+                }
+            } else {
+                let buildingEmptyData = CustomCategoryData(name: "Building", time: 0, date: date)
+                let codingEmptyData = CustomCategoryData(name: "Coding", time: 0, date: date)
+                let debuggingEmptyData = CustomCategoryData(name: "Debugging", time: 0, date: date)
+
+                arrayOfData.append(buildingEmptyData)
+                arrayOfData.append(codingEmptyData)
+                arrayOfData.append(debuggingEmptyData)
+            }
+        }
+
+        return arrayOfData
     }
 
     private func setupLegend() {
@@ -144,7 +138,7 @@ final class StatsVC: UIViewController {
         legend.yEntrySpace = 0.0
     }
 
-    private func setupDataSets(data: [Data], dataPoints: [String]) -> [BarChartDataSet] {
+    private func setupDataSets(data: [CustomCategoryData], dataPoints: [String]) -> [BarChartDataSet] {
         let coding = data.filter { $0.name == "Coding"}.map { $0.time}
         let building = data.filter { $0.name == "Building"}.map { $0.time}
         let debugging = data.filter { $0.name == "Debugging"}.map { $0.time}

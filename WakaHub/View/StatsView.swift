@@ -72,6 +72,8 @@ final class StatsView: UIView {
     public var categoryChart: BarChartView = {
         let chart = BarChartView()
         chart.translatesAutoresizingMaskIntoConstraints = false
+        chart.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
+
         return chart
     }()
 
@@ -87,6 +89,7 @@ final class StatsView: UIView {
     public var languagesChart: PieChartView = {
         let chart = PieChartView()
         chart.translatesAutoresizingMaskIntoConstraints = false
+        chart.isHidden = true
 
         return chart
     }()
@@ -103,6 +106,7 @@ final class StatsView: UIView {
     public var editorsChart: PieChartView = {
         let chart = PieChartView()
         chart.translatesAutoresizingMaskIntoConstraints = false
+        chart.isHidden = true
 
         return chart
     }()

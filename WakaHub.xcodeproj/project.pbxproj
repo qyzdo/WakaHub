@@ -16,6 +16,7 @@
 		1627A8162575822D00F42B09 /* WakaTimeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1627A8152575822D00F42B09 /* WakaTimeService.swift */; };
 		1627A8232575865E00F42B09 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1627A8222575865E00F42B09 /* UserView.swift */; };
 		1627A82C2575878C00F42B09 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1627A82B2575878C00F42B09 /* User.swift */; };
+		163D72E22582AF0600E5393C /* CustomCategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163D72E12582AF0600E5393C /* CustomCategoryData.swift */; };
 		164A59D0256C6732009442A8 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164A59CF256C6732009442A8 /* WelcomeView.swift */; };
 		164A59DB256C6C0F009442A8 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164A59DA256C6C0F009442A8 /* KeychainWrapper.swift */; };
 		1650DBCC2576457B00F1F148 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1650DBCB2576457B00F1F148 /* DateFormatter.swift */; };
@@ -62,6 +63,7 @@
 		1627A8152575822D00F42B09 /* WakaTimeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakaTimeService.swift; sourceTree = "<group>"; };
 		1627A8222575865E00F42B09 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		1627A82B2575878C00F42B09 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		163D72E12582AF0600E5393C /* CustomCategoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCategoryData.swift; sourceTree = "<group>"; };
 		164A59CF256C6732009442A8 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		164A59DA256C6C0F009442A8 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		1650DBCB2576457B00F1F148 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				1627A82B2575878C00F42B09 /* User.swift */,
 				16613F1A2577C96D0074C8B8 /* Stats.swift */,
 				16A146E92581790500C50D3F /* Summary.swift */,
+				163D72E12582AF0600E5393C /* CustomCategoryData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -547,6 +550,7 @@
 				16A146EF25817C2A00C50D3F /* StatsView.swift in Sources */,
 				1627A80C257581D500F42B09 /* ServiceProvider.swift in Sources */,
 				1650DBCC2576457B00F1F148 /* DateFormatter.swift in Sources */,
+				163D72E22582AF0600E5393C /* CustomCategoryData.swift in Sources */,
 				164A59DB256C6C0F009442A8 /* KeychainWrapper.swift in Sources */,
 				1627A811257581ED00F42B09 /* Service.swift in Sources */,
 				1627A8232575865E00F42B09 /* UserView.swift in Sources */,
