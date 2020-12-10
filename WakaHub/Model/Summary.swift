@@ -14,11 +14,11 @@ struct Summary: Codable {
 
 // MARK: - Datum
 struct SummaryDataClass: Codable {
-    let categories: [UsageTimes]
-    let dependencies: [UsageTimes]
-    let editors: [UsageTimes]
+    let categories: [SummaryUsageTimes]
+    let dependencies: [SummaryUsageTimes]
+    let editors: [SummaryUsageTimes]
     let grandTotal: GrandTotal
-    let languages, machines, operatingSystems, projects: [UsageTimes]
+    let languages, machines, operatingSystems, projects: [SummaryUsageTimes]
     let range: Range
 
     enum CodingKeys: String, CodingKey {
@@ -31,7 +31,7 @@ struct SummaryDataClass: Codable {
 }
 
 // MARK: - Category
-struct Category: Codable {
+struct SummaryUsageTimes: Codable {
     let digital: String
     let hours, minutes: Int
     let name: String
