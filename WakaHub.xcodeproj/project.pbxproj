@@ -23,6 +23,7 @@
 		1650DBCC2576457B00F1F148 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1650DBCB2576457B00F1F148 /* DateFormatter.swift */; };
 		16613F1B2577C96D0074C8B8 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16613F1A2577C96D0074C8B8 /* Stats.swift */; };
 		167CC298256C26BD004D919A /* OAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167CC297256C26BD004D919A /* OAuth.swift */; };
+		1694E20B25839BFA00BC6198 /* ShortDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1694E20A25839BFA00BC6198 /* ShortDateFormatter.swift */; };
 		16A146EA2581790500C50D3F /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A146E92581790500C50D3F /* Summary.swift */; };
 		16A146EF25817C2A00C50D3F /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A146EE25817C2A00C50D3F /* StatsView.swift */; };
 		16DF7F732565DFB4005A4110 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DF7F722565DFB4005A4110 /* AppDelegate.swift */; };
@@ -71,6 +72,7 @@
 		1650DBCB2576457B00F1F148 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		16613F1A2577C96D0074C8B8 /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		167CC297256C26BD004D919A /* OAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth.swift; sourceTree = "<group>"; };
+		1694E20A25839BFA00BC6198 /* ShortDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortDateFormatter.swift; sourceTree = "<group>"; };
 		16A146E92581790500C50D3F /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
 		16A146EE25817C2A00C50D3F /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		16DF7F6F2565DFB4005A4110 /* WakaHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WakaHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +132,7 @@
 			children = (
 				160C03B12579664B005C92D0 /* PercentFormatter.swift */,
 				163D72E62582B64E00E5393C /* SecondsToTimeFormatter.swift */,
+				1694E20A25839BFA00BC6198 /* ShortDateFormatter.swift */,
 			);
 			path = "Chart+Extension";
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				1627A7FD257559CD00F42B09 /* UserVC.swift in Sources */,
 				16DF7F772565DFB4005A4110 /* WelcomeVC.swift in Sources */,
 				16DF7F732565DFB4005A4110 /* AppDelegate.swift in Sources */,
+				1694E20B25839BFA00BC6198 /* ShortDateFormatter.swift in Sources */,
 				16613F1B2577C96D0074C8B8 /* Stats.swift in Sources */,
 				160C03B22579664B005C92D0 /* PercentFormatter.swift in Sources */,
 				163D72E72582B64E00E5393C /* SecondsToTimeFormatter.swift in Sources */,

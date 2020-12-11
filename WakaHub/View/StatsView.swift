@@ -72,7 +72,7 @@ final class StatsView: UIView {
     public var categoryChart: BarChartView = {
         let chart = BarChartView()
         chart.translatesAutoresizingMaskIntoConstraints = false
-        
+    
         return chart
     }()
 

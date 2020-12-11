@@ -71,7 +71,7 @@ final class StatsVC: UIViewController {
         xaxis.drawGridLinesEnabled = true
         xaxis.labelPosition = .bottom
         xaxis.centerAxisLabelsEnabled = true
-        xaxis.valueFormatter = IndexAxisValueFormatter(values: dataPoints)
+        xaxis.valueFormatter = ShortDateFormatter(values: dataPoints)
         xaxis.granularity = 1
 
         let leftAxisFormatter = NumberFormatter()
