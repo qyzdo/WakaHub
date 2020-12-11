@@ -28,8 +28,10 @@ final class UserVC: UIViewController {
     }
 
     private func setupNavbar() {
-        navigationItem.title = "Your profile"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(settingsButtonClicked))
+        DispatchQueue.main.async {
+            self.navigationItem.title = "Your profile"
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(self.settingsButtonClicked))
+        }
     }
 
     @objc private func settingsButtonClicked() {
@@ -55,7 +57,7 @@ final class UserVC: UIViewController {
         }
 
         // MARK: - Fake data for testing purposes
-//        loadExampleData()
+        //        loadExampleData()
 
         service.load(service: .stats, decodeType: Stats.self) { result in
             switch result {
@@ -72,40 +74,47 @@ final class UserVC: UIViewController {
     }
 
     private func setupView(data: UserDataClass) {
-        userView.avatarView.kf.indicatorType = .activity
-        userView.avatarView.kf.setImage(with: URL(string: data.avatarUrl),
-                                        options: [
-                                            .scaleFactor(UIScreen.main.scale),
-                                            .transition(.fade(1)),
-                                            .cacheOriginalImage
-                                        ])
-        userView.nameLabel.text = data.displayName
-        userView.userNameLabel.text = "@\(data.username)"
-        userView.locationLabel.text = data.location
-        userView.emailLabel.text = data.publicEmail
-        userView.joinedDateLabel.text = "Joined " + data.createdAt.formatDateWithMonthName()
-        userView.hireableLabel.isHidden = !data.isHireable
+        DispatchQueue.main.async {
+            self.userView.avatarView.kf.indicatorType = .activity
+            self.userView.avatarView.kf.setImage(with: URL(string: data.avatarUrl),
+                                            options: [
+                                                .scaleFactor(UIScreen.main.scale),
+                                                .transition(.fade(1)),
+                                                .cacheOriginalImage
+                                            ])
+            self.userView.nameLabel.text = data.displayName
+            self.userView.userNameLabel.text = "@\(data.username)"
+            self.userView.locationLabel.text = data.location
+            self.userView.emailLabel.text = data.publicEmail
+            self.userView.joinedDateLabel.text = "Joined " + data.createdAt.formatDateWithMonthName()
+            self.userView.hireableLabel.isHidden = !data.isHireable
+        }
     }
 
     private func showCharts() {
-        self.userView.activityIndicator.stopAnimating()
+        DispatchQueue.main.async {
+            self.userView.activityIndicator.stopAnimating()
 
-        userView.languagesLabel.isHidden = false
-        userView.languagesChart.isHidden = false
+            self.userView.languagesLabel.isHidden = false
+            self.userView.languagesChart.isHidden = false
 
-        userView.editorsLabel.isHidden = false
-        userView.editorsChart.isHidden = false
+            self.userView.editorsLabel.isHidden = false
+            self.userView.editorsChart.isHidden = false
 
-        userView.operatingSystemsLabel.isHidden = false
-        userView.operatingSystemsChart.isHidden = false
+            self.userView.operatingSystemsLabel.isHidden = false
+            self.userView.operatingSystemsChart.isHidden = false
+        }
     }
 
     private func setupStatsView(data: StatsDataClass) {
         self.setupChart(usageTimeData: data.languages, chart: self.userView.languagesChart)
         self.setupChart(usageTimeData: data.editors, chart: self.userView.editorsChart)
         self.setupChart(usageTimeData: data.operatingSystems, chart: self.userView.operatingSystemsChart)
-        self.userView.codingActivityLabel.attributedText = createStatsAttributedString(activityName: "Coding Activity ", timeString: data.humanReadableTotalIncludingOtherLanguage)
-        self.userView.dailyAverageLabel.attributedText = createStatsAttributedString(activityName: "Daily Average ", timeString: data.humanReadableDailyAverage)
+
+        DispatchQueue.main.async {
+            self.userView.codingActivityLabel.attributedText = self.createStatsAttributedString(activityName: "Coding Activity ", timeString: data.humanReadableTotalIncludingOtherLanguage)
+            self.userView.dailyAverageLabel.attributedText = self.createStatsAttributedString(activityName: "Daily Average ", timeString: data.humanReadableDailyAverage)
+        }
     }
 
     private func createStatsAttributedString(activityName: String, timeString: String) -> NSMutableAttributedString {
@@ -174,7 +183,7 @@ final class UserVC: UIViewController {
         chart.animate(yAxisDuration: 1)
 
         chart.heightAnchor.constraint(equalToConstant: CGFloat(45*percentValues.count)).isActive = true
-//        chart.setVisibleXRange(minXRange: 8.0, maxXRange: 8.0)
+        //        chart.setVisibleXRange(minXRange: 8.0, maxXRange: 8.0)
     }
 
     private func createDataEntries(values: [Double]) -> [ChartDataEntry] {
