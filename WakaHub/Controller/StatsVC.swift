@@ -31,7 +31,9 @@ final class StatsVC: UIViewController {
     }
 
     private func setupNavbar() {
-        navigationItem.title = "Stats"
+        DispatchQueue.main.async {
+            self.navigationItem.title = "Stats"
+        }
     }
 
     private func loadData() {
@@ -43,7 +45,9 @@ final class StatsVC: UIViewController {
                 //print(response)
                 //                self.setupEditors(response: response)
                 self.setupCategoryChart(data: response.data)
-                self.statsView.activityIndicator.stopAnimating()
+                DispatchQueue.main.async {
+                    self.statsView.activityIndicator.stopAnimating()
+                }
             case .failure(let error):
                 print(error)
             case .empty:
@@ -128,15 +132,17 @@ final class StatsVC: UIViewController {
     }
 
     private func setupLegend() {
-        let legend = barChartView.legend
-        legend.enabled = true
-        legend.horizontalAlignment = .right
-        legend.verticalAlignment = .top
-        legend.orientation = .vertical
-        legend.drawInside = true
-        legend.yOffset = 10.0
-        legend.xOffset = 10.0
-        legend.yEntrySpace = 0.0
+        DispatchQueue.main.async {
+            let legend = self.barChartView.legend
+            legend.enabled = true
+            legend.horizontalAlignment = .right
+            legend.verticalAlignment = .top
+            legend.orientation = .vertical
+            legend.drawInside = true
+            legend.yOffset = 10.0
+            legend.xOffset = 10.0
+            legend.yEntrySpace = 0.0
+        }
     }
 
     private func setupDataSets(data: [CustomCategoryData], dataPoints: [String]) -> [BarChartDataSet] {
