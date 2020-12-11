@@ -35,20 +35,26 @@ final class WelcomeVC: UIViewController {
     }
 
     private func setupNavbar() {
-        title = "Welcome"
+        DispatchQueue.main.async {
+            self.title = "Welcome"
+        }
         let refreshBarButton: UIBarButtonItem = UIBarButtonItem(customView: welcomeView.activityIndicator)
         self.navigationItem.rightBarButtonItem = refreshBarButton
     }
 
     @objc private func loginButtonClicked() {
         auth = OAuth()
-        welcomeView.activityIndicator.startAnimating()
+        DispatchQueue.main.async {
+            self.welcomeView.activityIndicator.startAnimating()
+        }
         auth?.authorize { result in
             switch result {
             case .success(let credentials):
                 self.saveCredentialsInKeychain(credentials: credentials)
-                self.welcomeView.activityIndicator.stopAnimating()
                 self.presentLoggedInView()
+                DispatchQueue.main.async {
+                    self.welcomeView.activityIndicator.stopAnimating()
+                }
             case .failure(let error):
                 print(error.localizedDescription)
                 self.presentErrorAlert()
@@ -67,10 +73,12 @@ final class WelcomeVC: UIViewController {
     }
 
     private func presentErrorAlert() {
-        let alert = UIAlertController(title: "Login Error", message: "There is an error in logging you into this application, please try again.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Login Error", message: "There is an error in logging you into this application, please try again.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
 
-        self.present(alert, animated: true)
+            self.present(alert, animated: true)
+        }
     }
 
     @objc private func createAccountButtonClicked() {
