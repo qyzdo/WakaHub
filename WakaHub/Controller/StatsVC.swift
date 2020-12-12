@@ -132,7 +132,6 @@ final class StatsVC: UIViewController {
     }
 
     private func setupLegend() {
-        DispatchQueue.main.async {
             let legend = self.barChartView.legend
             legend.enabled = true
             legend.horizontalAlignment = .right
@@ -142,7 +141,6 @@ final class StatsVC: UIViewController {
             legend.yOffset = 10.0
             legend.xOffset = 10.0
             legend.yEntrySpace = 0.0
-        }
     }
 
     private func setupDataSets(data: [CustomCategoryData], dataPoints: [String]) -> [BarChartDataSet] {
