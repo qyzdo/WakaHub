@@ -206,9 +206,46 @@ final class StatsVC: UIViewController {
         categoryChartView.animate(yAxisDuration: 1)
     }
 
+
+        let pieChartData = PieChartData(dataSet: pieChartDataSet)
+        pieChartData.setValueFormatter(SecondsToTimeFormatter())
+        pieChartData.setValueTextColor(UIColor.label)
+
+        chartView.entryLabelColor = UIColor.label
+
+        chartView.data = pieChartData
+        chartView.animate(xAxisDuration: 1)
+    }
+
+    enum ChartType {
+        case categories
+        case languages
+        case editors
+    }
+
     private func setupAllPieCharts(usageData: [SummaryDataClass]) {
         setupPieChart(usageData: usageData, chartType: .languages)
         setupPieChart(usageData: usageData, chartType: .editors)
+    }
+
+    private func setupPieChart(usageData: [SummaryDataClass], chartType: ChartType) {
+        switch chartType {
+        case .languages:
+            let dictionary = createNameAndUsageDictionary(usageTimes: usageData, chartType: .languages)
+
+            let usageNames = Array(dictionary.keys)
+            let usageTimes = Array(dictionary.values)
+
+            setupPieChartView(dataPoints: usageNames, values: usageTimes, chartView: languagesChartView)
+        case .editors:
+            let dictionary = createNameAndUsageDictionary(usageTimes: usageData, chartType: .editors)
+
+            let usageNames = Array(dictionary.keys)
+            let usageTimes = Array(dictionary.values)
+
+            setupPieChartView(dataPoints: usageNames, values: usageTimes, chartView: editorsChartView)
+        default: break
+        }
     }
 
     private func setupPieChartView(dataPoints: [String], values: [Double], chartView: PieChartView) {
@@ -230,32 +267,6 @@ final class StatsVC: UIViewController {
 
         chartView.data = pieChartData
         chartView.animate(xAxisDuration: 1)
-    }
-
-    enum ChartType {
-        case categories
-        case languages
-        case editors
-    }
-
-    private func setupPieChart(usageData: [SummaryDataClass], chartType: ChartType) {
-        switch chartType {
-        case .languages:
-            let dictionary = createNameAndUsageDictionary(usageTimes: usageData, chartType: .languages)
-
-            let usageNames = Array(dictionary.keys)
-            let usageTimes = Array(dictionary.values)
-
-            setupPieChartView(dataPoints: usageNames, values: usageTimes, chartView: languagesChartView)
-        case .editors:
-            let dictionary = createNameAndUsageDictionary(usageTimes: usageData, chartType: .editors)
-
-            let usageNames = Array(dictionary.keys)
-            let usageTimes = Array(dictionary.values)
-
-            setupPieChartView(dataPoints: usageNames, values: usageTimes, chartView: editorsChartView)
-        default: break
-        }
     }
 
     private func createNameAndUsageDictionary(usageTimes: [SummaryDataClass], chartType: ChartType) -> [String: Double] {
