@@ -35,7 +35,7 @@ final class StatsView: UIView {
         projectsChart.topAnchor.constraint(equalTo: projectsLabel.bottomAnchor).isActive = true
         projectsChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         projectsChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
-        projectsChart.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        projectsChart.heightAnchor.constraint(equalToConstant: 300).isActive = true
 
         scrollView.addSubview(categoriesLabel)
         categoriesLabel.topAnchor.constraint(equalTo: projectsChart.bottomAnchor, constant: 20).isActive = true
@@ -45,7 +45,7 @@ final class StatsView: UIView {
         categoryChart.topAnchor.constraint(equalTo: categoriesLabel.bottomAnchor).isActive = true
         categoryChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         categoryChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
-        categoryChart.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        categoryChart.heightAnchor.constraint(equalToConstant: 300).isActive = true
 
         scrollView.addSubview(languagesLabel)
         languagesLabel.topAnchor.constraint(equalTo: categoryChart.bottomAnchor, constant: 20).isActive = true
@@ -55,7 +55,7 @@ final class StatsView: UIView {
         languagesChart.topAnchor.constraint(equalTo: languagesLabel.bottomAnchor).isActive = true
         languagesChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         languagesChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
-        languagesChart.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        languagesChart.heightAnchor.constraint(equalToConstant: 300).isActive = true
 
         scrollView.addSubview(editorsLabel)
         editorsLabel.topAnchor.constraint(equalTo: languagesChart.bottomAnchor, constant: 20).isActive = true
@@ -65,7 +65,7 @@ final class StatsView: UIView {
         editorsChart.topAnchor.constraint(equalTo: editorsLabel.bottomAnchor).isActive = true
         editorsChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         editorsChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
-        editorsChart.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        editorsChart.heightAnchor.constraint(equalToConstant: 300).isActive = true
         editorsChart.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
 
         addSubview(activityIndicator)
@@ -124,6 +124,7 @@ final class StatsView: UIView {
     public var languagesChart: PieChartView = {
         let chart = PieChartView()
         chart.translatesAutoresizingMaskIntoConstraints = false
+        chart.drawHoleEnabled = false
 
         return chart
     }()
@@ -139,6 +140,7 @@ final class StatsView: UIView {
     public var editorsChart: PieChartView = {
         let chart = PieChartView()
         chart.translatesAutoresizingMaskIntoConstraints = false
+        chart.holeColor = .systemBackground
 
         return chart
     }()
