@@ -10,6 +10,7 @@ import Charts
 
 final class StatsVC: UIViewController {
     var projectsChartView: BarChartView!
+    var summaryCategoryChartView: HorizontalBarChartView!
     var categoryChartView: BarChartView!
     var languagesChartView: PieChartView!
     var editorsChartView: PieChartView!
@@ -28,6 +29,7 @@ final class StatsVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         projectsChartView = statsView.projectsChart
+        summaryCategoryChartView = statsView.categorySummaryChart
         categoryChartView = statsView.categoryChart
         languagesChartView = statsView.languagesChart
         editorsChartView = statsView.editorsChart
