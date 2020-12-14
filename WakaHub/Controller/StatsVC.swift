@@ -227,6 +227,7 @@ final class StatsVC: UIViewController {
         chartView.entryLabelColor = UIColor.label
 
         chartView.data = pieChartData
+        chartView.animate(xAxisDuration: 1)
     }
 
     enum ChartType {
