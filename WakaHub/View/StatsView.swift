@@ -27,8 +27,22 @@ final class StatsView: UIView {
     }
 
     private func createChartsWithLabels() {
+        scrollView.addSubview(projectsLabel)
+        projectsLabel.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        projectsLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
+
+        scrollView.addSubview(projectsChart)
+        projectsChart.topAnchor.constraint(equalTo: projectsLabel.bottomAnchor).isActive = true
+        projectsChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
+        projectsChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
+        projectsChart.heightAnchor.constraint(equalToConstant: 250).isActive = true
+
+        scrollView.addSubview(categoriesLabel)
+        categoriesLabel.topAnchor.constraint(equalTo: projectsChart.bottomAnchor, constant: 20).isActive = true
+        categoriesLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
+
         scrollView.addSubview(categoryChart)
-        categoryChart.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        categoryChart.topAnchor.constraint(equalTo: categoriesLabel.bottomAnchor).isActive = true
         categoryChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         categoryChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
         categoryChart.heightAnchor.constraint(equalToConstant: 250).isActive = true
@@ -44,7 +58,7 @@ final class StatsView: UIView {
         languagesChart.heightAnchor.constraint(equalToConstant: 250).isActive = true
 
         scrollView.addSubview(editorsLabel)
-        editorsLabel.topAnchor.constraint(equalTo: languagesChart.bottomAnchor, constant: 10).isActive = true
+        editorsLabel.topAnchor.constraint(equalTo: languagesChart.bottomAnchor, constant: 20).isActive = true
         editorsLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
 
         scrollView.addSubview(editorsChart)
@@ -69,10 +83,33 @@ final class StatsView: UIView {
         return scrollView
     }()
 
+    public var projectsLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "PROJECTS"
+        label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
+        return label
+    }()
+
+    public var projectsChart: BarChartView = {
+        let chart = BarChartView()
+        chart.translatesAutoresizingMaskIntoConstraints = false
+
+        return chart
+    }()
+
+    public var categoriesLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "CATEGORIES"
+        label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
+        return label
+    }()
+
     public var categoryChart: BarChartView = {
         let chart = BarChartView()
         chart.translatesAutoresizingMaskIntoConstraints = false
-    
+
         return chart
     }()
 
@@ -81,14 +118,12 @@ final class StatsView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "LANGUAGES"
         label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
-        label.isHidden = true
         return label
     }()
 
     public var languagesChart: PieChartView = {
         let chart = PieChartView()
         chart.translatesAutoresizingMaskIntoConstraints = false
-        chart.isHidden = true
 
         return chart
     }()
@@ -98,14 +133,12 @@ final class StatsView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "EDITORS"
         label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
-        label.isHidden = true
         return label
     }()
 
     public var editorsChart: PieChartView = {
         let chart = PieChartView()
         chart.translatesAutoresizingMaskIntoConstraints = false
-        chart.isHidden = true
 
         return chart
     }()
