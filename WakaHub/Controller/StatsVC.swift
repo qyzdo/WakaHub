@@ -9,7 +9,10 @@ import UIKit
 import Charts
 
 final class StatsVC: UIViewController {
-    var barChartView: BarChartView!
+    var projectsChartView: BarChartView!
+    var categoryChartView: BarChartView!
+    var languagesChartView: PieChartView!
+    var editorsChartView: PieChartView!
 
     override func loadView() {
         let view = StatsView()
@@ -24,7 +27,10 @@ final class StatsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        barChartView = statsView.categoryChart
+        projectsChartView = statsView.projectsChart
+        categoryChartView = statsView.categoryChart
+        languagesChartView = statsView.languagesChart
+        editorsChartView = statsView.editorsChart
 
         setupNavbar()
         loadData()
@@ -39,7 +45,7 @@ final class StatsVC: UIViewController {
     private func loadData() {
         let service = ServiceProvider<WakaTimeService>()
 
-        service.load(service: .summaries(startDate: "2020-12-04", endDate: "2020-12-10"), decodeType: Summary.self) { result in
+        service.load(service: .summaries(startDate: "2020-12-08", endDate: "2020-12-14"), decodeType: Summary.self) { result in
             switch result {
             case .success(let response):
                 //print(response)
@@ -64,26 +70,8 @@ final class StatsVC: UIViewController {
         }
 
         let chartsData = createArrayWithCustomCategoryData(data: data)
-
-        setupLegend()
-
-        let xaxis = barChartView.xAxis
-        xaxis.drawGridLinesEnabled = true
-        xaxis.labelPosition = .bottom
-        xaxis.centerAxisLabelsEnabled = true
-        xaxis.valueFormatter = ShortDateFormatter(values: dataPoints)
-        xaxis.granularity = 1
-
-        let leftAxisFormatter = NumberFormatter()
-        leftAxisFormatter.maximumFractionDigits = 1
-
-        let yaxis = barChartView.leftAxis
-        yaxis.spaceTop = 0.35
-        yaxis.axisMinimum = 0
-        yaxis.drawGridLinesEnabled = false
-        yaxis.enabled = false
-
-        barChartView.rightAxis.enabled = false
+        setupCategoriesChartLegend()
+        setupCategoriesChartView(dataPoints: dataPoints)
 
         let dataSets = setupDataSets(data: chartsData, dataPoints: dataPoints)
         let chartData = BarChartData(dataSets: dataSets)
@@ -96,15 +84,14 @@ final class StatsVC: UIViewController {
         let startValue = 0.0
 
         chartData.barWidth = barWidth
-        barChartView.xAxis.axisMinimum = startValue
+        categoryChartView.xAxis.axisMinimum = startValue
         let groupWidth = chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
         print("Groupspace: \(groupWidth)")
-        barChartView.xAxis.axisMaximum = startValue + groupWidth * Double(groupCount)
+        categoryChartView.xAxis.axisMaximum = startValue + groupWidth * Double(groupCount)
 
         chartData.groupBars(fromX: startValue, groupSpace: groupSpace, barSpace: barSpace)
 
-        barChartView.data = chartData
-        barChartView.animate(yAxisDuration: 1)
+        categoryChartView.data = chartData
     }
 
     private func createArrayWithCustomCategoryData(data: [SummaryDataClass]) -> [CustomCategoryData] {
@@ -131,8 +118,8 @@ final class StatsVC: UIViewController {
         return arrayOfData
     }
 
-    private func setupLegend() {
-            let legend = self.barChartView.legend
+    private func setupCategoriesChartLegend() {
+            let legend = self.categoryChartView.legend
             legend.enabled = true
             legend.horizontalAlignment = .right
             legend.verticalAlignment = .top
@@ -192,6 +179,30 @@ final class StatsVC: UIViewController {
         debuggingDataSet.colors = [ UIColor.green]
 
         return dataSets
+    }
+
+    private func setupCategoriesChartView(dataPoints: [String]) {
+        let xaxis = categoryChartView.xAxis
+        xaxis.drawGridLinesEnabled = true
+        xaxis.labelPosition = .bottom
+        xaxis.centerAxisLabelsEnabled = true
+        xaxis.valueFormatter = ShortDateFormatter(values: dataPoints)
+        xaxis.granularity = 1
+
+        let leftAxisFormatter = NumberFormatter()
+        leftAxisFormatter.maximumFractionDigits = 1
+
+        let yaxis = categoryChartView.leftAxis
+        yaxis.spaceTop = 0.35
+        yaxis.axisMinimum = 0
+        yaxis.drawGridLinesEnabled = false
+        yaxis.enabled = false
+
+        categoryChartView.rightAxis.enabled = false
+
+        categoryChartView.doubleTapToZoomEnabled = false
+
+        categoryChartView.animate(yAxisDuration: 1)
     }
 
     private func setupEditors(response: Summary) {
