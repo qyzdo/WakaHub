@@ -48,9 +48,8 @@ final class StatsVC: UIViewController {
         service.load(service: .summaries(startDate: "2020-12-08", endDate: "2020-12-14"), decodeType: Summary.self) { result in
             switch result {
             case .success(let response):
-                //print(response)
-                //                self.setupEditors(response: response)
-                self.setupCategoryChart(data: response.data)
+                self.setupCategoryChart(usageData: response.data)
+                self.setupAllPieCharts(usageData: response.data)
                 DispatchQueue.main.async {
                     self.statsView.activityIndicator.stopAnimating()
                 }
@@ -62,14 +61,14 @@ final class StatsVC: UIViewController {
         }
     }
 
-    private func setupCategoryChart(data: [SummaryDataClass]) {
+    private func setupCategoryChart(usageData: [SummaryDataClass]) {
         var dataPoints = [String]()
-        for points in data {
+        for points in usageData {
             let date = points.range.date
             dataPoints.append(date)
         }
 
-        let chartsData = createArrayWithCustomCategoryData(data: data)
+        let chartsData = createArrayWithCustomCategoryData(data: usageData)
         setupCategoriesChartLegend()
         setupCategoriesChartView(dataPoints: dataPoints)
 
@@ -205,37 +204,80 @@ final class StatsVC: UIViewController {
         categoryChartView.animate(yAxisDuration: 1)
     }
 
-    private func setupEditors(response: Summary) {
-        var megaArray = 0.00
-        for array in response.data {
-            let array =  array.editors.filter { $0.name == "Xcode" }
-            for data in array {
-                print(data)
-                megaArray += data.totalSeconds
+    private func setupAllPieCharts(usageData: [SummaryDataClass]) {
+        setupPieChart(usageData: usageData, chartType: .languages)
+        setupPieChart(usageData: usageData, chartType: .editors)
+    }
+
+    private func setupPieChartView(dataPoints: [String], values: [Double], chartView: PieChartView) {
+        var dataEntries: [ChartDataEntry] = []
+        for iterator in 0..<dataPoints.count {
+            let dataEntry = PieChartDataEntry(value: values[iterator], label: dataPoints[iterator], data: dataPoints[iterator] as AnyObject)
+            dataEntries.append(dataEntry)
+        }
+
+        let pieChartDataSet = PieChartDataSet(entries: dataEntries, label: nil)
+        pieChartDataSet.colors = ChartColorTemplates.material()
+        pieChartDataSet.yValuePosition = .outsideSlice
+
+        let pieChartData = PieChartData(dataSet: pieChartDataSet)
+        pieChartData.setValueFormatter(SecondsToTimeFormatter())
+        pieChartData.setValueTextColor(UIColor.label)
+
+        chartView.entryLabelColor = UIColor.label
+
+        chartView.data = pieChartData
+    }
+
+    enum ChartType {
+        case categories
+        case languages
+        case editors
+    }
+
+    private func setupPieChart(usageData: [SummaryDataClass], chartType: ChartType) {
+        switch chartType {
+        case .languages:
+            let dictionary = createNameAndUsageDictionary(usageTimes: usageData, chartType: .languages)
+
+            let usageNames = Array(dictionary.keys)
+            let usageTimes = Array(dictionary.values)
+
+            setupPieChartView(dataPoints: usageNames, values: usageTimes, chartView: languagesChartView)
+        case .editors:
+            let dictionary = createNameAndUsageDictionary(usageTimes: usageData, chartType: .editors)
+
+            let usageNames = Array(dictionary.keys)
+            let usageTimes = Array(dictionary.values)
+
+            setupPieChartView(dataPoints: usageNames, values: usageTimes, chartView: editorsChartView)
+        default: break
+        }
+    }
+
+    private func createNameAndUsageDictionary(usageTimes: [SummaryDataClass], chartType: ChartType) -> [String: Double] {
+        var arrayData = [SummaryUsageTimes]()
+        for array in usageTimes {
+            switch chartType {
+            case .categories:
+                arrayData.append(contentsOf: array.categories)
+            case .languages:
+                arrayData.append(contentsOf: array.languages)
+            case .editors:
+                arrayData.append(contentsOf: array.editors)
             }
         }
 
-        print(response.data.count)
-        print(megaArray)
-    }
+        let groupBy = Dictionary(grouping: arrayData) { $0.name }.reduce(into: [:]) { (name, dict) in
 
-    //    private func setupPieChart(dataPoints: [String], values: [Double]) {
-    //        // 1. Set ChartDataEntry
-    //         var dataEntries: [ChartDataEntry] = []
-    //         for i in 0..<dataPoints.count {
-    //           let dataEntry = PieChartDataEntry(value: values[i], label: dataPoints[i], data: dataPoints[i] as AnyObject)
-    //           dataEntries.append(dataEntry)
-    //         }
-    //         // 2. Set ChartDataSet
-    //         let pieChartDataSet = PieChartDataSet(values: dataEntries, label: nil)
-    //         pieChartDataSet.colors = colorsOfCharts(numbersOfColor: dataPoints.count)
-    //         // 3. Set ChartData
-    //         let pieChartData = PieChartData(dataSet: pieChartDataSet)
-    //         let format = NumberFormatter()
-    //         format.numberStyle = .none
-    //         let formatter = DefaultValueFormatter(formatter: format)
-    //         pieChartData.setValueFormatter(formatter)
-    //         // 4. Assign it to the chart’s data
-    //         pieChartView.data = pieChartData
-    //    }
+            let (key, value) = dict
+            name[key] = value.reduce(0, { $0 + $1.totalSeconds})
+        }
+
+        guard let group = groupBy as? [String: Double] else {
+            return [String: Double]()
+        }
+
+        return group
+    }
 }
