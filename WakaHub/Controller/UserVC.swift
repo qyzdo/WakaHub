@@ -35,10 +35,8 @@ final class UserVC: UIViewController {
     }
 
     @objc private func settingsButtonClicked() {
-        KeychainWrapper.shared["Token"] = nil
-        KeychainWrapper.shared["RefreshToken"] = nil
-
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(WelcomeVC())
+        let settingsVC = SettingsVC()
+        navigationController?.pushViewController(settingsVC, animated: true)
     }
 
     private func loadData() {
