@@ -14,7 +14,7 @@ final class StatsVC: UIViewController {
     var categoryChartView: BarChartView!
     var languagesChartView: PieChartView!
     var editorsChartView: PieChartView!
-
+    var operatingSystemsChartView: PieChartView!
     override func loadView() {
         let view = StatsView()
         self.view = view
@@ -33,6 +33,7 @@ final class StatsVC: UIViewController {
         categoryChartView = statsView.categoryChart
         languagesChartView = statsView.languagesChart
         editorsChartView = statsView.editorsChart
+        operatingSystemsChartView = statsView.operatingSystemsChart
 
         setupNavbar()
         loadData()
@@ -210,11 +211,13 @@ final class StatsVC: UIViewController {
         case categories
         case languages
         case editors
+        case operatingSystems
     }
 
     private func setupAllPieCharts(usageData: [SummaryDataClass]) {
         setupPieChart(usageData: usageData, chartType: .languages)
         setupPieChart(usageData: usageData, chartType: .editors)
+        setupPieChart(usageData: usageData, chartType: .operatingSystems)
     }
 
     private func setupPieChart(usageData: [SummaryDataClass], chartType: ChartType) {
@@ -226,6 +229,7 @@ final class StatsVC: UIViewController {
             let usageTimes = Array(dictionary.values)
 
             setupPieChartView(dataPoints: usageNames, values: usageTimes, chartView: languagesChartView)
+
         case .editors:
             let dictionary = createNameAndUsageDictionary(usageData: usageData, chartType: .editors)
 
@@ -233,6 +237,14 @@ final class StatsVC: UIViewController {
             let usageTimes = Array(dictionary.values)
 
             setupPieChartView(dataPoints: usageNames, values: usageTimes, chartView: editorsChartView)
+
+        case .operatingSystems:
+            let dictionary = createNameAndUsageDictionary(usageData: usageData, chartType: .operatingSystems)
+
+            let usageNames = Array(dictionary.keys)
+            let usageTimes = Array(dictionary.values)
+
+            setupPieChartView(dataPoints: usageNames, values: usageTimes, chartView: operatingSystemsChartView)
         default: break
         }
     }
@@ -268,6 +280,8 @@ final class StatsVC: UIViewController {
                 arrayData.append(contentsOf: array.languages)
             case .editors:
                 arrayData.append(contentsOf: array.editors)
+            case .operatingSystems:
+                arrayData.append(contentsOf: array.operatingSystems)
             }
         }
 

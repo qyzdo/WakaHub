@@ -53,6 +53,12 @@ final class StatsView: UIView {
         editorsLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
 
         addEditorsChart()
+
+        scrollView.addSubview(operatingSystemsLabel)
+        operatingSystemsLabel.topAnchor.constraint(equalTo: editorsChart.bottomAnchor, constant: 20).isActive = true
+        operatingSystemsLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
+
+        addOperatingSystemsChart()
     }
 
     private func addProjectsChart() {
@@ -91,7 +97,15 @@ final class StatsView: UIView {
         editorsChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         editorsChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
         editorsChart.heightAnchor.constraint(equalToConstant: 300).isActive = true
-        editorsChart.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+    }
+
+    private func addOperatingSystemsChart() {
+        scrollView.addSubview(operatingSystemsChart)
+        operatingSystemsChart.topAnchor.constraint(equalTo: operatingSystemsLabel.bottomAnchor).isActive = true
+        operatingSystemsChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
+        operatingSystemsChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
+        operatingSystemsChart.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        operatingSystemsChart.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -166,6 +180,22 @@ final class StatsView: UIView {
     }()
 
     public var editorsChart: PieChartView = {
+        let chart = PieChartView()
+        chart.translatesAutoresizingMaskIntoConstraints = false
+        chart.holeColor = .systemBackground
+
+        return chart
+    }()
+
+    public var operatingSystemsLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "OPERATING SYSTEMS"
+        label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
+        return label
+    }()
+
+    public var operatingSystemsChart: PieChartView = {
         let chart = PieChartView()
         chart.translatesAutoresizingMaskIntoConstraints = false
         chart.holeColor = .systemBackground
