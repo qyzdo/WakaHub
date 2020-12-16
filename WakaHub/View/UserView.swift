@@ -19,7 +19,7 @@ final class UserView: UIView {
 
         addSubview(scrollView)
         scrollView.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
-        scrollView.topAnchor.constraint(equalTo: safeArea.topAnchor).isActive = true
+        scrollView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         scrollView.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor).isActive = true
 
