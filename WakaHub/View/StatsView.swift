@@ -7,7 +7,6 @@
 
 import UIKit
 import Charts
-import Kingfisher
 
 final class StatsView: UIView {
     var safeArea: UILayoutGuide!
