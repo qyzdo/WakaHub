@@ -168,12 +168,15 @@ final class StatsVC: UIViewController {
 
         let codingDataSet = BarChartDataSet(entries: codingDataEntries, label: "Coding")
         codingDataSet.valueFormatter = SecondsToTimeFormatter()
+        codingDataSet.highlightEnabled = false
 
         let buildingDataSet = BarChartDataSet(entries: buildingDataEntries, label: "Building")
         buildingDataSet.valueFormatter = SecondsToTimeFormatter()
+        buildingDataSet.highlightEnabled = false
 
         let debuggingDataSet = BarChartDataSet(entries: debuggingDataEntries, label: "Debugging")
         debuggingDataSet.valueFormatter = SecondsToTimeFormatter()
+        debuggingDataSet.highlightEnabled = false
 
         let dataSets = [codingDataSet, buildingDataSet, debuggingDataSet]
         codingDataSet.colors = [UIColor.systemBlue]
