@@ -127,6 +127,21 @@ final class StatsVC: UIViewController {
         for array in data {
             let date = array.range.date
             if array.categories.count > 0 {
+                let namesArray = array.categories.map { $0.name }
+                if !namesArray.contains("Coding") {
+                    let buildingEmptyData = CustomCategoryData(name: "Building", time: 0, date: date)
+                    arrayOfData.append(buildingEmptyData)
+                }
+
+                if !namesArray.contains("Building") {
+                    let buildingEmptyData = CustomCategoryData(name: "Building", time: 0, date: date)
+                    arrayOfData.append(buildingEmptyData)
+                }
+
+                if !namesArray.contains("Debugging") {
+                    let debuggingEmptyData = CustomCategoryData(name: "Debugging", time: 0, date: date)
+                    arrayOfData.append(debuggingEmptyData)
+                }
                 for object in array.categories {
                     let testObject = CustomCategoryData(name: object.name, time: object.totalSeconds, date: date)
                     arrayOfData.append(testObject)
