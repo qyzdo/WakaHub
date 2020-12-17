@@ -113,7 +113,6 @@ final class StatsVC: UIViewController {
         chartData.barWidth = barWidth
         categoryChartView.xAxis.axisMinimum = startValue
         let groupWidth = chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
-        print("Groupspace: \(groupWidth)")
         categoryChartView.xAxis.axisMaximum = startValue + groupWidth * Double(groupCount)
 
         chartData.groupBars(fromX: startValue, groupSpace: groupSpace, barSpace: barSpace)
