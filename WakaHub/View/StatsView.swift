@@ -22,6 +22,11 @@ final class StatsView: UIView {
         scrollView.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor).isActive = true
 
+        scrollView.addSubview(timeSelectButton)
+        timeSelectButton.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        timeSelectButton.leftAnchor.constraint(equalTo: scrollView.leftAnchor).isActive = true
+        timeSelectButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
+
         createChartsWithLabels()
 
         addSubview(activityIndicator)
@@ -31,7 +36,7 @@ final class StatsView: UIView {
 
     private func createChartsWithLabels() {
         scrollView.addSubview(projectsLabel)
-        projectsLabel.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        projectsLabel.topAnchor.constraint(equalTo: timeSelectButton.bottomAnchor).isActive = true
         projectsLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
 
         addProjectsChart()
@@ -110,6 +115,19 @@ final class StatsView: UIView {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
+    }()
+
+    public let timeSelectButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .systemBlue
+        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(.gray, for: .selected)
+        button.setTitle("7 days", for: .normal)
+        button.layer.cornerRadius = 10
+        button.role = .normal
+        button.showsMenuAsPrimaryAction = true
+        return button
     }()
 
     public var projectsLabel: UILabel = {
@@ -194,7 +212,6 @@ final class StatsView: UIView {
         let indicator = UIActivityIndicatorView(style: .large)
         indicator.translatesAutoresizingMaskIntoConstraints = false
         indicator.hidesWhenStopped = true
-        indicator.startAnimating()
 
         return indicator
     }()
