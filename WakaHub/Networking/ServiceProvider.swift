@@ -42,7 +42,11 @@ class ServiceProvider<T: Service> {
 
 extension ServiceProvider {
     private func call(_ request: URLRequest, deliverQueue: DispatchQueue = DispatchQueue.main, completion: @escaping (NetworkResult<Data>) -> Void) {
-        urlSession.dataTask(with: request) { (data, _, error) in
+        urlSession.dataTask(with: request) { (data, response, error) in
+            if let httpResponse = response as? HTTPURLResponse {
+                   print("statusCode: \(httpResponse.statusCode)")
+               }
+
             if let error = error {
                 deliverQueue.async {
                     completion(.failure(error))
