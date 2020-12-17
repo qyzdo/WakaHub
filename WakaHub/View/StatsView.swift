@@ -74,7 +74,7 @@ final class StatsView: UIView {
         categorySummaryChart.topAnchor.constraint(equalTo: categoriesLabel.bottomAnchor).isActive = true
         categorySummaryChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         categorySummaryChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
-        categorySummaryChart.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        categorySummaryChart.heightAnchor.constraint(equalToConstant: 50).isActive = true
 
         scrollView.addSubview(categoryChart)
         categoryChart.topAnchor.constraint(equalTo: categorySummaryChart.bottomAnchor).isActive = true

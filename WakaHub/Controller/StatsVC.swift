@@ -53,6 +53,7 @@ final class StatsVC: UIViewController {
             case .success(let response):
                 self.setupCategoryChart(usageData: response.data)
                 self.setupAllPieCharts(usageData: response.data)
+                self.setupSummaryCategoryChart(usageData: response.data)
                 DispatchQueue.main.async {
                     self.statsView.activityIndicator.stopAnimating()
                 }
@@ -62,6 +63,39 @@ final class StatsVC: UIViewController {
                 print("No data")
             }
         }
+    }
+
+    private func setupSummaryCategoryChart(usageData: [SummaryDataClass]) {
+        let dic = createNameAndUsageDictionary(usageData: usageData, chartType: .categories)
+        setupSummaryCategoryChartView(timeValues: Array(dic.values))
+    }
+
+    private func setupSummaryCategoryChartView(timeValues: [Double]) {
+        var dataEntries = [ChartDataEntry]()
+
+        let entry = BarChartDataEntry(x: Double(0), yValues: timeValues)
+        dataEntries.append(entry)
+
+        let barChartDataSet = BarChartDataSet(entries: dataEntries, label: "")
+        barChartDataSet.highlightEnabled = false
+        barChartDataSet.valueFont = UIFont.systemFont(ofSize: 13)
+        barChartDataSet.valueTextColor = .black
+        barChartDataSet.valueFormatter = SecondsToTimeFormatter()
+        barChartDataSet.colors = ChartColorTemplates.colorful()
+
+        let barChartData = BarChartData(dataSet: barChartDataSet)
+        summaryCategoryChartView.data = barChartData
+
+        summaryCategoryChartView.xAxis.enabled = false
+        summaryCategoryChartView.xAxis.granularityEnabled = true
+        summaryCategoryChartView.xAxis.granularity = 1
+
+        summaryCategoryChartView.rightAxis.enabled = false
+        summaryCategoryChartView.leftAxis.enabled = false
+
+        summaryCategoryChartView.legend.enabled = false
+        summaryCategoryChartView.animate(yAxisDuration: 1)
+        summaryCategoryChartView.drawValueAboveBarEnabled = false
     }
 
     private func setupCategoryChart(usageData: [SummaryDataClass]) {
