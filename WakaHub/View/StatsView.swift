@@ -70,14 +70,8 @@ final class StatsView: UIView {
     }
 
     private func addCategoryCharts() {
-        scrollView.addSubview(categorySummaryChart)
-        categorySummaryChart.topAnchor.constraint(equalTo: categoriesLabel.bottomAnchor).isActive = true
-        categorySummaryChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
-        categorySummaryChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
-        categorySummaryChart.heightAnchor.constraint(equalToConstant: 50).isActive = true
-
         scrollView.addSubview(categoryChart)
-        categoryChart.topAnchor.constraint(equalTo: categorySummaryChart.bottomAnchor).isActive = true
+        categoryChart.topAnchor.constraint(equalTo: categoriesLabel.bottomAnchor).isActive = true
         categoryChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         categoryChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
         categoryChart.heightAnchor.constraint(equalToConstant: 300).isActive = true
@@ -139,13 +133,6 @@ final class StatsView: UIView {
         label.text = "CATEGORIES"
         label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
         return label
-    }()
-
-    public var categorySummaryChart: HorizontalBarChartView = {
-        let chart = HorizontalBarChartView()
-        chart.translatesAutoresizingMaskIntoConstraints = false
-
-        return chart
     }()
 
     public var categoryChart: BarChartView = {
