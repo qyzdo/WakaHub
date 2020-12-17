@@ -25,7 +25,6 @@ final class StatsView: UIView {
         scrollView.addSubview(timeSelectButton)
         timeSelectButton.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
         timeSelectButton.leftAnchor.constraint(equalTo: scrollView.leftAnchor).isActive = true
-        timeSelectButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
 
         createChartsWithLabels()
 
@@ -36,7 +35,7 @@ final class StatsView: UIView {
 
     private func createChartsWithLabels() {
         scrollView.addSubview(projectsLabel)
-        projectsLabel.topAnchor.constraint(equalTo: timeSelectButton.bottomAnchor).isActive = true
+        projectsLabel.topAnchor.constraint(equalTo: timeSelectButton.bottomAnchor, constant: 15).isActive = true
         projectsLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
 
         addProjectsChart()
@@ -120,10 +119,8 @@ final class StatsView: UIView {
     public let timeSelectButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .systemBlue
-        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
         button.setTitleColor(.gray, for: .selected)
-        button.setTitle("7 days", for: .normal)
         button.layer.cornerRadius = 10
         button.role = .normal
         button.showsMenuAsPrimaryAction = true

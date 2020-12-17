@@ -14,6 +14,17 @@ final class StatsVC: UIViewController {
     var languagesChartView: PieChartView!
     var editorsChartView: PieChartView!
     var operatingSystemsChartView: PieChartView!
+
+    let dateSelector = DateSelector()
+
+    var selectedDate: SelectedDate = .sevenDaysAgo {
+        didSet {
+            self.dateSelector.changedDate(selectedDate: selectedDate)
+            self.loadData(startDate: self.dateSelector.startDate, endDate: self.dateSelector.endDate)
+            self.statsView.timeSelectButton.setTitle(" Stats for: \(selectedDate.rawValue)", for: .normal)
+        }
+    }
+
     override func loadView() {
         let view = StatsView()
         self.view = view
@@ -26,27 +37,43 @@ final class StatsVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        setupUIActions()
         projectsChartView = statsView.projectsChart
         categoryChartView = statsView.categoryChart
         languagesChartView = statsView.languagesChart
         editorsChartView = statsView.editorsChart
         operatingSystemsChartView = statsView.operatingSystemsChart
 
-        setupNavbar()
-        loadData()
+        setupUI()
+        selectedDate = .sevenDaysAgo
     }
 
-    private func setupNavbar() {
+    private func setupUI() {
         DispatchQueue.main.async {
+            self.view.backgroundColor = .systemBackground
             self.navigationItem.title = "Stats"
         }
     }
 
-    private func loadData() {
+    private func setupUIActions() {
+        var actions = [UIMenuElement]()
+        for date in SelectedDate.allCases {
+            let element = UIAction(title: date.rawValue) { _ in
+                self.selectedDate = date
+            }
+            actions.append(element)
+        }
+
+        let menu = UIMenu(title: "", children: actions)
+        statsView.timeSelectButton.menu = menu
+    }
+
+    private func loadData(startDate: String, endDate: String) {
+        statsView.activityIndicator.startAnimating()
+
         let service = ServiceProvider<WakaTimeService>()
 
-        service.load(service: .summaries(startDate: "2020-12-08", endDate: "2020-12-14"), decodeType: Summary.self) { result in
+        service.load(service: .summaries(startDate: startDate, endDate: endDate), decodeType: Summary.self) { result in
             switch result {
             case .success(let response):
                 self.setupCategoryChart(usageData: response.data)

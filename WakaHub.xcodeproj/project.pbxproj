@@ -24,6 +24,8 @@
 		16613F1B2577C96D0074C8B8 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16613F1A2577C96D0074C8B8 /* Stats.swift */; };
 		167CC298256C26BD004D919A /* OAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167CC297256C26BD004D919A /* OAuth.swift */; };
 		1694E20B25839BFA00BC6198 /* ShortDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1694E20A25839BFA00BC6198 /* ShortDateFormatter.swift */; };
+		169897C7258BCCCF002AA3E6 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169897C6258BCCCF002AA3E6 /* Date+Extension.swift */; };
+		169897CC258BD0B7002AA3E6 /* DateSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169897CB258BD0B7002AA3E6 /* DateSelector.swift */; };
 		16A146EA2581790500C50D3F /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A146E92581790500C50D3F /* Summary.swift */; };
 		16A146EF25817C2A00C50D3F /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A146EE25817C2A00C50D3F /* StatsView.swift */; };
 		16DF7F732565DFB4005A4110 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DF7F722565DFB4005A4110 /* AppDelegate.swift */; };
@@ -75,6 +77,8 @@
 		16613F1A2577C96D0074C8B8 /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		167CC297256C26BD004D919A /* OAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth.swift; sourceTree = "<group>"; };
 		1694E20A25839BFA00BC6198 /* ShortDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortDateFormatter.swift; sourceTree = "<group>"; };
+		169897C6258BCCCF002AA3E6 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		169897CB258BD0B7002AA3E6 /* DateSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelector.swift; sourceTree = "<group>"; };
 		16A146E92581790500C50D3F /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
 		16A146EE25817C2A00C50D3F /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		16DF7F6F2565DFB4005A4110 /* WakaHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WakaHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +174,8 @@
 				160C03A825796615005C92D0 /* Chart+Extension */,
 				164A59DA256C6C0F009442A8 /* KeychainWrapper.swift */,
 				1650DBCB2576457B00F1F148 /* DateFormatter.swift */,
+				169897C6258BCCCF002AA3E6 /* Date+Extension.swift */,
+				169897CB258BD0B7002AA3E6 /* DateSelector.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -548,6 +554,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				169897C7258BCCCF002AA3E6 /* Date+Extension.swift in Sources */,
 				1627A8162575822D00F42B09 /* WakaTimeService.swift in Sources */,
 				1627A802257559DD00F42B09 /* StatsVC.swift in Sources */,
 				1627A7FD257559CD00F42B09 /* UserVC.swift in Sources */,
@@ -565,6 +572,7 @@
 				16A146EF25817C2A00C50D3F /* StatsView.swift in Sources */,
 				1627A80C257581D500F42B09 /* ServiceProvider.swift in Sources */,
 				1650DBCC2576457B00F1F148 /* DateFormatter.swift in Sources */,
+				169897CC258BD0B7002AA3E6 /* DateSelector.swift in Sources */,
 				163D72E22582AF0600E5393C /* CustomCategoryData.swift in Sources */,
 				164A59DB256C6C0F009442A8 /* KeychainWrapper.swift in Sources */,
 				1627A811257581ED00F42B09 /* Service.swift in Sources */,
