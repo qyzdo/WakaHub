@@ -24,6 +24,8 @@
 		16613F1B2577C96D0074C8B8 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16613F1A2577C96D0074C8B8 /* Stats.swift */; };
 		167CC298256C26BD004D919A /* OAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167CC297256C26BD004D919A /* OAuth.swift */; };
 		1694E20B25839BFA00BC6198 /* ShortDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1694E20A25839BFA00BC6198 /* ShortDateFormatter.swift */; };
+		16953EAB25913CBA00530AC2 /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16953EAA25913CBA00530AC2 /* PieChart.swift */; };
+		16953EB425913E4500530AC2 /* CategoryChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16953EB325913E4500530AC2 /* CategoryChart.swift */; };
 		169897C7258BCCCF002AA3E6 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169897C6258BCCCF002AA3E6 /* Date+Extension.swift */; };
 		169897CC258BD0B7002AA3E6 /* DateSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169897CB258BD0B7002AA3E6 /* DateSelector.swift */; };
 		16A146EA2581790500C50D3F /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A146E92581790500C50D3F /* Summary.swift */; };
@@ -77,6 +79,8 @@
 		16613F1A2577C96D0074C8B8 /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		167CC297256C26BD004D919A /* OAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth.swift; sourceTree = "<group>"; };
 		1694E20A25839BFA00BC6198 /* ShortDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortDateFormatter.swift; sourceTree = "<group>"; };
+		16953EAA25913CBA00530AC2 /* PieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChart.swift; sourceTree = "<group>"; };
+		16953EB325913E4500530AC2 /* CategoryChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryChart.swift; sourceTree = "<group>"; };
 		169897C6258BCCCF002AA3E6 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		169897CB258BD0B7002AA3E6 /* DateSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelector.swift; sourceTree = "<group>"; };
 		16A146E92581790500C50D3F /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
@@ -159,8 +163,8 @@
 		164A59CB256C66E0009442A8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				16953EAF25913DEE00530AC2 /* StatsVC */,
 				16F05F84258A45FD008FAD6C /* SettingsVC.swift */,
-				1627A801257559DD00F42B09 /* StatsVC.swift */,
 				1627A806257559F700F42B09 /* TabBarVC.swift */,
 				1627A7FC257559CD00F42B09 /* UserVC.swift */,
 				16DF7F762565DFB4005A4110 /* WelcomeVC.swift */,
@@ -189,6 +193,16 @@
 				1627A8152575822D00F42B09 /* WakaTimeService.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		16953EAF25913DEE00530AC2 /* StatsVC */ = {
+			isa = PBXGroup;
+			children = (
+				1627A801257559DD00F42B09 /* StatsVC.swift */,
+				16953EAA25913CBA00530AC2 /* PieChart.swift */,
+				16953EB325913E4500530AC2 /* CategoryChart.swift */,
+			);
+			path = StatsVC;
 			sourceTree = "<group>";
 		};
 		16DF7F662565DFB4005A4110 = {
@@ -555,6 +569,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				169897C7258BCCCF002AA3E6 /* Date+Extension.swift in Sources */,
+				16953EB425913E4500530AC2 /* CategoryChart.swift in Sources */,
 				1627A8162575822D00F42B09 /* WakaTimeService.swift in Sources */,
 				1627A802257559DD00F42B09 /* StatsVC.swift in Sources */,
 				1627A7FD257559CD00F42B09 /* UserVC.swift in Sources */,
@@ -580,6 +595,7 @@
 				16F05F85258A45FD008FAD6C /* SettingsVC.swift in Sources */,
 				167CC298256C26BD004D919A /* OAuth.swift in Sources */,
 				164A59D0256C6732009442A8 /* WelcomeView.swift in Sources */,
+				16953EAB25913CBA00530AC2 /* PieChart.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

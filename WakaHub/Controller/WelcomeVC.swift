@@ -35,9 +35,7 @@ final class WelcomeVC: UIViewController {
     }
 
     private func setupNavbar() {
-        DispatchQueue.main.async {
-            self.title = "Welcome"
-        }
+        self.title = "Welcome"
         let refreshBarButton: UIBarButtonItem = UIBarButtonItem(customView: welcomeView.activityIndicator)
         self.navigationItem.rightBarButtonItem = refreshBarButton
     }

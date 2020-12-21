@@ -1,95 +1,21 @@
 //
-//  StatsVC.swift
+//  CategoryChartView.swift
 //  WakaHub
 //
-//  Created by Oskar Figiel on 30/11/2020.
+//  Created by Oskar Figiel on 21/12/2020.
 //
 
-import UIKit
+import Foundation
 import Charts
 
-final class StatsVC: UIViewController {
-    var projectsChartView: BarChartView!
-    var categoryChartView: BarChartView!
-    var languagesChartView: PieChartView!
-    var editorsChartView: PieChartView!
-    var operatingSystemsChartView: PieChartView!
+class CategoryChart {
+    var categoryChartView: BarChartView
 
-    let dateSelector = DateSelector()
-
-    var selectedDate: SelectedDate = .sevenDaysAgo {
-        didSet {
-            self.dateSelector.changedDate(selectedDate: selectedDate)
-            self.loadData(startDate: self.dateSelector.startDate, endDate: self.dateSelector.endDate)
-            self.statsView.timeSelectButton.setTitle(" Stats for: \(selectedDate.rawValue)", for: .normal)
-        }
+    init(categoryChartView: BarChartView) {
+        self.categoryChartView = categoryChartView
     }
 
-    override func loadView() {
-        let view = StatsView()
-        self.view = view
-    }
-
-    private var statsView: StatsView {
-        // swiftlint:disable:next force_cast
-        return view as! StatsView
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupUIActions()
-        projectsChartView = statsView.projectsChart
-        categoryChartView = statsView.categoryChart
-        languagesChartView = statsView.languagesChart
-        editorsChartView = statsView.editorsChart
-        operatingSystemsChartView = statsView.operatingSystemsChart
-
-        setupUI()
-        selectedDate = .sevenDaysAgo
-    }
-
-    private func setupUI() {
-        DispatchQueue.main.async {
-            self.view.backgroundColor = .systemBackground
-            self.navigationItem.title = "Stats"
-        }
-    }
-
-    private func setupUIActions() {
-        var actions = [UIMenuElement]()
-        for date in SelectedDate.allCases {
-            let element = UIAction(title: date.rawValue) { _ in
-                self.selectedDate = date
-            }
-            actions.append(element)
-        }
-
-        let menu = UIMenu(title: "", children: actions)
-        statsView.timeSelectButton.menu = menu
-    }
-
-    private func loadData(startDate: String, endDate: String) {
-        statsView.activityIndicator.startAnimating()
-
-        let service = ServiceProvider<WakaTimeService>()
-
-        service.load(service: .summaries(startDate: startDate, endDate: endDate), decodeType: Summary.self) { result in
-            switch result {
-            case .success(let response):
-                self.setupCategoryChart(usageData: response.data)
-                self.setupAllPieCharts(usageData: response.data)
-                DispatchQueue.main.async {
-                    self.statsView.activityIndicator.stopAnimating()
-                }
-            case .failure(let error):
-                print(error)
-            case .empty:
-                print("No data")
-            }
-        }
-    }
-
-    private func setupCategoryChart(usageData: [SummaryDataClass]) {
+    func setupCategoryChart(usageData: [SummaryDataClass]) {
         var dataPoints = [String]()
         for points in usageData {
             let date = points.range.date
@@ -247,96 +173,5 @@ final class StatsVC: UIViewController {
         categoryChartView.doubleTapToZoomEnabled = false
 
         categoryChartView.animate(yAxisDuration: 1)
-    }
-
-    enum ChartType {
-        case categories
-        case languages
-        case editors
-        case operatingSystems
-    }
-
-    private func setupAllPieCharts(usageData: [SummaryDataClass]) {
-        setupPieChart(usageData: usageData, chartType: .languages)
-        setupPieChart(usageData: usageData, chartType: .editors)
-        setupPieChart(usageData: usageData, chartType: .operatingSystems)
-    }
-
-    private func setupPieChart(usageData: [SummaryDataClass], chartType: ChartType) {
-        switch chartType {
-        case .languages:
-            let dictionary = createNameAndUsageDictionary(usageData: usageData, chartType: .languages)
-
-            let usageNames = Array(dictionary.keys)
-            let usageTimes = Array(dictionary.values)
-
-            setupPieChartView(dataPoints: usageNames, values: usageTimes, chartView: languagesChartView)
-
-        case .editors:
-            let dictionary = createNameAndUsageDictionary(usageData: usageData, chartType: .editors)
-
-            let usageNames = Array(dictionary.keys)
-            let usageTimes = Array(dictionary.values)
-
-            setupPieChartView(dataPoints: usageNames, values: usageTimes, chartView: editorsChartView)
-
-        case .operatingSystems:
-            let dictionary = createNameAndUsageDictionary(usageData: usageData, chartType: .operatingSystems)
-
-            let usageNames = Array(dictionary.keys)
-            let usageTimes = Array(dictionary.values)
-
-            setupPieChartView(dataPoints: usageNames, values: usageTimes, chartView: operatingSystemsChartView)
-        default: break
-        }
-    }
-
-    private func setupPieChartView(dataPoints: [String], values: [Double], chartView: PieChartView) {
-        var dataEntries: [ChartDataEntry] = []
-        for iterator in 0..<dataPoints.count {
-            let dataEntry = PieChartDataEntry(value: values[iterator], label: dataPoints[iterator], data: dataPoints[iterator] as AnyObject)
-            dataEntries.append(dataEntry)
-        }
-
-        let pieChartDataSet = PieChartDataSet(entries: dataEntries, label: nil)
-        pieChartDataSet.colors = ChartColorTemplates.material()
-        pieChartDataSet.yValuePosition = .outsideSlice
-
-        let pieChartData = PieChartData(dataSet: pieChartDataSet)
-        pieChartData.setValueFormatter(SecondsToTimeFormatter())
-        pieChartData.setValueTextColor(UIColor.label)
-
-        chartView.entryLabelColor = UIColor.label
-
-        chartView.data = pieChartData
-        chartView.animate(xAxisDuration: 1)
-    }
-
-    private func createNameAndUsageDictionary(usageData: [SummaryDataClass], chartType: ChartType) -> [String: Double] {
-        var arrayData = [SummaryUsageTimes]()
-        for array in usageData {
-            switch chartType {
-            case .categories:
-                arrayData.append(contentsOf: array.categories)
-            case .languages:
-                arrayData.append(contentsOf: array.languages)
-            case .editors:
-                arrayData.append(contentsOf: array.editors)
-            case .operatingSystems:
-                arrayData.append(contentsOf: array.operatingSystems)
-            }
-        }
-
-        let groupBy = Dictionary(grouping: arrayData) { $0.name }.reduce(into: [:]) { (name, dict) in
-
-            let (key, value) = dict
-            name[key] = value.reduce(0, { $0 + $1.totalSeconds})
-        }
-
-        guard let group = groupBy as? [String: Double] else {
-            return [String: Double]()
-        }
-
-        return group
     }
 }

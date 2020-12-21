@@ -28,10 +28,8 @@ final class UserVC: UIViewController {
     }
 
     private func setupNavbar() {
-        DispatchQueue.main.async {
-            self.navigationItem.title = "Your profile"
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(self.settingsButtonClicked))
-        }
+        self.navigationItem.title = "Your profile"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(self.settingsButtonClicked))
     }
 
     @objc private func settingsButtonClicked() {

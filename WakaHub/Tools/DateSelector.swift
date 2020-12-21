@@ -16,10 +16,10 @@ enum SelectedDate: String, CaseIterable {
 }
 
 final class DateSelector {
-    private let date = Date()
+    private var date = Date()
     private let formatter = DateFormatter()
-    private var todayDate: String
 
+    var todayDate: String
     var startDate: String
     var endDate: String
 
@@ -60,5 +60,10 @@ final class DateSelector {
             startDate = formatter.string(from: thirtyDaysAgo)
             endDate = todayDate
         }
+    }
+
+    func updateDate() {
+        date = Date()
+        todayDate = formatter.string(from: date)
     }
 }

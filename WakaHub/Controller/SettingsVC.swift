@@ -26,10 +26,7 @@ class SettingsVC: UIViewController {
 
     private func setupUI() {
         view.backgroundColor = .systemBackground
-
-        DispatchQueue.main.async {
-            self.navigationItem.title = "Settings"
-        }
+        self.navigationItem.title = "Settings"
 
         settingsView.logoutButton.addTarget(self, action: #selector(logoutClicked), for: .touchUpInside)
     }
