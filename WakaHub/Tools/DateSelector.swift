@@ -20,7 +20,6 @@ final class DateSelector {
     private let formatter = DateFormatter()
     private var todayDate: String
 
-
     var startDate: String
     var endDate: String
 
