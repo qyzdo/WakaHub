@@ -78,13 +78,34 @@ final class UserVC: UIViewController {
                                                 .transition(.fade(1)),
                                                 .cacheOriginalImage
                                             ])
+
             self.userView.nameLabel.text = data.displayName
             self.userView.userNameLabel.text = "@\(data.username)"
-            self.userView.locationLabel.text = data.location
-            self.userView.emailLabel.text = data.publicEmail
-            self.userView.joinedDateLabel.text = "Joined " + data.createdAt.formatDateWithMonthName()
+            self.userView.locationLabel.attributedText = self.setupLabelWithImage(imageName: "location.fill", text: data.location)
+            if let publicEmail = data.publicEmail {
+                self.userView.emailLabel.attributedText = self.setupLabelWithImage(imageName: "person.crop.circle", text: publicEmail)
+            }
+            self.userView.joinedDateLabel.attributedText = self.setupLabelWithImage(imageName: "clock", text: "Joined " + data.createdAt.formatDateWithMonthName())
             self.userView.hireableLabel.isHidden = !data.isHireable
         }
+    }
+
+    private func setupLabelWithImage(imageName: String, text: String) -> NSAttributedString {
+        let imageAttachment = NSTextAttachment()
+        imageAttachment.image = UIImage(systemName: imageName)
+
+        let imageOffsetY: CGFloat = -5.0
+        if let image = imageAttachment.image {
+            imageAttachment.bounds = CGRect(x: -1, y: imageOffsetY, width: image.size.width, height: image.size.height)
+        }
+
+        let attachmentString = NSAttributedString(attachment: imageAttachment)
+        let completeText = NSMutableAttributedString(string: "")
+        completeText.append(attachmentString)
+        let textAfterIcon = NSAttributedString(string: text)
+        completeText.append(textAfterIcon)
+
+        return completeText
     }
 
     private func showCharts() {
