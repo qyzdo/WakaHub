@@ -42,9 +42,7 @@ extension ServiceProvider {
         urlSession.dataTask(with: request) { (data, response, error) in
             if error != nil {
                 completion(.failure(NetworkError.generalError))
-            }
-
-            if let httpResponse = response as? HTTPURLResponse {
+            } else if let httpResponse = response as? HTTPURLResponse {
                 deliverQueue.async {
                     switch httpResponse.statusCode {
                     case 100..<200:
