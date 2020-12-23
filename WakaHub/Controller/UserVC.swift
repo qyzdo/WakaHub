@@ -41,12 +41,17 @@ final class UserVC: UIViewController {
         let service = ServiceProvider<WakaTimeService>()
 
         service.load(service: .user, decodeType: User.self) { result in
+            DispatchQueue.main.async {
+                self.userView.activityIndicator.stopAnimating()
+            }
             switch result {
             case .success(let response):
                 self.setupView(data: response.data)
 
             case .failure(let error):
+                DispatchQueue.main.async {
                 self.showAlert(msg: error.localizedDescription)
+                }
             }
         }
 
@@ -54,13 +59,18 @@ final class UserVC: UIViewController {
         //        loadExampleData()
 
         service.load(service: .stats, decodeType: Stats.self) { result in
+            DispatchQueue.main.async {
+                self.userView.activityIndicator.stopAnimating()
+            }
             switch result {
             case .success(let response):
                 self.setupStatsView(data: response.data)
                 self.showCharts()
 
             case .failure(let error):
+                DispatchQueue.main.async {
                 self.showAlert(msg: error.localizedDescription)
+                }
             }
         }
     }
