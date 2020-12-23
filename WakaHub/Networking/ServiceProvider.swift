@@ -9,8 +9,7 @@ import Foundation
 
 enum NetworkResult<T> {
     case success(T)
-    case failure(Error)
-    case empty
+    case failure(NetworkError)
 }
 
 class ServiceProvider<T: Service> {
@@ -29,12 +28,10 @@ class ServiceProvider<T: Service> {
                     let resp = try decoder.decode(decodeType, from: data)
                     completion(.success(resp))
                 } catch {
-                    completion(.failure(error))
+                    completion(.failure(NetworkError.jsonBroken))
                 }
             case .failure(let error):
                 completion(.failure(error))
-            case .empty:
-                completion(.empty)
             }
         }
     }
@@ -43,23 +40,42 @@ class ServiceProvider<T: Service> {
 extension ServiceProvider {
     private func call(_ request: URLRequest, deliverQueue: DispatchQueue = DispatchQueue.main, completion: @escaping (NetworkResult<Data>) -> Void) {
         urlSession.dataTask(with: request) { (data, response, error) in
-            if let httpResponse = response as? HTTPURLResponse {
-                   print("statusCode: \(httpResponse.statusCode)")
-               }
+            if error != nil {
+                completion(.failure(NetworkError.generalError))
+            }
 
-            if let error = error {
+            if let httpResponse = response as? HTTPURLResponse {
                 deliverQueue.async {
-                    completion(.failure(error))
-                }
-            } else if let data = data {
-                deliverQueue.async {
-                    completion(.success(data))
+                    switch httpResponse.statusCode {
+                    case 100..<200:
+                        completion(.failure(NetworkError.generalError))
+
+                    case 200..<300:
+                        if let data = data {
+                            completion(.success(data))
+                        }
+
+                    case 300..<400:
+                        completion(.failure(NetworkError.generalError))
+
+                    case 402:
+                        completion(.failure(NetworkError.noPremium))
+
+                    case 400..<500:
+                        completion(.failure(NetworkError.clientError))
+
+                    case 500..<600:
+                        completion(.failure(NetworkError.serverError))
+
+                    default:
+                        completion(.failure(NetworkError.undefined))
+                    }
                 }
             } else {
                 deliverQueue.async {
-                    completion(.empty)
+                    completion(.failure(NetworkError.empty))
                 }
             }
-            }.resume()
+        }.resume()
     }
 }

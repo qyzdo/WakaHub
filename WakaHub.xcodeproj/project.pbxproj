@@ -30,6 +30,8 @@
 		169897CC258BD0B7002AA3E6 /* DateSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169897CB258BD0B7002AA3E6 /* DateSelector.swift */; };
 		16A146EA2581790500C50D3F /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A146E92581790500C50D3F /* Summary.swift */; };
 		16A146EF25817C2A00C50D3F /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A146EE25817C2A00C50D3F /* StatsView.swift */; };
+		16D361E82592CDD3003CF48C /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D361E72592CDD3003CF48C /* Error.swift */; };
+		16D361ED2592CFA4003CF48C /* Alert+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D361EC2592CFA4003CF48C /* Alert+Extension.swift */; };
 		16DF7F732565DFB4005A4110 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DF7F722565DFB4005A4110 /* AppDelegate.swift */; };
 		16DF7F752565DFB4005A4110 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DF7F742565DFB4005A4110 /* SceneDelegate.swift */; };
 		16DF7F772565DFB4005A4110 /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DF7F762565DFB4005A4110 /* WelcomeVC.swift */; };
@@ -85,6 +87,8 @@
 		169897CB258BD0B7002AA3E6 /* DateSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelector.swift; sourceTree = "<group>"; };
 		16A146E92581790500C50D3F /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
 		16A146EE25817C2A00C50D3F /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		16D361E72592CDD3003CF48C /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		16D361EC2592CFA4003CF48C /* Alert+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+Extension.swift"; sourceTree = "<group>"; };
 		16DF7F6F2565DFB4005A4110 /* WakaHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WakaHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16DF7F722565DFB4005A4110 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		16DF7F742565DFB4005A4110 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -180,6 +184,7 @@
 				1650DBCB2576457B00F1F148 /* DateFormatter.swift */,
 				169897C6258BCCCF002AA3E6 /* Date+Extension.swift */,
 				169897CB258BD0B7002AA3E6 /* DateSelector.swift */,
+				16D361EC2592CFA4003CF48C /* Alert+Extension.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -191,6 +196,7 @@
 				1627A80B257581D500F42B09 /* ServiceProvider.swift */,
 				1627A810257581ED00F42B09 /* Service.swift */,
 				1627A8152575822D00F42B09 /* WakaTimeService.swift */,
+				16D361E72592CDD3003CF48C /* Error.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -584,11 +590,13 @@
 				1627A82C2575878C00F42B09 /* User.swift in Sources */,
 				16DF7F752565DFB4005A4110 /* SceneDelegate.swift in Sources */,
 				16A146EA2581790500C50D3F /* Summary.swift in Sources */,
+				16D361ED2592CFA4003CF48C /* Alert+Extension.swift in Sources */,
 				16A146EF25817C2A00C50D3F /* StatsView.swift in Sources */,
 				1627A80C257581D500F42B09 /* ServiceProvider.swift in Sources */,
 				1650DBCC2576457B00F1F148 /* DateFormatter.swift in Sources */,
 				169897CC258BD0B7002AA3E6 /* DateSelector.swift in Sources */,
 				163D72E22582AF0600E5393C /* CustomCategoryData.swift in Sources */,
+				16D361E82592CDD3003CF48C /* Error.swift in Sources */,
 				164A59DB256C6C0F009442A8 /* KeychainWrapper.swift in Sources */,
 				1627A811257581ED00F42B09 /* Service.swift in Sources */,
 				1627A8232575865E00F42B09 /* UserView.swift in Sources */,

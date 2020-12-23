@@ -44,11 +44,9 @@ final class UserVC: UIViewController {
             switch result {
             case .success(let response):
                 self.setupView(data: response.data)
-            case .failure(let error):
-                print(error)
-            case .empty:
-                print("No data")
 
+            case .failure(let error):
+                self.showAlert(msg: error.localizedDescription)
             }
         }
 
@@ -60,11 +58,9 @@ final class UserVC: UIViewController {
             case .success(let response):
                 self.setupStatsView(data: response.data)
                 self.showCharts()
-            case .failure(let error):
-                print(error)
-            case .empty:
-                print("No data")
 
+            case .failure(let error):
+                self.showAlert(msg: error.localizedDescription)
             }
         }
     }

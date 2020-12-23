@@ -76,17 +76,18 @@ final class StatsVC: UIViewController {
         let service = ServiceProvider<WakaTimeService>()
 
         service.load(service: .summaries(startDate: startDate, endDate: endDate), decodeType: Summary.self) { result in
+
+            DispatchQueue.main.async {
+                self.statsView.activityIndicator.stopAnimating()
+            }
+
             switch result {
             case .success(let response):
                 self.setupCategoryChart(usageData: response.data)
                 self.setupAllPieCharts(usageData: response.data)
-                DispatchQueue.main.async {
-                    self.statsView.activityIndicator.stopAnimating()
-                }
+
             case .failure(let error):
-                print(error)
-            case .empty:
-                print("No data")
+                self.showAlert(msg: error.localizedDescription)
             }
         }
     }
