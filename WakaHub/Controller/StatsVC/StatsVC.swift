@@ -9,12 +9,6 @@ import UIKit
 import Charts
 
 final class StatsVC: UIViewController {
-    var projectsChartView: BarChartView!
-    var categoryChartView: BarChartView!
-    var languagesChartView: PieChartView!
-    var editorsChartView: PieChartView!
-    var operatingSystemsChartView: PieChartView!
-
     let dateSelector = DateSelector()
 
     var selectedDate: SelectedDate = .sevenDaysAgo {
@@ -42,12 +36,6 @@ final class StatsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUIActions()
-        projectsChartView = statsView.projectsChart
-        categoryChartView = statsView.categoryChart
-        languagesChartView = statsView.languagesChart
-        editorsChartView = statsView.editorsChart
-        operatingSystemsChartView = statsView.operatingSystemsChart
-
         setupUI()
         selectedDate = .sevenDaysAgo
     }
@@ -81,9 +69,9 @@ final class StatsVC: UIViewController {
             }
             switch result {
             case .success(let response):
+                self.setupDailyAverageChart(usageData: response.data)
                 self.setupCategoryChart(usageData: response.data)
                 self.setupAllPieCharts(usageData: response.data)
-
             case .failure(let error):
                 DispatchQueue.main.async {
                 self.showAlert(msg: error.localizedDescription)
@@ -92,13 +80,18 @@ final class StatsVC: UIViewController {
         }
     }
 
+    private func setupDailyAverageChart(usageData: [SummaryDataClass]) {
+        let dailyAverageChart = DailyAverageChart(dailyAverageChartView: statsView.dailyAverageView.dailyAverageChart, dailyAverageLabel: statsView.dailyAverageView.dailyAverageTimeLabel)
+        dailyAverageChart.setupChart(usageData: usageData)
+    }
+
     private func setupCategoryChart(usageData: [SummaryDataClass]) {
-        let categoryChart = CategoryChart(categoryChartView: categoryChartView)
+        let categoryChart = CategoryChart(categoryChartView: statsView.categoryChart)
         categoryChart.setupCategoryChart(usageData: usageData)
     }
 
     private func setupAllPieCharts(usageData: [SummaryDataClass]) {
-        let pieChartsCreator = PieChart(languagesChartView: languagesChartView, editorsChartView: editorsChartView, operatingSystemsChartView: operatingSystemsChartView)
+        let pieChartsCreator = PieChart(languagesChartView: statsView.languagesChart, editorsChartView: statsView.editorsChart, operatingSystemsChartView: statsView.operatingSystemsChart)
         pieChartsCreator.setupPieChart(usageData: usageData, chartType: .languages)
         pieChartsCreator.setupPieChart(usageData: usageData, chartType: .editors)
         pieChartsCreator.setupPieChart(usageData: usageData, chartType: .operatingSystems)

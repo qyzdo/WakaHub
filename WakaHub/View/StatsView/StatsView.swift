@@ -17,8 +17,8 @@ final class StatsView: UIView {
         safeArea = self.layoutMarginsGuide
 
         addSubview(scrollView)
-        scrollView.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         scrollView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        scrollView.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         scrollView.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor).isActive = true
 
@@ -37,31 +37,31 @@ final class StatsView: UIView {
         scrollView.addSubview(projectsLabel)
         projectsLabel.topAnchor.constraint(equalTo: timeSelectButton.bottomAnchor, constant: 15).isActive = true
         projectsLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-
         addProjectsChart()
 
-        scrollView.addSubview(categoriesLabel)
-        categoriesLabel.topAnchor.constraint(equalTo: projectsChart.bottomAnchor, constant: 20).isActive = true
-        categoriesLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
+        scrollView.addSubview(dailyAverageView)
+        dailyAverageView.topAnchor.constraint(equalTo: projectsChart.bottomAnchor, constant: 15).isActive = true
+        dailyAverageView.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
+        dailyAverageView.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
 
+        scrollView.addSubview(categoriesLabel)
+        categoriesLabel.topAnchor.constraint(equalTo: dailyAverageView.bottomAnchor, constant: 20).isActive = true
+        categoriesLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         addCategoryCharts()
 
         scrollView.addSubview(languagesLabel)
         languagesLabel.topAnchor.constraint(equalTo: categoryChart.bottomAnchor, constant: 20).isActive = true
         languagesLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-
         addLanguagesChart()
 
         scrollView.addSubview(editorsLabel)
         editorsLabel.topAnchor.constraint(equalTo: languagesChart.bottomAnchor, constant: 20).isActive = true
         editorsLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-
         addEditorsChart()
 
         scrollView.addSubview(operatingSystemsLabel)
         operatingSystemsLabel.topAnchor.constraint(equalTo: editorsChart.bottomAnchor, constant: 20).isActive = true
         operatingSystemsLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-
         addOperatingSystemsChart()
     }
 
@@ -140,6 +140,13 @@ final class StatsView: UIView {
         chart.translatesAutoresizingMaskIntoConstraints = false
 
         return chart
+    }()
+
+    public var dailyAverageView: DailyAverageView = {
+        let dailyAverageView = DailyAverageView()
+        dailyAverageView.translatesAutoresizingMaskIntoConstraints = false
+
+        return dailyAverageView
     }()
 
     public var categoriesLabel: UILabel = {
