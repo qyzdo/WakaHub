@@ -25,7 +25,7 @@ extension NetworkError: LocalizedError {
         case .noPremium:
             return NSLocalizedString("Sorry you don't have acces to this feature, you need to upgrade to wakatime premium.", comment: "User don't have premium")
         case .generalError:
-            return NSLocalizedString("Sorry, there was an error, please try again error.", comment: "Just error.")
+            return NSLocalizedString("Sorry, there was an error, please try again.", comment: "Just error.")
         case .undefined:
             return NSLocalizedString("Undefined error, please try again later.", comment: "Not known error")
         case .serverError:
