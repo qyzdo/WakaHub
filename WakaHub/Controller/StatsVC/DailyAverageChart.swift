@@ -10,26 +10,35 @@ class DailyAverageChart {
     var dailyAverageView: DailyAverageView
     var dailyAverageChartView: PieChartView
     var dailyAverageTimeLabel: UILabel
+    var lastDayTimeLabel: UILabel
+    var percentLabel: UILabel
+
 
     init(dailyAverageView: DailyAverageView) {
         self.dailyAverageView = dailyAverageView
         self.dailyAverageChartView = dailyAverageView.dailyAverageChart
         self.dailyAverageTimeLabel = dailyAverageView.dailyAverageTimeLabel
+        self.lastDayTimeLabel = dailyAverageView.lastDayTimeLabel
+        self.percentLabel = dailyAverageView.percentLabel
     }
 
     func setupChart(usageData: [SummaryDataClass]) {
         var dataPoints = [String]()
         var values = [Double]()
         let dailyAverage = extractDailyAverageSeconds(usageData: usageData)
-        guard let total = usageData.last?.grandTotal.totalSeconds else {
+        guard let lastDay = usageData.last else {
             return
         }
+        let total = lastDay.grandTotal.totalSeconds
+
+        let lastDayDate = lastDay.range.date.formatDateWithWeekDayName()
+
         if total >= dailyAverage {
             values = [total]
-            dataPoints = ["Today"]
+            dataPoints = [lastDayDate]
         } else {
             values = [total, dailyAverage - total]
-            dataPoints = ["Today", "Daily Average"]
+            dataPoints = [lastDayDate, "Left to Daily Average"]
         }
         var dataEntries: [ChartDataEntry] = []
         for iterator in 0..<dataPoints.count {
@@ -51,8 +60,14 @@ class DailyAverageChart {
         dailyAverageChartView.animate(xAxisDuration: 1)
         dailyAverageChartView.legend.enabled = false
 
-        dailyAverageTimeLabel.text = "Daily Average " + dailyAverage.secondsToTime()
-
+        dailyAverageTimeLabel.attributedText = "Daily Average".createTwoPartsAttributedString(secondPart: dailyAverage.secondsToTime())
+        lastDayTimeLabel.attributedText = lastDayDate.createTwoPartsAttributedString(secondPart: total.secondsToTime())
+        let percent = Int(((total/dailyAverage*100) - 100).rounded())
+        if percent >= 0 {
+            percentLabel.attributedText = (String(percent) + "% Increase").setupLabelWithImage(imageName: "arrow.up")
+        } else {
+            percentLabel.attributedText = (String(abs(percent)) + "% Decrease").setupLabelWithImage(imageName: "arrow.down")
+        }
     }
 
     private func extractDailyAverageSeconds(usageData: [SummaryDataClass]) -> Double {
