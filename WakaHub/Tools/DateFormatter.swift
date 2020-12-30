@@ -20,4 +20,18 @@ extension String {
         formatter.dateFormat = "MMM dd YYYY"
         return formatter.string(from: date)
     }
+
+    public func formatDateWithWeekDayName() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let datetime = formatter.date(from: self)
+
+        guard let date = datetime else {
+            return self
+        }
+
+        formatter.dateStyle = .medium
+        formatter.doesRelativeDateFormatting = true
+        return formatter.string(from: date)
+    }
 }
