@@ -10,6 +10,9 @@ import Kingfisher
 import Charts
 
 final class UserVC: UIViewController {
+    var languagesChartView: HorizontalBarChartView!
+    var editorsChartView: HorizontalBarChartView!
+    var operatingSystemsChartView: HorizontalBarChartView!
 
     override func loadView() {
         let view = UserView()
@@ -25,6 +28,9 @@ final class UserVC: UIViewController {
         super.viewDidLoad()
         setupNavbar()
         loadData()
+        languagesChartView = userView.languagesView.chart as? HorizontalBarChartView
+        editorsChartView = userView.editorsView.chart as? HorizontalBarChartView
+        operatingSystemsChartView = userView.operatingSystemsView.chart as? HorizontalBarChartView
     }
 
     private func setupNavbar() {
@@ -100,21 +106,16 @@ final class UserVC: UIViewController {
         DispatchQueue.main.async {
             self.userView.activityIndicator.stopAnimating()
 
-            self.userView.languagesLabel.isHidden = false
-            self.userView.languagesChart.isHidden = false
-
-            self.userView.editorsLabel.isHidden = false
-            self.userView.editorsChart.isHidden = false
-
-            self.userView.operatingSystemsLabel.isHidden = false
-            self.userView.operatingSystemsChart.isHidden = false
+            self.userView.languagesView.isHidden = false
+            self.userView.editorsView.isHidden = false
+            self.userView.operatingSystemsView.isHidden = false
         }
     }
 
     private func setupStatsView(data: StatsDataClass) {
-        self.setupChart(usageTimeData: data.languages, chart: self.userView.languagesChart)
-        self.setupChart(usageTimeData: data.editors, chart: self.userView.editorsChart)
-        self.setupChart(usageTimeData: data.operatingSystems, chart: self.userView.operatingSystemsChart)
+        self.setupChart(usageTimeData: data.languages, chartView: userView.languagesView)
+        self.setupChart(usageTimeData: data.editors, chartView: userView.editorsView)
+        self.setupChart(usageTimeData: data.operatingSystems, chartView: userView.operatingSystemsView)
 
         DispatchQueue.main.async {
             self.userView.codingActivityLabel.attributedText = "Coding Activity".createTwoPartsAttributedString(secondPart: data.humanReadableTotalIncludingOtherLanguage)
@@ -122,7 +123,10 @@ final class UserVC: UIViewController {
         }
     }
 
-    private func setupChart(usageTimeData: [UsageTimes], chart: HorizontalBarChartView) {
+    private func setupChart(usageTimeData: [UsageTimes], chartView: ChartWithLabelView) {
+        guard let chart = chartView.chart as? HorizontalBarChartView else {
+            return
+        }
         var percentValues = [Double]()
         var names = [String]()
 
@@ -139,11 +143,11 @@ final class UserVC: UIViewController {
 
         let barChartDataSet = BarChartDataSet(entries: dataEntries, label: "")
         switch chart {
-        case userView.languagesChart:
+        case languagesChartView:
             barChartDataSet.colors = ChartColorTemplates.material()
-        case userView.editorsChart:
+        case editorsChartView:
             barChartDataSet.colors = ChartColorTemplates.liberty()
-        case userView.operatingSystemsChart:
+        case operatingSystemsChartView:
             barChartDataSet.colors = ChartColorTemplates.vordiplom()
         default:
             barChartDataSet.colors = ChartColorTemplates.material()
@@ -171,7 +175,7 @@ final class UserVC: UIViewController {
 
         chart.animate(yAxisDuration: 1)
 
-        chart.heightAnchor.constraint(equalToConstant: CGFloat(45*percentValues.count)).isActive = true
+        chartView.chartHeight = CGFloat(45*percentValues.count)
         //        chart.setVisibleXRange(minXRange: 8.0, maxXRange: 8.0)
     }
 

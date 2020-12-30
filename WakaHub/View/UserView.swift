@@ -64,33 +64,21 @@ final class UserView: UIView {
     }
 
     private func createChartsWithLabels() {
-        scrollView.addSubview(languagesLabel)
-        languagesLabel.topAnchor.constraint(equalTo: dailyAverageLabel.bottomAnchor, constant: 20).isActive = true
-        languagesLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
+        scrollView.addSubview(languagesView)
+        languagesView.topAnchor.constraint(equalTo: dailyAverageLabel.bottomAnchor).isActive = true
+        languagesView.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
+        languagesView.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
 
-        scrollView.addSubview(languagesChart)
-        languagesChart.topAnchor.constraint(equalTo: languagesLabel.bottomAnchor).isActive = true
-        languagesChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
-        languagesChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
+        scrollView.addSubview(editorsView)
+        editorsView.topAnchor.constraint(equalTo: languagesView.bottomAnchor).isActive = true
+        editorsView.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
+        editorsView.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
 
-        scrollView.addSubview(editorsLabel)
-        editorsLabel.topAnchor.constraint(equalTo: languagesChart.bottomAnchor, constant: 10).isActive = true
-        editorsLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-
-        scrollView.addSubview(editorsChart)
-        editorsChart.topAnchor.constraint(equalTo: editorsLabel.bottomAnchor).isActive = true
-        editorsChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
-        editorsChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
-
-        scrollView.addSubview(operatingSystemsLabel)
-        operatingSystemsLabel.topAnchor.constraint(equalTo: editorsChart.bottomAnchor, constant: 10).isActive = true
-        operatingSystemsLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-
-        scrollView.addSubview(operatingSystemsChart)
-        operatingSystemsChart.topAnchor.constraint(equalTo: operatingSystemsLabel.bottomAnchor).isActive = true
-        operatingSystemsChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
-        operatingSystemsChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
-        operatingSystemsChart.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        scrollView.addSubview(operatingSystemsView)
+        operatingSystemsView.topAnchor.constraint(equalTo: editorsView.bottomAnchor).isActive = true
+        operatingSystemsView.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
+        operatingSystemsView.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
+        operatingSystemsView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
 
         addSubview(activityIndicator)
         activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
@@ -184,61 +172,46 @@ final class UserView: UIView {
         return label
     }()
 
-    public var languagesLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "LANGUAGES"
-        label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
-        label.isHidden = true
-        return label
-    }()
-
-    public var languagesChart: HorizontalBarChartView = {
+    public var languagesView: ChartWithLabelView = {
         let chart = HorizontalBarChartView()
         chart.translatesAutoresizingMaskIntoConstraints = false
         chart.setScaleEnabled(false)
         chart.legend.enabled = false
-        chart.isHidden = true
 
-        return chart
+        let languagesView = ChartWithLabelView(chart: chart)
+        languagesView.translatesAutoresizingMaskIntoConstraints = false
+        languagesView.nameLabel.text = "LANGUAGES"
+        languagesView.isHidden = true
+
+        return languagesView
     }()
 
-    public var editorsLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "EDITORS"
-        label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
-        label.isHidden = true
-        return label
-    }()
-
-    public var editorsChart: HorizontalBarChartView = {
+    public var editorsView: ChartWithLabelView = {
         let chart = HorizontalBarChartView()
         chart.translatesAutoresizingMaskIntoConstraints = false
         chart.setScaleEnabled(false)
         chart.legend.enabled = false
-        chart.isHidden = true
 
-        return chart
+        let languagesView = ChartWithLabelView(chart: chart)
+        languagesView.translatesAutoresizingMaskIntoConstraints = false
+        languagesView.nameLabel.text = "EDITORS"
+        languagesView.isHidden = true
+
+        return languagesView
     }()
 
-    public var operatingSystemsLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "OPERATING SYSTEMS"
-        label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
-        label.isHidden = true
-        return label
-    }()
-
-    public var operatingSystemsChart: HorizontalBarChartView = {
+    public var operatingSystemsView: ChartWithLabelView = {
         let chart = HorizontalBarChartView()
         chart.translatesAutoresizingMaskIntoConstraints = false
         chart.setScaleEnabled(false)
         chart.legend.enabled = false
-        chart.isHidden = true
 
-        return chart
+        let languagesView = ChartWithLabelView(chart: chart)
+        languagesView.translatesAutoresizingMaskIntoConstraints = false
+        languagesView.nameLabel.text = "OPERATING SYSTEMS"
+        languagesView.isHidden = true
+
+        return languagesView
     }()
 
     public let activityIndicator: UIActivityIndicatorView = {
