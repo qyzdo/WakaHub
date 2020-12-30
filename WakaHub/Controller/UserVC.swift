@@ -87,31 +87,13 @@ final class UserVC: UIViewController {
 
             self.userView.nameLabel.text = data.displayName
             self.userView.userNameLabel.text = "@\(data.username)"
-            self.userView.locationLabel.attributedText = self.setupLabelWithImage(imageName: "location.fill", text: data.location)
+            self.userView.locationLabel.attributedText = data.location.setupLabelWithImage(imageName: "location.fill")
             if let publicEmail = data.publicEmail {
-                self.userView.emailLabel.attributedText = self.setupLabelWithImage(imageName: "person.crop.circle", text: publicEmail)
+                self.userView.emailLabel.attributedText = publicEmail.setupLabelWithImage(imageName: "person.crop.circle")
             }
-            self.userView.joinedDateLabel.attributedText = self.setupLabelWithImage(imageName: "clock", text: "Joined " + data.createdAt.formatDateWithMonthName())
+            self.userView.joinedDateLabel.attributedText = ("Joined " + data.createdAt.formatDateWithMonthName()).setupLabelWithImage(imageName: "clock")
             self.userView.hireableLabel.isHidden = !data.isHireable
         }
-    }
-
-    private func setupLabelWithImage(imageName: String, text: String) -> NSAttributedString {
-        let imageAttachment = NSTextAttachment()
-        imageAttachment.image = UIImage(systemName: imageName)
-
-        let imageOffsetY: CGFloat = -5.0
-        if let image = imageAttachment.image {
-            imageAttachment.bounds = CGRect(x: -1, y: imageOffsetY, width: image.size.width, height: image.size.height)
-        }
-
-        let attachmentString = NSAttributedString(attachment: imageAttachment)
-        let completeText = NSMutableAttributedString(string: "")
-        completeText.append(attachmentString)
-        let textAfterIcon = NSAttributedString(string: text)
-        completeText.append(textAfterIcon)
-
-        return completeText
     }
 
     private func showCharts() {
@@ -135,25 +117,9 @@ final class UserVC: UIViewController {
         self.setupChart(usageTimeData: data.operatingSystems, chart: self.userView.operatingSystemsChart)
 
         DispatchQueue.main.async {
-            self.userView.codingActivityLabel.attributedText = self.createStatsAttributedString(activityName: "Coding Activity ", timeString: data.humanReadableTotalIncludingOtherLanguage)
-            self.userView.dailyAverageLabel.attributedText = self.createStatsAttributedString(activityName: "Daily Average ", timeString: data.humanReadableDailyAverage)
+            self.userView.codingActivityLabel.attributedText = "Coding Activity".createTwoPartsAttributedString(secondPart: data.humanReadableTotalIncludingOtherLanguage)
+            self.userView.dailyAverageLabel.attributedText = "Daily Average".createTwoPartsAttributedString(secondPart: data.humanReadableDailyAverage)
         }
-    }
-
-    private func createStatsAttributedString(activityName: String, timeString: String) -> NSMutableAttributedString {
-        let activityNameFont = UIFont.systemFont(ofSize: 15)
-        let activityNameAttributes = [NSAttributedString.Key.font: activityNameFont]
-        let activityNameAttributed = NSAttributedString(string: activityName, attributes: activityNameAttributes)
-
-        let timeFont = UIFont.boldSystemFont(ofSize: 16)
-        let timeAttributes = [NSAttributedString.Key.font: timeFont]
-        let timeAttributed = NSAttributedString(string: timeString, attributes: timeAttributes)
-
-        let combinedStrings = NSMutableAttributedString()
-        combinedStrings.append(activityNameAttributed)
-        combinedStrings.append(timeAttributed)
-
-        return combinedStrings
     }
 
     private func setupChart(usageTimeData: [UsageTimes], chart: HorizontalBarChartView) {
