@@ -7,12 +7,14 @@
 import Charts
 
 class DailyAverageChart {
+    var dailyAverageView: DailyAverageView
     var dailyAverageChartView: PieChartView
-    var dailyAverageLabel: UILabel
+    var dailyAverageTimeLabel: UILabel
 
-    init(dailyAverageChartView: PieChartView, dailyAverageLabel: UILabel) {
-        self.dailyAverageChartView = dailyAverageChartView
-        self.dailyAverageLabel = dailyAverageLabel
+    init(dailyAverageView: DailyAverageView) {
+        self.dailyAverageView = dailyAverageView
+        self.dailyAverageChartView = dailyAverageView.dailyAverageChart
+        self.dailyAverageTimeLabel = dailyAverageView.dailyAverageTimeLabel
     }
 
     func setupChart(usageData: [SummaryDataClass]) {
@@ -49,7 +51,7 @@ class DailyAverageChart {
         dailyAverageChartView.animate(xAxisDuration: 1)
         dailyAverageChartView.legend.enabled = false
 
-        dailyAverageLabel.text = "Daily Average " + dailyAverage.secondsToTime()
+        dailyAverageTimeLabel.text = "Daily Average " + dailyAverage.secondsToTime()
 
     }
 
@@ -57,12 +59,10 @@ class DailyAverageChart {
         let timeArray = usageData.map { $0.grandTotal.totalSeconds }
         let timeArrayWithoutEmptyValues = timeArray.filter { $0 > 0}
         let timesSum = timeArrayWithoutEmptyValues.reduce(0, +)
-        print(timesSum)
         var dailyAverage = timesSum / Double(timeArrayWithoutEmptyValues.count)
         if dailyAverage.isNaN {
             dailyAverage = 0.0
         }
-        print("-------")
         return dailyAverage
     }
 }

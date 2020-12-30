@@ -81,7 +81,7 @@ final class StatsVC: UIViewController {
     }
 
     private func setupDailyAverageChart(usageData: [SummaryDataClass]) {
-        let dailyAverageChart = DailyAverageChart(dailyAverageChartView: statsView.dailyAverageView.dailyAverageChart, dailyAverageLabel: statsView.dailyAverageView.dailyAverageTimeLabel)
+        let dailyAverageChart = DailyAverageChart(dailyAverageView: statsView.dailyAverageView)
         dailyAverageChart.setupChart(usageData: usageData)
     }
 
