@@ -34,13 +34,13 @@ final class StatsView: UIView {
     }
 
     private func createChartsWithLabels() {
-        scrollView.addSubview(projectsLabel)
-        projectsLabel.topAnchor.constraint(equalTo: timeSelectButton.bottomAnchor, constant: 15).isActive = true
-        projectsLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-        addProjectsChart()
+        scrollView.addSubview(projectsView)
+        projectsView.topAnchor.constraint(equalTo: timeSelectButton.bottomAnchor, constant: 15).isActive = true
+        projectsView.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
+        projectsView.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
 
         scrollView.addSubview(dailyAverageView)
-        dailyAverageView.topAnchor.constraint(equalTo: projectsChart.bottomAnchor, constant: 15).isActive = true
+        dailyAverageView.topAnchor.constraint(equalTo: projectsView.bottomAnchor, constant: 15).isActive = true
         dailyAverageView.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         dailyAverageView.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
 
@@ -63,14 +63,6 @@ final class StatsView: UIView {
         operatingSystemsLabel.topAnchor.constraint(equalTo: editorsChart.bottomAnchor, constant: 20).isActive = true
         operatingSystemsLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         addOperatingSystemsChart()
-    }
-
-    private func addProjectsChart() {
-        scrollView.addSubview(projectsChart)
-        projectsChart.topAnchor.constraint(equalTo: projectsLabel.bottomAnchor).isActive = true
-        projectsChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
-        projectsChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
-        projectsChart.heightAnchor.constraint(equalToConstant: 300).isActive = true
     }
 
     private func addCategoryCharts() {
@@ -127,26 +119,18 @@ final class StatsView: UIView {
         return button
     }()
 
-    public var projectsLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "PROJECTS"
-        label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
-        return label
-    }()
-
-    public var projectsChart: BarChartView = {
-        let chart = BarChartView()
-        chart.translatesAutoresizingMaskIntoConstraints = false
-
-        return chart
-    }()
-
     public var dailyAverageView: DailyAverageView = {
         let dailyAverageView = DailyAverageView()
         dailyAverageView.translatesAutoresizingMaskIntoConstraints = false
 
         return dailyAverageView
+    }()
+
+    public var projectsView: ProjectsView = {
+        let projectsView = ProjectsView()
+        projectsView.translatesAutoresizingMaskIntoConstraints = false
+
+        return projectsView
     }()
 
     public var categoriesLabel: UILabel = {
