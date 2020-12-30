@@ -37,6 +37,27 @@ final class UserView: UIView {
         userNameLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor).isActive = true
         userNameLabel.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
 
+        createStackView()
+
+        scrollView.addSubview(codingActivityLabel)
+        codingActivityLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 15).isActive = true
+        codingActivityLabel.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
+        codingActivityLabel.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
+
+        scrollView.addSubview(dailyAverageLabel)
+        dailyAverageLabel.topAnchor.constraint(equalTo: codingActivityLabel.bottomAnchor, constant: 15).isActive = true
+        dailyAverageLabel.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
+        dailyAverageLabel.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
+
+        scrollView.addSubview(totalTimeLabel)
+        totalTimeLabel.topAnchor.constraint(equalTo: dailyAverageLabel.bottomAnchor, constant: 15).isActive = true
+        totalTimeLabel.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
+        totalTimeLabel.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
+
+        createChartsWithLabels()
+    }
+
+    private func createStackView() {
         scrollView.addSubview(stackView)
         stackView.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 5).isActive = true
         stackView.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
@@ -49,23 +70,11 @@ final class UserView: UIView {
         stackView.addArrangedSubview(emailLabel)
         stackView.addArrangedSubview(joinedDateLabel)
         stackView.addArrangedSubview(hireableLabel)
-
-        scrollView.addSubview(codingActivityLabel)
-        codingActivityLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 15).isActive = true
-        codingActivityLabel.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
-        codingActivityLabel.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
-
-        scrollView.addSubview(dailyAverageLabel)
-        dailyAverageLabel.topAnchor.constraint(equalTo: codingActivityLabel.bottomAnchor, constant: 15).isActive = true
-        dailyAverageLabel.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
-        dailyAverageLabel.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
-
-        createChartsWithLabels()
     }
 
     private func createChartsWithLabels() {
         scrollView.addSubview(languagesView)
-        languagesView.topAnchor.constraint(equalTo: dailyAverageLabel.bottomAnchor).isActive = true
+        languagesView.topAnchor.constraint(equalTo: totalTimeLabel.bottomAnchor).isActive = true
         languagesView.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         languagesView.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
 
@@ -166,6 +175,13 @@ final class UserView: UIView {
     }()
 
     public var dailyAverageLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        return label
+    }()
+
+    public var totalTimeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center

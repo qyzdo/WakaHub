@@ -79,6 +79,19 @@ final class UserVC: UIViewController {
                 }
             }
         }
+
+        service.load(service: .allTime, decodeType: AllTimeSinceToday.self) { result in
+            switch result {
+            case .success(let response):
+                DispatchQueue.main.async {
+                    self.userView.totalTimeLabel.attributedText = "Total logged time".createTwoPartsAttributedString(secondPart: response.data.totalSeconds.secondsToTime())
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.showAlert(msg: error.localizedDescription)
+                }
+            }
+        }
     }
 
     private func setupView(data: UserDataClass) {

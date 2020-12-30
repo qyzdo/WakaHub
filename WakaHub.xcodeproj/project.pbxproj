@@ -35,6 +35,7 @@
 		169897CC258BD0B7002AA3E6 /* DateSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169897CB258BD0B7002AA3E6 /* DateSelector.swift */; };
 		16A146EA2581790500C50D3F /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A146E92581790500C50D3F /* Summary.swift */; };
 		16A146EF25817C2A00C50D3F /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A146EE25817C2A00C50D3F /* StatsView.swift */; };
+		16B73215259CE79A00F16296 /* AllTimeSinceToday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B73214259CE79A00F16296 /* AllTimeSinceToday.swift */; };
 		16D361E82592CDD3003CF48C /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D361E72592CDD3003CF48C /* Error.swift */; };
 		16D361ED2592CFA4003CF48C /* Alert+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D361EC2592CFA4003CF48C /* Alert+Extension.swift */; };
 		16DF7F732565DFB4005A4110 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DF7F722565DFB4005A4110 /* AppDelegate.swift */; };
@@ -97,6 +98,7 @@
 		169897CB258BD0B7002AA3E6 /* DateSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelector.swift; sourceTree = "<group>"; };
 		16A146E92581790500C50D3F /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
 		16A146EE25817C2A00C50D3F /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		16B73214259CE79A00F16296 /* AllTimeSinceToday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTimeSinceToday.swift; sourceTree = "<group>"; };
 		16D361E72592CDD3003CF48C /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		16D361EC2592CFA4003CF48C /* Alert+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+Extension.swift"; sourceTree = "<group>"; };
 		16DF7F6F2565DFB4005A4110 /* WakaHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WakaHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +172,7 @@
 				16613F1A2577C96D0074C8B8 /* Stats.swift */,
 				16A146E92581790500C50D3F /* Summary.swift */,
 				163D72E12582AF0600E5393C /* CustomCategoryData.swift */,
+				16B73214259CE79A00F16296 /* AllTimeSinceToday.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -606,6 +609,7 @@
 				16DF7F772565DFB4005A4110 /* WelcomeVC.swift in Sources */,
 				16DF7F732565DFB4005A4110 /* AppDelegate.swift in Sources */,
 				1694E20B25839BFA00BC6198 /* ShortDateFormatter.swift in Sources */,
+				16B73215259CE79A00F16296 /* AllTimeSinceToday.swift in Sources */,
 				16613F1B2577C96D0074C8B8 /* Stats.swift in Sources */,
 				160C03B22579664B005C92D0 /* PercentFormatter.swift in Sources */,
 				163D72E72582B64E00E5393C /* SecondsToTimeFormatter.swift in Sources */,
