@@ -11,6 +11,7 @@ enum WakaTimeService {
     case user
     case stats
     case summaries(startDate: String, endDate: String)
+    case allTime
 }
 
 extension WakaTimeService: Service {
@@ -35,6 +36,8 @@ extension WakaTimeService: Service {
             return "/api/v1/users/current/stats/last_7_days"
         case .summaries:
             return "/api/v1/users/current/summaries"
+        case .allTime:
+            return "/api/v1/users/current/all_time_since_today"
         }
     }
 
