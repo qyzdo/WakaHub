@@ -8,7 +8,7 @@
 import Foundation
 import Charts
 
-class CategoryChart {
+class CategoryChartCreator {
     var categoryChartView: BarChartView
 
     init(categoryChartView: BarChartView) {

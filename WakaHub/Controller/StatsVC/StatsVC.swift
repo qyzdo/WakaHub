@@ -86,12 +86,26 @@ final class StatsVC: UIViewController {
     }
 
     private func setupCategoryChart(usageData: [SummaryDataClass]) {
-        let categoryChart = CategoryChart(categoryChartView: statsView.categoryChart)
-        categoryChart.setupCategoryChart(usageData: usageData)
+        guard let categoryChartView = statsView.categoriesView.chart as? BarChartView else {
+            return
+        }
+        let categoryChartCreator = CategoryChartCreator(categoryChartView: categoryChartView)
+        categoryChartCreator.setupCategoryChart(usageData: usageData)
     }
 
     private func setupAllPieCharts(usageData: [SummaryDataClass]) {
-        let pieChartsCreator = PieChart(languagesChartView: statsView.languagesChart, editorsChartView: statsView.editorsChart, operatingSystemsChartView: statsView.operatingSystemsChart)
+        guard let languagesChartView = statsView.languagesView.chart as? PieChartView else {
+            return
+        }
+
+        guard let editorsChartView = statsView.editorsView.chart as? PieChartView else {
+            return
+        }
+
+        guard let operatingSystemsChartView = statsView.operatingSystemsView.chart as? PieChartView else {
+            return
+        }
+        let pieChartsCreator = PieChartCreator(languagesChartView: languagesChartView, editorsChartView: editorsChartView, operatingSystemsChartView: operatingSystemsChartView)
         pieChartsCreator.setupPieChart(usageData: usageData, chartType: .languages)
         pieChartsCreator.setupPieChart(usageData: usageData, chartType: .editors)
         pieChartsCreator.setupPieChart(usageData: usageData, chartType: .operatingSystems)

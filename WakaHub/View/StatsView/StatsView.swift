@@ -44,58 +44,26 @@ final class StatsView: UIView {
         dailyAverageView.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         dailyAverageView.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
 
-        scrollView.addSubview(categoriesLabel)
-        categoriesLabel.topAnchor.constraint(equalTo: dailyAverageView.bottomAnchor, constant: 20).isActive = true
-        categoriesLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-        addCategoryCharts()
+        scrollView.addSubview(categoriesView)
+        categoriesView.topAnchor.constraint(equalTo: dailyAverageView.bottomAnchor, constant: 15).isActive = true
+        categoriesView.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
+        categoriesView.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
 
-        scrollView.addSubview(languagesLabel)
-        languagesLabel.topAnchor.constraint(equalTo: categoryChart.bottomAnchor, constant: 20).isActive = true
-        languagesLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-        addLanguagesChart()
+        scrollView.addSubview(languagesView)
+        languagesView.topAnchor.constraint(equalTo: categoriesView.bottomAnchor, constant: 20).isActive = true
+        languagesView.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
+        languagesView.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
 
-        scrollView.addSubview(editorsLabel)
-        editorsLabel.topAnchor.constraint(equalTo: languagesChart.bottomAnchor, constant: 20).isActive = true
-        editorsLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-        addEditorsChart()
+        scrollView.addSubview(editorsView)
+        editorsView.topAnchor.constraint(equalTo: languagesView.bottomAnchor, constant: 20).isActive = true
+        editorsView.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
+        editorsView.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
 
-        scrollView.addSubview(operatingSystemsLabel)
-        operatingSystemsLabel.topAnchor.constraint(equalTo: editorsChart.bottomAnchor, constant: 20).isActive = true
-        operatingSystemsLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-        addOperatingSystemsChart()
-    }
-
-    private func addCategoryCharts() {
-        scrollView.addSubview(categoryChart)
-        categoryChart.topAnchor.constraint(equalTo: categoriesLabel.bottomAnchor).isActive = true
-        categoryChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
-        categoryChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
-        categoryChart.heightAnchor.constraint(equalToConstant: 300).isActive = true
-    }
-
-    private func addLanguagesChart() {
-        scrollView.addSubview(languagesChart)
-        languagesChart.topAnchor.constraint(equalTo: languagesLabel.bottomAnchor).isActive = true
-        languagesChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
-        languagesChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
-        languagesChart.heightAnchor.constraint(equalToConstant: 300).isActive = true
-    }
-
-    private func addEditorsChart() {
-        scrollView.addSubview(editorsChart)
-        editorsChart.topAnchor.constraint(equalTo: editorsLabel.bottomAnchor).isActive = true
-        editorsChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
-        editorsChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
-        editorsChart.heightAnchor.constraint(equalToConstant: 300).isActive = true
-    }
-
-    private func addOperatingSystemsChart() {
-        scrollView.addSubview(operatingSystemsChart)
-        operatingSystemsChart.topAnchor.constraint(equalTo: operatingSystemsLabel.bottomAnchor).isActive = true
-        operatingSystemsChart.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
-        operatingSystemsChart.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
-        operatingSystemsChart.heightAnchor.constraint(equalToConstant: 300).isActive = true
-        operatingSystemsChart.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        scrollView.addSubview(operatingSystemsView)
+        operatingSystemsView.topAnchor.constraint(equalTo: editorsView.bottomAnchor, constant: 20).isActive = true
+        operatingSystemsView.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
+        operatingSystemsView.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
+        operatingSystemsView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -119,6 +87,16 @@ final class StatsView: UIView {
         return button
     }()
 
+    public var projectsView: ChartWithLabelView = {
+        let chart = BarChartView()
+        chart.translatesAutoresizingMaskIntoConstraints = false
+        let projectsView = ChartWithLabelView(chart: chart)
+        projectsView.translatesAutoresizingMaskIntoConstraints = false
+        projectsView.nameLabel.text = "PROJECTS"
+
+        return projectsView
+    }()
+
     public var dailyAverageView: DailyAverageView = {
         let dailyAverageView = DailyAverageView()
         dailyAverageView.translatesAutoresizingMaskIntoConstraints = false
@@ -126,74 +104,50 @@ final class StatsView: UIView {
         return dailyAverageView
     }()
 
-    public var projectsView: ProjectsView = {
-        let projectsView = ProjectsView()
-        projectsView.translatesAutoresizingMaskIntoConstraints = false
-
-        return projectsView
-    }()
-
-    public var categoriesLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "CATEGORIES"
-        label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
-        return label
-    }()
-
-    public var categoryChart: BarChartView = {
+    public var categoriesView: ChartWithLabelView = {
         let chart = BarChartView()
         chart.translatesAutoresizingMaskIntoConstraints = false
+        let languagesView = ChartWithLabelView(chart: chart)
+        languagesView.translatesAutoresizingMaskIntoConstraints = false
+        languagesView.nameLabel.text = "CATEGORIES"
 
-        return chart
+        return languagesView
     }()
 
-    public var languagesLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "LANGUAGES"
-        label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
-        return label
-    }()
-
-    public var languagesChart: PieChartView = {
+    public var languagesView: ChartWithLabelView = {
         let chart = PieChartView()
         chart.translatesAutoresizingMaskIntoConstraints = false
         chart.drawHoleEnabled = false
 
-        return chart
+        let languagesView = ChartWithLabelView(chart: chart)
+        languagesView.translatesAutoresizingMaskIntoConstraints = false
+        languagesView.nameLabel.text = "LANGUAGES"
+
+        return languagesView
     }()
 
-    public var editorsLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "EDITORS"
-        label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
-        return label
-    }()
-
-    public var editorsChart: PieChartView = {
+    public var editorsView: ChartWithLabelView = {
         let chart = PieChartView()
         chart.translatesAutoresizingMaskIntoConstraints = false
         chart.holeColor = .systemBackground
 
-        return chart
+        let languagesView = ChartWithLabelView(chart: chart)
+        languagesView.translatesAutoresizingMaskIntoConstraints = false
+        languagesView.nameLabel.text = "EDITORS"
+
+        return languagesView
     }()
 
-    public var operatingSystemsLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "OPERATING SYSTEMS"
-        label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
-        return label
-    }()
-
-    public var operatingSystemsChart: PieChartView = {
+    public var operatingSystemsView: ChartWithLabelView = {
         let chart = PieChartView()
         chart.translatesAutoresizingMaskIntoConstraints = false
         chart.holeColor = .systemBackground
 
-        return chart
+        let languagesView = ChartWithLabelView(chart: chart)
+        languagesView.translatesAutoresizingMaskIntoConstraints = false
+        languagesView.nameLabel.text = "OPERATING SYSTEMS"
+
+        return languagesView
     }()
 
     public let activityIndicator: UIActivityIndicatorView = {

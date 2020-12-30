@@ -13,7 +13,6 @@ class DailyAverageChart {
     var lastDayTimeLabel: UILabel
     var percentLabel: UILabel
 
-
     init(dailyAverageView: DailyAverageView) {
         self.dailyAverageView = dailyAverageView
         self.dailyAverageChartView = dailyAverageView.dailyAverageChart

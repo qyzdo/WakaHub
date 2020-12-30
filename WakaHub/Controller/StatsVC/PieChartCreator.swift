@@ -15,7 +15,7 @@ enum ChartType {
     case operatingSystems
 }
 
-class PieChart {
+class PieChartCreator {
     var languagesChartView: PieChartView
     var editorsChartView: PieChartView
     var operatingSystemsChartView: PieChartView
