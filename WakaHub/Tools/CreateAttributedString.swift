@@ -27,7 +27,7 @@ extension String {
 
     func setupLabelWithImage(imageName: String) -> NSAttributedString {
         let imageAttachment = NSTextAttachment()
-        imageAttachment.image = UIImage(systemName: imageName)
+        imageAttachment.image = UIImage(systemName: imageName)?.withRenderingMode(.alwaysTemplate)
 
         let imageOffsetY: CGFloat = -5.0
         if let image = imageAttachment.image {
