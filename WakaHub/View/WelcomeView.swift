@@ -18,7 +18,7 @@ final class WelcomeView: UIView {
         logoView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 5).isActive = true
         logoView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         logoView.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        logoView.heightAnchor.constraint(lessThanOrEqualToConstant: 150).isActive = true
+        logoView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/4).isActive = true
 
         addSubview(loginButton)
         loginButton.topAnchor.constraint(greaterThanOrEqualTo: logoView.bottomAnchor, constant: 15).isActive = true
