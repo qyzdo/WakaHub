@@ -61,11 +61,14 @@ class DailyAverageChart {
 
         dailyAverageTimeLabel.attributedText = "Daily Average".createTwoPartsAttributedString(secondPart: dailyAverage.secondsToTime())
         lastDayTimeLabel.attributedText = lastDayDate.createTwoPartsAttributedString(secondPart: total.secondsToTime())
-        let percent = Int(((total/dailyAverage*100) - 100).rounded())
-        if percent >= 0 {
-            percentLabel.attributedText = (String(percent) + "% Increase").setupLabelWithImage(imageName: "arrow.up")
-        } else {
-            percentLabel.attributedText = (String(abs(percent)) + "% Decrease").setupLabelWithImage(imageName: "arrow.down")
+
+        if total > 0 {
+            let percent = Int(((total/dailyAverage*100) - 100).rounded())
+            if percent >= 0 {
+                percentLabel.attributedText = (String(percent) + "% Increase").setupLabelWithImage(imageName: "arrow.up")
+            } else {
+                percentLabel.attributedText = (String(abs(percent)) + "% Decrease").setupLabelWithImage(imageName: "arrow.down")
+            }
         }
     }
 
