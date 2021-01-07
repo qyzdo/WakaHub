@@ -15,7 +15,6 @@ final class StatsVC: UIViewController {
         didSet {
             self.dateSelector.changedDate(selectedDate: selectedDate)
             self.loadData(startDate: self.dateSelector.startDate, endDate: self.dateSelector.endDate)
-            self.statsView.timeSelectButton.setTitle(" Stats for: \(selectedDate.rawValue)", for: .normal)
         }
     }
 
@@ -69,6 +68,7 @@ final class StatsVC: UIViewController {
             }
             switch result {
             case .success(let response):
+                self.setupTotalLoggedTime(usageData: response.data)
                 self.setupDailyAverageChart(usageData: response.data)
                 self.setupCategoryChart(usageData: response.data)
                 self.setupAllPieCharts(usageData: response.data)
@@ -78,6 +78,11 @@ final class StatsVC: UIViewController {
                 }
             }
         }
+    }
+
+    private func setupTotalLoggedTime(usageData: [SummaryDataClass]) {
+        let totalTime = usageData.map { $0.grandTotal.totalSeconds }.reduce(0, +).secondsToTime()
+        self.statsView.timeSelectButton.setTitle("\(totalTime) in \(self.selectedDate.rawValue)", for: .normal)
     }
 
     private func setupDailyAverageChart(usageData: [SummaryDataClass]) {
