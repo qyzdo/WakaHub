@@ -34,13 +34,8 @@ final class StatsView: UIView {
     }
 
     private func createChartsWithLabels() {
-        scrollView.addSubview(projectsView)
-        projectsView.topAnchor.constraint(equalTo: timeSelectButton.bottomAnchor, constant: 15).isActive = true
-        projectsView.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
-        projectsView.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
-
         scrollView.addSubview(dailyAverageView)
-        dailyAverageView.topAnchor.constraint(equalTo: projectsView.bottomAnchor, constant: 15).isActive = true
+        dailyAverageView.topAnchor.constraint(equalTo: timeSelectButton.bottomAnchor, constant: 15).isActive = true
         dailyAverageView.leftAnchor.constraint(equalTo: safeArea.leftAnchor).isActive = true
         dailyAverageView.rightAnchor.constraint(equalTo: safeArea.rightAnchor).isActive = true
 
@@ -85,16 +80,6 @@ final class StatsView: UIView {
         button.role = .normal
         button.showsMenuAsPrimaryAction = true
         return button
-    }()
-
-    public var projectsView: ChartWithLabelView = {
-        let chart = BarChartView()
-        chart.translatesAutoresizingMaskIntoConstraints = false
-        let projectsView = ChartWithLabelView(chart: chart)
-        projectsView.translatesAutoresizingMaskIntoConstraints = false
-        projectsView.nameLabel.text = "PROJECTS"
-
-        return projectsView
     }()
 
     public var dailyAverageView: DailyAverageView = {

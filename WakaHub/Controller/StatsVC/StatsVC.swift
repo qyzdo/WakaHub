@@ -74,7 +74,7 @@ final class StatsVC: UIViewController {
                 self.setupAllPieCharts(usageData: response.data)
             case .failure(let error):
                 DispatchQueue.main.async {
-                self.showAlert(msg: error.localizedDescription)
+                    self.showAlert(msg: error.localizedDescription, title: "Ups, there was error loading summary stats!")
                 }
             }
         }

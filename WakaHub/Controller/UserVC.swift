@@ -35,12 +35,14 @@ final class UserVC: UIViewController {
 
     private func setupNavbar() {
         self.navigationItem.title = "Your profile"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(self.settingsButtonClicked))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(self.logoutButtonClicked))
     }
 
-    @objc private func settingsButtonClicked() {
-        let settingsVC = SettingsVC()
-        navigationController?.pushViewController(settingsVC, animated: true)
+    @objc private func logoutButtonClicked() {
+        KeychainWrapper.shared["Token"] = nil
+        KeychainWrapper.shared["RefreshToken"] = nil
+
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(WelcomeVC())
     }
 
     private func loadData() {
@@ -56,7 +58,7 @@ final class UserVC: UIViewController {
 
             case .failure(let error):
                 DispatchQueue.main.async {
-                self.showAlert(msg: error.localizedDescription)
+                    self.showAlert(msg: error.localizedDescription, title: "Ups, there was error when loading user data!")
                 }
             }
         }
@@ -75,7 +77,7 @@ final class UserVC: UIViewController {
 
             case .failure(let error):
                 DispatchQueue.main.async {
-                self.showAlert(msg: error.localizedDescription)
+                    self.showAlert(msg: error.localizedDescription, title: "Ups, there was error when loading stats!")
                 }
             }
         }
@@ -88,7 +90,7 @@ final class UserVC: UIViewController {
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
-                    self.showAlert(msg: error.localizedDescription)
+                    self.showAlert(msg: error.localizedDescription, title: "Ups, there was error loading total usage time!")
                 }
             }
         }

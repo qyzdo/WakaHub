@@ -46,8 +46,6 @@
 		16DF7F7F2565DFB4005A4110 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16DF7F7D2565DFB4005A4110 /* LaunchScreen.storyboard */; };
 		16DF7F8A2565DFB4005A4110 /* WakaHubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DF7F892565DFB4005A4110 /* WakaHubTests.swift */; };
 		16DF7F952565DFB4005A4110 /* WakaHubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DF7F942565DFB4005A4110 /* WakaHubUITests.swift */; };
-		16F05F85258A45FD008FAD6C /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F05F84258A45FD008FAD6C /* SettingsVC.swift */; };
-		16F05F8D258A46B5008FAD6C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F05F8C258A46B5008FAD6C /* SettingsView.swift */; };
 		4CFD22A085D0F1FA6A266F49 /* Pods_WakaHub_WakaHubUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F1E197DBE435F47E79E3175 /* Pods_WakaHub_WakaHubUITests.framework */; };
 		D74B45421059F4BDDA4AD0F1 /* Pods_WakaHubTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BEEE5F3B175EABDDAC825AC /* Pods_WakaHubTests.framework */; };
 		F30D7CA82E75448125F525F9 /* Pods_WakaHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF74F895A16C2834394A4B5 /* Pods_WakaHub.framework */; };
@@ -116,8 +114,6 @@
 		16DF7F902565DFB4005A4110 /* WakaHubUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WakaHubUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		16DF7F942565DFB4005A4110 /* WakaHubUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakaHubUITests.swift; sourceTree = "<group>"; };
 		16DF7F962565DFB4005A4110 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		16F05F84258A45FD008FAD6C /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
-		16F05F8C258A46B5008FAD6C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		1BEEE5F3B175EABDDAC825AC /* Pods_WakaHubTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WakaHubTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		29630B6456D617A6C5CFF9F0 /* Pods-WakaHubTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WakaHubTests.release.xcconfig"; path = "Target Support Files/Pods-WakaHubTests/Pods-WakaHubTests.release.xcconfig"; sourceTree = "<group>"; };
 		2DF74F895A16C2834394A4B5 /* Pods_WakaHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WakaHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,7 +179,6 @@
 			isa = PBXGroup;
 			children = (
 				16953EAF25913DEE00530AC2 /* StatsVC */,
-				16F05F84258A45FD008FAD6C /* SettingsVC.swift */,
 				1627A806257559F700F42B09 /* TabBarVC.swift */,
 				1627A7FC257559CD00F42B09 /* UserVC.swift */,
 				16DF7F762565DFB4005A4110 /* WelcomeVC.swift */,
@@ -308,7 +303,6 @@
 			children = (
 				16629AD2259B89A500633AEE /* StatsView */,
 				16DF7F7D2565DFB4005A4110 /* LaunchScreen.storyboard */,
-				16F05F8C258A46B5008FAD6C /* SettingsView.swift */,
 				1627A8222575865E00F42B09 /* UserView.swift */,
 				164A59CF256C6732009442A8 /* WelcomeView.swift */,
 			);
@@ -616,7 +610,6 @@
 				16613F1B2577C96D0074C8B8 /* Stats.swift in Sources */,
 				160C03B22579664B005C92D0 /* PercentFormatter.swift in Sources */,
 				163D72E72582B64E00E5393C /* SecondsToTimeFormatter.swift in Sources */,
-				16F05F8D258A46B5008FAD6C /* SettingsView.swift in Sources */,
 				1627A807257559F700F42B09 /* TabBarVC.swift in Sources */,
 				1627A82C2575878C00F42B09 /* User.swift in Sources */,
 				16DF7F752565DFB4005A4110 /* SceneDelegate.swift in Sources */,
@@ -636,7 +629,6 @@
 				1627A811257581ED00F42B09 /* Service.swift in Sources */,
 				1645BA79259B6F8900C2D2F0 /* DailyAverageChart.swift in Sources */,
 				1627A8232575865E00F42B09 /* UserView.swift in Sources */,
-				16F05F85258A45FD008FAD6C /* SettingsVC.swift in Sources */,
 				167CC298256C26BD004D919A /* OAuth.swift in Sources */,
 				164A59D0256C6732009442A8 /* WelcomeView.swift in Sources */,
 				16953EAB25913CBA00530AC2 /* PieChartCreator.swift in Sources */,
