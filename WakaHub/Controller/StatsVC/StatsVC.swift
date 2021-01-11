@@ -10,6 +10,7 @@ import Charts
 
 final class StatsVC: UIViewController {
     let dateSelector = DateSelector()
+    let refreshControl = UIRefreshControl()
 
     var selectedDate: SelectedDate = .sevenDaysAgo {
         didSet {
@@ -55,6 +56,14 @@ final class StatsVC: UIViewController {
 
         let menu = UIMenu(title: "", children: actions)
         statsView.timeSelectButton.menu = menu
+
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        statsView.scrollView.refreshControl = refreshControl
+    }
+
+    @objc private func refreshData() {
+        refreshControl.endRefreshing()
+        loadData(startDate: dateSelector.startDate, endDate: dateSelector.endDate)
     }
 
     private func loadData(startDate: String, endDate: String) {

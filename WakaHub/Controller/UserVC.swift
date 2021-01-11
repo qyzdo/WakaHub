@@ -13,6 +13,7 @@ final class UserVC: UIViewController {
     var languagesChartView: HorizontalBarChartView!
     var editorsChartView: HorizontalBarChartView!
     var operatingSystemsChartView: HorizontalBarChartView!
+    let refreshControl = UIRefreshControl()
 
     override func loadView() {
         let view = UserView()
@@ -27,6 +28,7 @@ final class UserVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavbar()
+        setupUIActions()
         loadData()
         languagesChartView = userView.languagesView.chart as? HorizontalBarChartView
         editorsChartView = userView.editorsView.chart as? HorizontalBarChartView
@@ -36,6 +38,16 @@ final class UserVC: UIViewController {
     private func setupNavbar() {
         self.navigationItem.title = "Your profile"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(self.logoutButtonClicked))
+    }
+
+    private func setupUIActions() {
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        userView.scrollView.refreshControl = refreshControl
+    }
+
+    @objc private func refreshData() {
+        refreshControl.endRefreshing()
+        loadData()
     }
 
     @objc private func logoutButtonClicked() {
