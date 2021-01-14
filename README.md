@@ -17,6 +17,8 @@ MVC - Used MVC pattern when creating the application
 
 Autolayout - Used to create layout for the app, iPad has different layout on main screen to better fill the space
 
+Swiftlint - Used to have more cleaned code
+
 <img src="https://github.com/qyzdo/WakaHub/blob/main/screenshots/Screenshot%202021-01-13%20at%2023.14.53.png" width="35%" height="35%"><img src="https://github.com/qyzdo/WakaHub/blob/main/screenshots/Screenshot%202021-01-14%20at%2009.44.36.png" width="35%" height="35%">
 <img src="https://github.com/qyzdo/WakaHub/blob/main/screenshots/Screenshot%202021-01-14%20at%2009.47.15.png" width="35%" height="35%"><img src="https://github.com/qyzdo/WakaHub/blob/main/screenshots/Screenshot%202021-01-13%20at%2023.14.21.png" width="35%" height="35%">
 <img src="https://github.com/qyzdo/WakaHub/blob/main/screenshots/Screenshot%202021-01-14%20at%2009.47.44.png" width="35%" height="35%"><img src="https://github.com/qyzdo/WakaHub/blob/main/screenshots/Screenshot%202021-01-14%20at%2009.49.47.png" width="55%" height="55%">
