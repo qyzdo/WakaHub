@@ -1,5 +1,4 @@
 # WakaHub
-[![time tracker](https://wakatime.com/badge/github/qyzdo/WakaHub.svg)](https://wakatime.com/badge/github/qyzdo/WakaHub) - time spent on the app(only coding)
 
 Client for wakatime.com.
 At first, there is a login screen where we can log in with wakatime OAuth, after successful login we have the main stats screen. On the stats menu, there are many charts with our data and the button to select the time range for data. On the tab bar, there is also a user profile tab that is showing information about the user and we can also log out from here. The application is not perfect, there are some bugs with the charts library, but it's looking pretty good on different screen sizes and I'm happy with the result.
